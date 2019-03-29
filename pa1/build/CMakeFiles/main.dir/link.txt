@@ -1,0 +1,1 @@
+/usr/bin/c++  -static -static-libgcc -static-libstdc++ -Wall -O3 -std=c++11 -DIL_STD -lm -pthread  -rdynamic CMakeFiles/main.dir/src/main/main.cpp.o  -o ../bin/fm ../lib/libsrclib.a ../lib/libsrclib.a ../lib/libsrclib.a 
