@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libsrclib.a  CMakeFiles/srclib.dir/src/data/data.cpp.o CMakeFiles/srclib.dir/src/data/net.cpp.o CMakeFiles/srclib.dir/src/fm/bucketList.cpp.o CMakeFiles/srclib.dir/src/misc/global.cpp.o CMakeFiles/srclib.dir/src/parser/parser.cpp.o
-/usr/bin/ranlib ../lib/libsrclib.a
