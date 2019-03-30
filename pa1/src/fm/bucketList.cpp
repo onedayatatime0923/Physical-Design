@@ -56,6 +56,7 @@ void BucketList::print() {
         printf("gain: %d\n", i);
         printf("here\n");
         for (auto it = cellL.begin(); it != cellL.end(); ++it) {
+            cout<< (*it)<<endl;
             printf("  cell name: %s\n", (*it)->name().c_str());
         }
         printf("here end\n");
