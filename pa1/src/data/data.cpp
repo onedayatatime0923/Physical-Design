@@ -21,10 +21,12 @@ void Data::spread() {
     _netPV.reserve(_netM.size());
     for (auto it = _netM.begin(); it != _netM.end(); ++it) {
         _netPV.emplace_back(&it->second);
+        _netPV.back()->setId(_netPV.size() - 1);
     }
     _cellPV.reserve(_cellM.size());
     for (auto it = _cellM.begin(); it != _cellM.end(); ++it) {
         _cellPV.emplace_back(&it->second);
+        _cellPV.back()->setId(_cellPV.size() - 1);
     }
 
 };
@@ -35,11 +37,15 @@ void Data::print() {
             printf("  cell: %s\n", _netPV[i]->cellP(j)->name().c_str());
         }
     }
+    printCell();
+};
+void Data::printCell() {
     for (int i = 0; i < (int)_cellPV.size(); ++i) {
         printf("Cell name: %s\n", _cellPV[i]->name().c_str());
         for (int j = 0; j < (int)_cellPV[i]->netPSize(); ++j) {
             printf("  net: %s\n", _cellPV[i]->netP(j)->name().c_str());
         }
+        printf("  block: %d\n", _cellPV[i]->block());
+        printf("  gain: %d\n", _cellPV[i]->gain());
     }
-
 };

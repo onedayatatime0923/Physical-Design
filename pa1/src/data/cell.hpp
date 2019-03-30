@@ -12,6 +12,7 @@ public:
     Cell(const string& name) : _name(name) {};
 
     const string&   name        ()  { return _name; }
+    int             id          ()  { return _id; }
     int             netPSize    ()  { return _netPV.size(); }
     Net*            netP        (int i )    { return _netPV[i]; }
     BucketList::iterator& iterator()        { return _iterator; }
@@ -21,10 +22,12 @@ public:
 
 
     // setter
+    void    setId       (int id)        { _id = id; }
     void    addNet      (Net* net) { _netPV.push_back(net); }
 
 private:
     string              _name;
+    int                 _id;
     vector<Net*>        _netPV;
 
     // for fm

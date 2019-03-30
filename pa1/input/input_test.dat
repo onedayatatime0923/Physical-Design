@@ -1,3 +1,5 @@
-0.010000
-NET n1 c1921 c1147 ;
-NET n2 c980 c1436 c28 ;
+0.5
+NET k c1 c2 c3 c5 ;
+NET m c1 c2 ;
+NET p c3 c6 ;
+NET q c1 c4 c5 ;

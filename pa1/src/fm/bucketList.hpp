@@ -9,16 +9,25 @@ class Cell;
 
 class BucketList {
 public:
-    BucketList(int n) : _cellLV(2*n+1), _maxGain((-1 * n) -1), _n(n) {}
+    BucketList(int n) { initialize(n); }
+    BucketList() {};
     typedef list<Cell*>::iterator iterator;
 
+    void        initialize(int n)   { _cellLV.resize((2*n) + 1); _maxGain = (-1 * n) - 1; _n = n; }
     iterator    insert  (Cell* cellP);
     bool        empty   ()  { return _maxGain == (-1 * _n) -1; }
     Cell*       max     () { assert(cellList(_maxGain).size() > 0); return cellList(_maxGain).front(); }
-    Cell*       popMax  ();
+    Cell*       next    (Cell* cellP);
+    void        erase   (Cell* cellP);
     void        update  (Cell* cellP);
 
+    iterator    end     () { return _cellLV[0].end(); }
+
+    void        print   ();
 private:
+
+    void        increaseMaxGain(Cell* cellP);
+    void        decreaseMaxGain();
 
     list<Cell*>&    cellList(int gain)  { assert(gain >= -1 * _n && gain <= _n); return _cellLV[gain + _n]; }
 

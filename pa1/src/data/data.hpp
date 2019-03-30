@@ -17,10 +17,13 @@ public:
     Cell*   cellP   (int i )    { return _cellPV[i]; }
     float&  balanceDegree()     { return _balanceDegree; }
 
+    bool    balanced(int i)     { return ((1-_balanceDegree)/2) * _cellPV.size() <= i && i <= ((1+_balanceDegree)/2) * _cellPV.size(); }
+
 
     void    spread  ();
 
     void    print   ();
+    void    printCell   ();
 
 private:
     map<string, Net>    _netM;

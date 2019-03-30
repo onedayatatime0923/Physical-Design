@@ -9,19 +9,29 @@
 
 class FM {
 public:
-    FM(Data& data) : _data(data) {};
+    FM(Data& data);
 
     
 
+    void    solve();
 
 private:
 
     void    initializeCellBlock();
     void    initializeCellGain();
-    void    initializebucketList();
+    void    initializeBucketList();
 
+    void    pass();
+    void    moveBaseCell(Cell* baseCell);
+
+    bool    checkBlockState();
+
+
+
+    Data&                           _data;
     BucketList                      _bucketList;
-    vector<vector<pair<int, int>>>  _blockState;
+    vector<int>                     _blockState;
+    vector<vector<pair<set<Cell*>, set<Cell*>>>>  _blockNetState; // first for free, second for locked
     int                             _bestUpdateCost;
 
 };
