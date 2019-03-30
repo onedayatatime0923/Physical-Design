@@ -23,11 +23,11 @@ public:
 
     iterator    end     () { return _cellLV[0].end(); }
 
+    void        increaseMaxGain(Cell* cellP);
+    void        decreaseMaxGain();
     void        print   ();
 private:
 
-    void        increaseMaxGain(Cell* cellP);
-    void        decreaseMaxGain();
 
     list<Cell*>&    cellList(int gain)  { assert(gain >= -1 * _n && gain <= _n); return _cellLV[gain + _n]; }
 

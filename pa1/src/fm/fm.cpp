@@ -90,6 +90,7 @@ void FM::pass() {
         while (!_data.balanced(_blockState[from] - 1) || !_data.balanced(_blockState[to] + 1)) {
             maxCellP = _bucketList.next(maxCellP);
             printf("maxCellP name: %s\n", maxCellP->name().c_str());
+            printf("maxCellP name: %s\n", maxCellP->name().c_str());
             if (maxCellP == NULL) return;
             from = maxCellP->block();
             to = from ^ 1;
@@ -148,6 +149,7 @@ void FM::moveBaseCell(Cell* baseCell) {
             }
         }
     }
+    _bucketList.decreaseMaxGain();
 }
 bool FM::checkBlockState() {
     // printf("_blockState.first: %d\n", _blockState.first);

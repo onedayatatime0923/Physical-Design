@@ -55,8 +55,12 @@ void BucketList::print() {
         list<Cell*>& cellL = cellList(i);
         printf("gain: %d\n", i);
         printf("here\n");
+        auto it = cellL.begin();
+        printf("weird\n");
+        it = cellL.end();
+        printf("weird\n");
         for (auto it = cellL.begin(); it != cellL.end(); ++it) {
-            cout<< (*it)<<endl;
+            cerr<< (*it)<<endl;
             printf("  cell name: %s\n", (*it)->name().c_str());
         }
         printf("here end\n");
