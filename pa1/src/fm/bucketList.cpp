@@ -34,8 +34,7 @@ void BucketList::erase(Cell* cellP) {
     decreaseMaxGain();
 }
 void BucketList::update(Cell* cellP) {
-    list<Cell*>& cellL = cellList(cellP->gain());
-    cellL.erase(cellP->iterator());
+    erase(cellP);
     iterator it = insert(cellP);
     cellP->iterator() = it;
 };
@@ -54,16 +53,16 @@ void BucketList::print() {
     for (int i = _n; i >= -1 * _n; --i) {
         list<Cell*>& cellL = cellList(i);
         printf("gain: %d\n", i);
-        printf("here\n");
+        // printf("here\n");
         auto it = cellL.begin();
-        printf("weird\n");
+        // printf("weird\n");
         it = cellL.end();
-        printf("weird\n");
+        // printf("weird\n");
         for (auto it = cellL.begin(); it != cellL.end(); ++it) {
-            cerr<< (*it)<<endl;
+            // cerr<< (*it)<<endl;
             printf("  cell name: %s\n", (*it)->name().c_str());
         }
-        printf("here end\n");
+        // printf("here end\n");
     }
 
 }
