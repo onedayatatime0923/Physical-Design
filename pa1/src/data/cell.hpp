@@ -9,7 +9,7 @@
 
 class Cell {
 public:
-    Cell(const string& name) : _name(name) {};
+    Cell(const string& name) : _name(name), _finalBlock(-1) {};
 
     const string&   name        ()  { return _name; }
     int             id          ()  { return _id; }
@@ -18,6 +18,7 @@ public:
     BucketList::iterator& iterator()        { return _iterator; }
     int&            block       ()  { return _block; }
     int&            gain        ()  { return _gain; }
+    int&            finalBlock  ()  { return _finalBlock; }
 
 
 
@@ -34,6 +35,8 @@ private:
     BucketList::iterator    _iterator;
     int                     _block;
     int                     _gain;
+
+    int                     _finalBlock;
     
 };
 

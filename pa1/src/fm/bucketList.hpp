@@ -19,7 +19,6 @@ public:
     Cell*       max     () { assert(cellList(_maxGain).size() > 0); return cellList(_maxGain).front(); }
     Cell*       next    (Cell* cellP);
     void        erase   (Cell* cellP);
-    void        update  (Cell* cellP);
 
     iterator    end     () { return _cellLV[0].end(); }
 

@@ -30,3 +30,25 @@ void Parser::parse(const string& input) {
     }
     _data.spread();
 };
+void Parser::dumpFile(int cut, const string& output) {
+    FILE* file = fopen(output.c_str(), "w");
+
+    vector<vector<Cell*>> groupCellVV;
+    groupCellVV.resize(2);
+
+    Cell* cellP;
+    for (int i = 0; i < _data.cellPSize(); ++i) {
+        cellP = _data.cellP(i);
+        groupCellVV[cellP->finalBlock()].emplace_back(cellP);
+    }
+
+    fprintf(file, "Cutsize = %d\n", cut);
+    for (int i = 0; i < (int)groupCellVV.size(); ++i) {
+        fprintf(file, "G%d %d\n", i + 1, (int)groupCellVV[i].size());
+        for (int j = 0; j < (int)groupCellVV[i].size(); ++j) {
+            fprintf(file, "%s ", groupCellVV[i][j]->name().c_str());
+        }
+        fprintf(file, ";\n");
+    }
+
+};

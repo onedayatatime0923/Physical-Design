@@ -12,7 +12,11 @@ int main(int argc, char **argv) {
     // data.print();
 
     FM fm(data);
-    fm.solve();
+    int cut = fm.solve();
+
+    parser.dumpFile(cut, argv[2]);
+
+
 
 
     return 0;

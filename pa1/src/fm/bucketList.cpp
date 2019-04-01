@@ -20,31 +20,42 @@ Cell* BucketList::next(Cell* cellP) {
     --gain;
     while(cellList(gain).size() == 0) {
         --gain;
-        if (gain < 0) {
+        if (gain < -1 * _n) {
             return NULL;
         }
     }
     return cellList(gain).front();
 }
 void BucketList::erase(Cell* cellP) {
+    // printf("gain: %d\n", cellP->gain());
     list<Cell*>& cellL = cellList(cellP->gain());
     assert(cellP->iterator() != end());
+    // printf("gain: %d\n", cellP->gain());
+    // printf("max Gain: %d\n", _maxGain);
+    // printf("cellL size: %d\n", (int)cellList(_maxGain).size());
+    // auto tmp = end();
+    // for (auto it = cellList(_maxGain).begin(); it != cellList(_maxGain).end(); ++it) {
+    //     printf("cellL name: %s\n", (*it)->name().c_str());
+    // }
+    // printf("end\n");
+    // printf("bool: %d\n", cellP->iterator() == tmp);
     cellL.erase(cellP->iterator());
     cellP->iterator() = end();
     decreaseMaxGain();
+    // printf("max Gain: %d\n", _maxGain);
+    // printf("cellL size: %d\n", (int)cellList(_maxGain).size());
+    // for (auto it = cellList(_maxGain).begin(); it != cellList(_maxGain).end(); ++it) {
+    //     printf("cellL name: %s\n", (*it)->name().c_str());
+    // }
+    // printf("end\n");
 }
-void BucketList::update(Cell* cellP) {
-    erase(cellP);
-    iterator it = insert(cellP);
-    cellP->iterator() = it;
-};
 void BucketList::increaseMaxGain(Cell* cellP) {
     if (cellP->gain() > _maxGain) {
         _maxGain = cellP->gain();
     }
 };
 void BucketList::decreaseMaxGain() {
-    while (cellList(_maxGain).size() == 0) {
+    while (_maxGain >= (-1 * _n) && cellList(_maxGain).size() == 0) {
         --_maxGain;
     }
 };
