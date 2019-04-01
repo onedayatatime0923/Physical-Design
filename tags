@@ -415,6 +415,7 @@ _netPV	pa1/src/data/data.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Data
 _totalUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _totalUpdateCost;$/;"	m	class:FM
 addCell	pa1/src/data/net.hpp	/^    void    addCell     (Cell* cell)    { _cellPV.push_back(cell); }$/;"	f	class:Net
 addNet	pa1/src/data/cell.hpp	/^    void    addNet      (Net* net) { _netPV.push_back(net); }$/;"	f	class:Cell
+assignCell	pa1/src/fm/fm.cpp	/^void FM::assignCell() {$/;"	f	class:FM
 balanceDegree	pa1/src/data/data.hpp	/^    float&  balanceDegree()     { return _balanceDegree; }$/;"	f	class:Data
 balanced	pa1/src/data/data.hpp	/^    bool    balanced(int i)     { return ((1-_balanceDegree)\/2) * _cellPV.size() <= i && i <= ((1+_balanceDegree)\/2) * _cellPV.size(); }$/;"	f	class:Data
 block	pa1/src/data/cell.hpp	/^    int&            block       ()  { return _block; }$/;"	f	class:Cell
@@ -465,6 +466,7 @@ info_version	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^
 info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
 initialize	pa1/src/fm/bucketList.hpp	/^    void        initialize(int n)   { _cellLV.resize((2*n) + 1); _maxGain = (-1 * n) - 1; _n = n; }$/;"	f	class:BucketList
+initializeBlockState	pa1/src/fm/fm.cpp	/^void FM::initializeBlockState() {$/;"	f	class:FM
 initializeBucketList	pa1/src/fm/fm.cpp	/^void FM::initializeBucketList() {$/;"	f	class:FM
 initializeCellBlock	pa1/src/fm/fm.cpp	/^void FM::initializeCellBlock() {$/;"	f	class:FM
 initializeCellGain	pa1/src/fm/fm.cpp	/^void FM::initializeCellGain() {$/;"	f	class:FM

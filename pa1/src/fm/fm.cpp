@@ -22,6 +22,7 @@ FM::FM(Data& data) : _data(data) {
 
 int FM::solve() {
     initializeCellBlock();
+    initializeBlockState();
     initializeCellGain();
     initializeBucketList();
 
@@ -49,19 +50,34 @@ void FM::initializeCellBlock() {
     for (int i = 0; i < _data.cellPSize() / 2; ++i) {
         cellP = _data.cellP(i);
         cellP->block() = 0;
-        ++_blockState[0];
-        for (int j = 0; j < cellP->netPSize(); ++j) {
-            _blockNetState[0][cellP->netP(j)->id()].first.emplace(cellP);
-        }
-
     }
     for (int i = _data.cellPSize() / 2; i < _data.cellPSize(); ++i) {
         cellP = _data.cellP(i);
         cellP->block() = 1;
-        ++_blockState[1];
+    }
+};
+void FM::assignCell() {
+    for (int i = 0; i < _data.cellPSize(); ++i) {
+        cellP->block() = cellP->finalBlock();
+    }
+}
+void FM::initializeBlockState() {
+    _blockState[0] = 0;
+    _blockState[1] = 0;
+    for (int i = 0; i < cellP->netPSize(); ++i) {
+        _blockNetState[0][i].first.clear();
+        _blockNetState[0][i].second.clear();
+        _blockNetState[1][i].first.clear();
+        _blockNetState[1][i].second.clear();
+    }
+    Cell* cellP;
+    for (int i = 0; i < _data.cellPSize(); ++i) {
+        cellP = _data.cellP(i);
+        ++_blockState[cellP->block()];
         for (int j = 0; j < cellP->netPSize(); ++j) {
-            _blockNetState[1][cellP->netP(j)->id()].first.emplace(cellP);
+            _blockNetState[cellP->block()][cellP->netP(j)->id()].first.emplace(cellP);
         }
+
     }
     assert(checkBlockState());
 };
