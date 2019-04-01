@@ -7,24 +7,28 @@
 #include "data/data.hpp"
 #include "bucketList.hpp"
 
+// #define DEBUG
+
 class FM {
 public:
     FM(Data& data);
 
     
 
-    void    solve();
+    int     solve();
 
 private:
 
-    void    initializeCellBlock();
-    void    initializeCellGain();
+    void    initializeCellBlock ();
+    void    initializeCellGain  ();
     void    initializeBucketList();
+    int     initializeCost      ();
 
-    void    pass();
-    void    moveBaseCell(Cell* baseCell);
+    void    pass                ();
+    void    moveBaseCell        (Cell* baseCell);
 
-    bool    checkBlockState();
+    bool    cellLocked          (Cell* cellP);
+    bool    checkBlockState     ();
 
 
 
@@ -32,6 +36,8 @@ private:
     BucketList                      _bucketList;
     vector<int>                     _blockState;
     vector<vector<pair<set<Cell*>, set<Cell*>>>>  _blockNetState; // first for free, second for locked
+
+    int                             _totalUpdateCost;
     int                             _bestUpdateCost;
 
 };

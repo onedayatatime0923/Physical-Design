@@ -20,19 +20,28 @@ FM::FM(Data& data) : _data(data) {
     _blockNetState[1].resize(data.netPSize());
 };
 
-void FM::solve() {
+int FM::solve() {
     initializeCellBlock();
     initializeCellGain();
     initializeBucketList();
 
+    int cost = initializeCost();
+    #ifdef DEBUG
     _data.printCell();
     _bucketList.print();
+    printf("cost: %d\n", cost);
     getchar();
+    #endif
 
     pass();
-    printf("finish\n");
-    _data.printCell();
-    getchar();
+    int times = 1;
+    while (_bestUpdateCost > 0) {
+        cost -= _bestUpdateCost;
+        pass();
+        ++times;
+    }
+    printf("iteration times: %d\n", times);
+    return cost;
 }
 
 void FM::initializeCellBlock() {
@@ -77,21 +86,37 @@ void FM::initializeBucketList() {
         _bucketList.insert(_data.cellP(i));
     }
 }
+int FM::initializeCost() {
+    int res = 0;
+    for (int i = 0; i < _data.netPSize(); ++i) {
+        if (_blockNetState[0][i].first.size() != 0 && _blockNetState[1][i].first.size() != 0) {
+            ++res;
+        }
+    }
+    return res;
+}
+
 void FM::pass() {
+    _totalUpdateCost = 0;
+    _bestUpdateCost = 0;
     while (true) {
+        #ifdef DEBUG
         printf("start iteration\n");
         getchar();
+        #endif
+        if (_bucketList.empty()) return;
         Cell* maxCellP = _bucketList.max();
+        #ifdef DEBUG
         printf("maxCellP name: %s\n", maxCellP->name().c_str());
-        printf("maxCellP name: %s\n", (*maxCellP->iterator())->name().c_str());
-        if (maxCellP == NULL) return;
+        #endif
         int from, to;
         from = maxCellP->block();
         to = from ^ 1;
         while (!_data.balanced(_blockState[from] - 1) || !_data.balanced(_blockState[to] + 1)) {
             maxCellP = _bucketList.next(maxCellP);
+            #ifdef DEBUG
             printf("maxCellP name: %s\n", maxCellP->name().c_str());
-            printf("maxCellP name: %s\n", (*maxCellP->iterator())->name().c_str());
+            #endif
             if (maxCellP == NULL) return;
             from = maxCellP->block();
             to = from ^ 1;
@@ -101,11 +126,27 @@ void FM::pass() {
         ++_blockState[to];
         moveBaseCell(maxCellP);
         maxCellP->block() = to;
+        
+        _totalUpdateCost += maxCellP->gain();
+        if (_totalUpdateCost > _bestUpdateCost) {
+            _bestUpdateCost = _totalUpdateCost;
+            for (int i = 0; i < _data.cellPSize(); ++i) {
+                _data.cellP(i)->finalBlock() = _data.cellP(i)->block();
+            }
+        }
+
+
+
+        #ifdef DEBUG
         _data.printCell();
         _bucketList.print();
+        printf("total update cost: %d\n", _totalUpdateCost);
+        printf("best update cost: %d\n", _bestUpdateCost);
         printf("finish iteration\n");
         getchar();
+        #endif
     }
+    assert(_totalUpdateCost = 0);
 }
 void FM::moveBaseCell(Cell* baseCell) {
     int from = baseCell->block();
@@ -113,19 +154,40 @@ void FM::moveBaseCell(Cell* baseCell) {
     int netId;
     for (int i = 0; i < baseCell->netPSize(); ++i) {
         netId = baseCell->netP(i)->id();
+        #ifdef DEBUG
+        printf("update net: %s\n", _data.netP(netId)->name().c_str());
+        printf("update to\n");
+        #endif
         if (_blockNetState[to][netId].second.size() == 0) {
             if (_blockNetState[to][netId].first.size() == 0) {
                 set<Cell*>& cellPS= _blockNetState[from][netId].first;
+                #ifdef DEBUG
+                printf("update to 0\n");
+                #endif
                 for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
+                    if (cellLocked(*it)) continue;
+                    #ifdef DEBUG
+                    printf("cell name: %s\n", (*it)->name().c_str());
+                    #endif
+                    _bucketList.erase(*it);
                     ++(*it)->gain();
-                    _bucketList.update(*it);
+                    (*it)->iterator() = _bucketList.insert(*it);
                 }
             }
             else if (_blockNetState[to][netId].first.size() == 1) {
                 set<Cell*>& cellPS= _blockNetState[to][netId].first;
+                #ifdef DEBUG
+                printf("update to 1\n");
+                #endif
                 for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
+                    if (cellLocked(*it)) continue;
+                    #ifdef DEBUG
+                    printf("cell name: %s\n", (*it)->name().c_str());
+                    printf("cell gain: %d\n", (*it)->gain());
+                    #endif
+                    _bucketList.erase(*it);
                     --(*it)->gain();
-                    _bucketList.update(*it);
+                    (*it)->iterator() = _bucketList.insert(*it);
                 }
             }
         }
@@ -133,23 +195,45 @@ void FM::moveBaseCell(Cell* baseCell) {
         _blockNetState[from][netId].first.erase(baseCell);
         _blockNetState[to][netId].second.emplace(baseCell);
         
+        #ifdef DEBUG
+        printf("update from\n");
+        #endif
         if (_blockNetState[from][netId].second.size() == 0) {
             if (_blockNetState[from][netId].first.size() == 0) {
                 set<Cell*>& cellPS= _blockNetState[to][netId].first;
+                #ifdef DEBUG
+                printf("update from 0\n");
+                #endif
                 for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
+                    if (cellLocked(*it)) continue;
+                    #ifdef DEBUG
+                    printf("cell name: %s\n", (*it)->name().c_str());
+                    #endif
+                    _bucketList.erase(*it);
                     --(*it)->gain();
-                    _bucketList.update(*it);
+                    (*it)->iterator() = _bucketList.insert(*it);
                 }
             }
-            else if (_blockNetState[to][netId].first.size() == 1) {
+            else if (_blockNetState[from][netId].first.size() == 1) {
                 set<Cell*>& cellPS= _blockNetState[from][netId].first;
+                #ifdef DEBUG
+                printf("update from 1\n");
+                #endif
                 for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
+                    if (cellLocked(*it)) continue;
+                    #ifdef DEBUG
+                    printf("cell name: %s\n", (*it)->name().c_str());
+                    #endif
+                    _bucketList.erase(*it);
                     ++(*it)->gain();
-                    _bucketList.update(*it);
+                    (*it)->iterator() = _bucketList.insert(*it);
                 }
             }
         }
     }
+}
+bool FM::cellLocked(Cell* cellP) {
+    return cellP->iterator() == _bucketList.end();
 }
 bool FM::checkBlockState() {
     // printf("_blockState.first: %d\n", _blockState.first);

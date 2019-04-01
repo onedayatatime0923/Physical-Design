@@ -284,7 +284,7 @@ C_DIALECT	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	552;"	d	fil
 C_DIALECT	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	555;"	d	file:
 C_DIALECT	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	557;"	d	file:
 C_DIALECT	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	559;"	d	file:
-Cell	pa1/src/data/cell.hpp	/^    Cell(const string& name) : _name(name) {};$/;"	f	class:Cell
+Cell	pa1/src/data/cell.hpp	/^    Cell(const string& name) : _name(name), _finalBlock(-1) {};$/;"	f	class:Cell
 Cell	pa1/src/data/cell.hpp	/^class Cell {$/;"	c
 DEC	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	472;"	d	file:
 DEC	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	457;"	d	file:
@@ -400,6 +400,7 @@ _cellPV	pa1/src/data/data.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Dat
 _cellPV	pa1/src/data/net.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Net
 _data	pa1/src/fm/fm.hpp	/^    Data&                           _data;$/;"	m	class:FM
 _data	pa1/src/parser/parser.hpp	/^    Data& _data;$/;"	m	class:Parser
+_finalBlock	pa1/src/data/cell.hpp	/^    int                     _finalBlock;$/;"	m	class:Cell
 _gain	pa1/src/data/cell.hpp	/^    int                     _gain;$/;"	m	class:Cell
 _id	pa1/src/data/cell.hpp	/^    int                 _id;$/;"	m	class:Cell
 _id	pa1/src/data/net.hpp	/^    int                 _id;$/;"	m	class:Net
@@ -411,6 +412,7 @@ _name	pa1/src/data/net.hpp	/^    string              _name;$/;"	m	class:Net
 _netM	pa1/src/data/data.hpp	/^    map<string, Net>    _netM;$/;"	m	class:Data
 _netPV	pa1/src/data/cell.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Cell
 _netPV	pa1/src/data/data.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Data
+_totalUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _totalUpdateCost;$/;"	m	class:FM
 addCell	pa1/src/data/net.hpp	/^    void    addCell     (Cell* cell)    { _cellPV.push_back(cell); }$/;"	f	class:Net
 addNet	pa1/src/data/cell.hpp	/^    void    addNet      (Net* net) { _netPV.push_back(net); }$/;"	f	class:Cell
 balanceDegree	pa1/src/data/data.hpp	/^    float&  balanceDegree()     { return _balanceDegree; }$/;"	f	class:Data
@@ -418,6 +420,7 @@ balanced	pa1/src/data/data.hpp	/^    bool    balanced(int i)     { return ((1-_b
 block	pa1/src/data/cell.hpp	/^    int&            block       ()  { return _block; }$/;"	f	class:Cell
 cell	pa1/src/data/data.cpp	/^Cell* Data::cell(const string& name) {$/;"	f	class:Data
 cellList	pa1/src/fm/bucketList.hpp	/^    list<Cell*>&    cellList(int gain)  { assert(gain >= -1 * _n && gain <= _n); return _cellLV[gain + _n]; }$/;"	f	class:BucketList
+cellLocked	pa1/src/fm/fm.cpp	/^bool FM::cellLocked(Cell* cellP) {$/;"	f	class:FM
 cellP	pa1/src/data/data.hpp	/^    Cell*   cellP   (int i )    { return _cellPV[i]; }$/;"	f	class:Data
 cellP	pa1/src/data/net.hpp	/^    Cell*           cellP       (int i )    { return _cellPV[i]; }$/;"	f	class:Net
 cellPSize	pa1/src/data/data.hpp	/^    int     cellPSize()         { return _cellPV.size(); }$/;"	f	class:Data
@@ -428,11 +431,13 @@ data__cell_h	pa1/src/data/cell.hpp	4;"	d
 data__data_h	pa1/src/data/data.hpp	3;"	d
 data__net_h	pa1/src/data/net.hpp	4;"	d
 decreaseMaxGain	pa1/src/fm/bucketList.cpp	/^void BucketList::decreaseMaxGain() {$/;"	f	class:BucketList
+dumpFile	pa1/src/parser/parser.cpp	/^void Parser::dumpFile(int cut, const string& output) {$/;"	f	class:Parser
 empty	pa1/src/fm/bucketList.hpp	/^    bool        empty   ()  { return _maxGain == (-1 * _n) -1; }$/;"	f	class:BucketList
 end	pa1/src/fm/bucketList.hpp	/^    iterator    end     () { return _cellLV[0].end(); }$/;"	f	class:BucketList
 erase	pa1/src/fm/bucketList.cpp	/^void BucketList::erase(Cell* cellP) {$/;"	f	class:BucketList
 features	pa1/build/CMakeFiles/feature_tests.c	/^  const char features[] = {"\\n"$/;"	v
 features	pa1/build/CMakeFiles/feature_tests.cxx	/^  const char features[] = {"\\n"$/;"	v
+finalBlock	pa1/src/data/cell.hpp	/^    int&            finalBlock  ()  { return _finalBlock; }$/;"	f	class:Cell
 fm__bucketList_h	pa1/src/fm/bucketList.hpp	3;"	d
 fm__fm_h	pa1/src/fm/fm.hpp	3;"	d
 gain	pa1/src/data/cell.hpp	/^    int&            gain        ()  { return _gain; }$/;"	f	class:Cell
@@ -463,6 +468,7 @@ initialize	pa1/src/fm/bucketList.hpp	/^    void        initialize(int n)   { _ce
 initializeBucketList	pa1/src/fm/fm.cpp	/^void FM::initializeBucketList() {$/;"	f	class:FM
 initializeCellBlock	pa1/src/fm/fm.cpp	/^void FM::initializeCellBlock() {$/;"	f	class:FM
 initializeCellGain	pa1/src/fm/fm.cpp	/^void FM::initializeCellGain() {$/;"	f	class:FM
+initializeCost	pa1/src/fm/fm.cpp	/^int FM::initializeCost() {$/;"	f	class:FM
 insert	pa1/src/fm/bucketList.cpp	/^BucketList::iterator BucketList::insert(Cell* cellP) {$/;"	f	class:BucketList
 iterator	pa1/src/data/cell.hpp	/^    BucketList::iterator& iterator()        { return _iterator; }$/;"	f	class:Cell
 iterator	pa1/src/fm/bucketList.hpp	/^    typedef list<Cell*>::iterator iterator;$/;"	t	class:BucketList
@@ -472,6 +478,7 @@ main	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main
 main	pa1/build/CMakeFiles/feature_tests.c	/^int main(int argc, char** argv) { (void)argv; return features[argc]; }$/;"	f
 main	pa1/build/CMakeFiles/feature_tests.cxx	/^int main(int argc, char** argv) { (void)argv; return features[argc]; }$/;"	f
 main	pa1/src/main/main.cpp	/^int main(int argc, char **argv) {$/;"	f
+main	pa1/src/main/test.cpp	/^int main(int argc, char **argv) {$/;"	f
 max	pa1/src/fm/bucketList.hpp	/^    Cell*       max     () { assert(cellList(_maxGain).size() > 0); return cellList(_maxGain).front(); }$/;"	f	class:BucketList
 misc__global_h	pa1/src/misc/global.hpp	3;"	d
 moveBaseCell	pa1/src/fm/fm.cpp	/^void FM::moveBaseCell(Cell* baseCell) {$/;"	f	class:FM
@@ -494,7 +501,6 @@ qnxnto	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char c
 setId	pa1/src/data/cell.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Cell
 setId	pa1/src/data/net.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Net
 showMemoryUsage	pa1/src/misc/global.cpp	/^void showMemoryUsage(bool peak) {$/;"	f
-solve	pa1/src/fm/fm.cpp	/^void FM::solve() {$/;"	f	class:FM
+solve	pa1/src/fm/fm.cpp	/^int FM::solve() {$/;"	f	class:FM
 spread	pa1/src/data/data.cpp	/^void Data::spread() {$/;"	f	class:Data
-update	pa1/src/fm/bucketList.cpp	/^void BucketList::update(Cell* cellP) {$/;"	f	class:BucketList
 volatile	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
