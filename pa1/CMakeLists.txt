@@ -73,5 +73,5 @@ add_executable(main ${MAINPATH}main.cpp)
 target_link_libraries(main PRIVATE ${LIB} srclib)
 # target_link_libraries(test PRIVATE ${LIB} srclib)
 # link the new hello_library target with the hello_binary target
-set_target_properties(main PROPERTIES OUTPUT_NAME bin/fm)
+set_target_properties(main PROPERTIES OUTPUT_NAME fm)
 # set_target_properties(test PROPERTIES OUTPUT_NAME test)
