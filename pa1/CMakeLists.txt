@@ -13,10 +13,10 @@ SET(SRCPATH     ${BASEPATH}/src)
 ############################################################
 # Create compile flags
 ############################################################
-# SET(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11 -DIL_STD -lm -pthread")
 # SET(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -Wall -O3 -std=c++11 -DIL_STD -lm -pthread")
 # SET(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -O3 -std=c++11 -DIL_STD -lm -pthread -DNDEBUG")
-SET(CMAKE_CXX_FLAGS "-O3 -std=c++11 -DNDEBUG")
+# SET(CMAKE_CXX_FLAGS "-O3 -std=c++11 -DNDEBUG")
+SET(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
 ############################################################
 # process variables
 ############################################################
