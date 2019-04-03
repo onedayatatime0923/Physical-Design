@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASEDIR=$(dirname "$0")
-EXE=$BASEDIR/bin/fm
+EXE=$BASEDIR/fm
 INPUT=$BASEDIR/input/input_$1.dat
 
 OUTPUTDIR=$BASEDIR/output

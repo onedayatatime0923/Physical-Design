@@ -6,7 +6,7 @@ Net* Data::net(const string& name) {
     if (it != _netM.end())
         return &it->second;
     else {
-        Net* res = &_netM.emplace(name, name).first->second;
+        Net* res = &_netM.insert({name, name}).first->second;
         _netPV.emplace_back(res);
         _netPV.back()->setId(_netPV.size() - 1);
         return res;
@@ -17,7 +17,7 @@ Cell* Data::cell(const string& name) {
     if (it != _cellM.end())
         return &it->second;
     else {
-        Cell* res =  &_cellM.emplace(name, name).first->second;
+        Cell* res =  &_cellM.insert({name, name}).first->second;
         _cellPV.emplace_back(res);
         _cellPV.back()->setId(_cellPV.size() - 1);
         return res;
