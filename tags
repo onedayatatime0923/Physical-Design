@@ -391,9 +391,9 @@ TIME_SCALE	pa1/src/misc/global.hpp	/^constexpr double    TIME_SCALE   = 1000000.
 _balanceDegree	pa1/src/data/data.hpp	/^    float _balanceDegree;$/;"	m	class:Data
 _bestUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _bestUpdateCost;$/;"	m	class:FM
 _block	pa1/src/data/cell.hpp	/^    int                     _block;$/;"	m	class:Cell
-_blockNetState	pa1/src/fm/fm.hpp	/^    vector<vector<pair<set<Cell*>, set<Cell*>>>>  _blockNetState; \/\/ first for free, second for locked$/;"	m	class:FM
+_blockNetState	pa1/src/fm/fm.hpp	/^    vector<vector<pair<int, int>>>  _blockNetState; \/\/ first for free, second for locked$/;"	m	class:FM
 _blockState	pa1/src/fm/fm.hpp	/^    vector<int>                     _blockState;$/;"	m	class:FM
-_bucketList	pa1/src/fm/fm.hpp	/^    BucketList                      _bucketList;$/;"	m	class:FM
+_bucketList	pa1/src/fm/fm.hpp	/^    vector<BucketList>              _bucketList;$/;"	m	class:FM
 _cellLV	pa1/src/fm/bucketList.hpp	/^    vector<list<Cell*>>  _cellLV;$/;"	m	class:BucketList
 _cellM	pa1/src/data/data.hpp	/^    map<string, Cell>   _cellM;$/;"	m	class:Data
 _cellPV	pa1/src/data/data.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Data
@@ -427,10 +427,12 @@ cellP	pa1/src/data/net.hpp	/^    Cell*           cellP       (int i )    { retur
 cellPSize	pa1/src/data/data.hpp	/^    int     cellPSize()         { return _cellPV.size(); }$/;"	f	class:Data
 cellPSize	pa1/src/data/net.hpp	/^    int             cellPSize   ()  { return _cellPV.size(); }$/;"	f	class:Net
 checkBlockState	pa1/src/fm/fm.cpp	/^bool FM::checkBlockState() {$/;"	f	class:FM
+clear	pa1/src/fm/bucketList.cpp	/^void BucketList::clear() {$/;"	f	class:BucketList
 const	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	10;"	d	file:
 data__cell_h	pa1/src/data/cell.hpp	4;"	d
 data__data_h	pa1/src/data/data.hpp	3;"	d
 data__net_h	pa1/src/data/net.hpp	4;"	d
+decrease	pa1/src/fm/bucketList.cpp	/^void BucketList::decrease(Cell* cellP) {$/;"	f	class:BucketList
 decreaseMaxGain	pa1/src/fm/bucketList.cpp	/^void BucketList::decreaseMaxGain() {$/;"	f	class:BucketList
 dumpFile	pa1/src/parser/parser.cpp	/^void Parser::dumpFile(int cut, const string& output) {$/;"	f	class:Parser
 empty	pa1/src/fm/bucketList.hpp	/^    bool        empty   ()  { return _maxGain == (-1 * _n) -1; }$/;"	f	class:BucketList
@@ -446,6 +448,7 @@ getCurrMemoryUsage	pa1/src/misc/global.cpp	/^double getCurrMemoryUsage() {$/;"	f
 getPeakMemoryUsage	pa1/src/misc/global.cpp	/^double getPeakMemoryUsage() {$/;"	f
 id	pa1/src/data/cell.hpp	/^    int             id          ()  { return _id; }$/;"	f	class:Cell
 id	pa1/src/data/net.hpp	/^    int             id          ()  { return _id; }$/;"	f	class:Net
+increase	pa1/src/fm/bucketList.cpp	/^void BucketList::increase(Cell* cellP) {$/;"	f	class:BucketList
 increaseMaxGain	pa1/src/fm/bucketList.cpp	/^void BucketList::increaseMaxGain(Cell* cellP) {$/;"	f	class:BucketList
 info_arch	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
 info_arch	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v

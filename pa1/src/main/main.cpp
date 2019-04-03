@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
     Parser parser(data);
     parser.parse(argv[1]);
     // data.print();
+    // getchar();
 
     FM fm(data);
     int cut = fm.solve();

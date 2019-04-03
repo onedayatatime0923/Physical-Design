@@ -41,7 +41,6 @@ void BucketList::erase(Cell* cellP) {
     // printf("bool: %d\n", cellP->iterator() == tmp);
     cellL.erase(cellP->iterator());
     cellP->iterator() = end();
-    decreaseMaxGain();
     // printf("max Gain: %d\n", _maxGain);
     // printf("cellL size: %d\n", (int)cellList(_maxGain).size());
     // for (auto it = cellList(_maxGain).begin(); it != cellList(_maxGain).end(); ++it) {
@@ -59,6 +58,22 @@ void BucketList::decreaseMaxGain() {
         --_maxGain;
     }
 };
+void BucketList::increase(Cell* cellP) {
+    erase(cellP);
+    ++cellP->gain();
+    cellP->iterator() = insert(cellP);
+};
+void BucketList::decrease(Cell* cellP) {
+    erase(cellP);
+    --cellP->gain();
+    cellP->iterator() = insert(cellP);
+};
+void BucketList::clear() {
+    for (int i = 0; i < (int)_cellLV.size(); ++i) {
+        _cellLV.clear();
+    }
+    _maxGain = (-1 * _n) - 1;
+}
 void BucketList::print() {
     printf("max Gain: %d\n", _maxGain);
     for (int i = _n; i >= -1 * _n; --i) {

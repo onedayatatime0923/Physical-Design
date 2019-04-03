@@ -20,6 +20,8 @@ public:
 private:
 
     void    initializeCellBlock ();
+    void    assignCell          ();
+    void    initializeBlockState();
     void    initializeCellGain  ();
     void    initializeBucketList();
     int     initializeCost      ();
@@ -33,9 +35,9 @@ private:
 
 
     Data&                           _data;
-    BucketList                      _bucketList;
+    vector<BucketList>              _bucketList;
     vector<int>                     _blockState;
-    vector<vector<pair<set<Cell*>, set<Cell*>>>>  _blockNetState; // first for free, second for locked
+    vector<vector<pair<int, int>>>  _blockNetState; // first for free, second for locked
 
     int                             _totalUpdateCost;
     int                             _bestUpdateCost;
