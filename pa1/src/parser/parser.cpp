@@ -28,7 +28,7 @@ void Parser::parse(const string& input) {
         }
         // printf("%s\n", buffer);
     }
-    _data.spread();
+    // _data.spread();
 };
 void Parser::dumpFile(int cut, const string& output) {
     FILE* file = fopen(output.c_str(), "w");

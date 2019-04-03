@@ -19,14 +19,19 @@ public:
     Cell*       max     () { assert(cellList(_maxGain).size() > 0); return cellList(_maxGain).front(); }
     Cell*       next    (Cell* cellP);
     void        erase   (Cell* cellP);
+    void        increase(Cell* cellP);
+    void        decrease(Cell* cellP);
 
     iterator    end     () { return _cellLV[0].end(); }
 
+    void        clear   ();
+
     void        print   ();
+
+    void        decreaseMaxGain();
 private:
 
     void        increaseMaxGain(Cell* cellP);
-    void        decreaseMaxGain();
 
     list<Cell*>&    cellList(int gain)  { assert(gain >= -1 * _n && gain <= _n); return _cellLV[gain + _n]; }
 

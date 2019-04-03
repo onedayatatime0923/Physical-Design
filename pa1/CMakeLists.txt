@@ -16,7 +16,8 @@ SET(SRCPATH     ${BASEPATH}/src)
 # SET(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11 -DIL_STD -lm -pthread")
 # SET(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -Wall -O3 -std=c++11 -DIL_STD -lm -pthread")
 # SET(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -O3 -std=c++11 -DIL_STD -lm -pthread -DNDEBUG")
-SET(CMAKE_CXX_FLAGS "-O3 -std=c++11 -DNDEBUG")
+# SET(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
+SET(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -O3 -std=c++11 -DNDEBUG")
 ############################################################
 # process variables
 ############################################################
@@ -67,10 +68,10 @@ target_link_libraries(srclib PRIVATE ${LIB})
 set(MAINPATH ${SRCPATH}/main/)
 # Add an executable with the above sources
 add_executable(main ${MAINPATH}main.cpp)
-add_executable(test ${MAINPATH}test.cpp)
+# add_executable(test ${MAINPATH}test.cpp)
 # link the new target with the target
 target_link_libraries(main PRIVATE ${LIB} srclib)
-target_link_libraries(test PRIVATE ${LIB} srclib)
+# target_link_libraries(test PRIVATE ${LIB} srclib)
 # link the new hello_library target with the hello_binary target
 set_target_properties(main PROPERTIES OUTPUT_NAME bin/fm)
-set_target_properties(test PROPERTIES OUTPUT_NAME test)
+# set_target_properties(test PROPERTIES OUTPUT_NAME test)

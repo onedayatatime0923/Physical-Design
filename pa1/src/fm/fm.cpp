@@ -9,7 +9,9 @@ FM::FM(Data& data) : _data(data) {
         }
     }
     // printf("maxP: %d\n", maxP);
-    _bucketList.initialize(maxP);
+    _bucketList.resize(2);
+    _bucketList[0].initialize(maxP);
+    _bucketList[1].initialize(maxP);
 
     _blockState.resize(2);
     _blockState[0] = 0;
@@ -24,22 +26,39 @@ int FM::solve() {
     initializeCellBlock();
     initializeBlockState();
     initializeCellGain();
+    // for (int i = 0; i < _blockNetState[0].size(); ++i) {
+    //     printf("block 0 net: %s, size: %d\n", _data.netP(i)->name().c_str(), _blockNetState[0][i].first);
+    // }
+    // for (int i = 0; i < _blockNetState[1].size(); ++i) {
+    //     printf("block 1 net: %s, size: %d\n", _data.netP(i)->name().c_str(), _blockNetState[1][i].first);
+    // }
     initializeBucketList();
 
     int cost = initializeCost();
+    int times = 0;
+    printf("start iteration\n");
+    printf("cost: %d\n", cost);
     #ifdef DEBUG
     _data.printCell();
-    _bucketList.print();
-    printf("cost: %d\n", cost);
+    _bucketList[0].print();
+    _bucketList[1].print();
     getchar();
     #endif
 
+
     pass();
-    int times = 1;
+    cost -= _bestUpdateCost;
+    ++times;
+    printf("after one iteration, cost: %d\n", cost);
     while (_bestUpdateCost > 0) {
-        cost -= _bestUpdateCost;
+        assignCell();
+        initializeBlockState();
+        initializeCellGain();
+        initializeBucketList();
         pass();
+        cost -= _bestUpdateCost;
         ++times;
+        printf("after one iteration, cost: %d\n", cost);
     }
     printf("iteration times: %d\n", times);
     return cost;
@@ -57,29 +76,32 @@ void FM::initializeCellBlock() {
     }
 };
 void FM::assignCell() {
+    Cell* cellP;
     for (int i = 0; i < _data.cellPSize(); ++i) {
+        cellP = _data.cellP(i);
         cellP->block() = cellP->finalBlock();
     }
 }
 void FM::initializeBlockState() {
     _blockState[0] = 0;
     _blockState[1] = 0;
-    for (int i = 0; i < cellP->netPSize(); ++i) {
-        _blockNetState[0][i].first.clear();
-        _blockNetState[0][i].second.clear();
-        _blockNetState[1][i].first.clear();
-        _blockNetState[1][i].second.clear();
+    for (int i = 0; i < _data.netPSize(); ++i) {
+        _blockNetState[0][i].first = 0;
+        _blockNetState[0][i].second = 0;
+        _blockNetState[1][i].first = 0;
+        _blockNetState[1][i].second = 0;
     }
     Cell* cellP;
     for (int i = 0; i < _data.cellPSize(); ++i) {
         cellP = _data.cellP(i);
         ++_blockState[cellP->block()];
         for (int j = 0; j < cellP->netPSize(); ++j) {
-            _blockNetState[cellP->block()][cellP->netP(j)->id()].first.emplace(cellP);
+            ++_blockNetState[cellP->block()][cellP->netP(j)->id()].first;
         }
 
     }
     assert(checkBlockState());
+    assert(false);
 };
 void FM::initializeCellGain() {
     Cell* cellP;
@@ -90,22 +112,26 @@ void FM::initializeCellGain() {
         from = cellP->block();
         to = from ^ 1;
         for (int j = 0; j < cellP->netPSize(); ++j) {
-            if (_blockNetState[from][cellP->netP(j)->id()].first.size() == 1)
+            if (_blockNetState[from][cellP->netP(j)->id()].first == 1)
                 ++cellP->gain();
-            if (_blockNetState[to][cellP->netP(j)->id()].first.size() == 0)
+            if (_blockNetState[to][cellP->netP(j)->id()].first == 0)
                 --cellP->gain();
         }
     }
 };
 void FM::initializeBucketList() {
+    _bucketList[0].clear();
+    _bucketList[1].clear();
+    Cell* cellP;
     for (int i = 0; i < _data.cellPSize(); ++i) {
-        _bucketList.insert(_data.cellP(i));
+        cellP = _data.cellP(i);
+        _bucketList[cellP->block()].insert(_data.cellP(i));
     }
 }
 int FM::initializeCost() {
     int res = 0;
     for (int i = 0; i < _data.netPSize(); ++i) {
-        if (_blockNetState[0][i].first.size() != 0 && _blockNetState[1][i].first.size() != 0) {
+        if (_blockNetState[0][i].first != 0 && _blockNetState[1][i].first != 0) {
             ++res;
         }
     }
@@ -120,28 +146,54 @@ void FM::pass() {
         printf("start iteration\n");
         getchar();
         #endif
-        if (_bucketList.empty()) return;
-        Cell* maxCellP = _bucketList.max();
+
+        bool from0To1, from1To0;
+
+        from0To1 = (_data.balanced(_blockState[0] - 1) && _data.balanced(_blockState[1] + 1));
+        from1To0 = (_data.balanced(_blockState[1] - 1) && _data.balanced(_blockState[0] + 1));
+
+        Cell* maxCellP;
+        if (from0To1 && !from1To0) {
+            if (!_bucketList[0].empty())
+                maxCellP = _bucketList[0].max();
+            else return;
+        }
+        else if (!from0To1 && from1To0) {
+            if (!_bucketList[1].empty())
+                maxCellP = _bucketList[1].max();
+            else return;
+        }
+        else if (from0To1 && from1To0) {
+            if (!_bucketList[0].empty() && !_bucketList[1].empty())
+                maxCellP = _bucketList[0].max()->gain() > _bucketList[1].max()->gain()? _bucketList[0].max(): _bucketList[1].max();
+            else if (!_bucketList[0].empty() && _bucketList[1].empty())
+                maxCellP = _bucketList[0].max();
+            else if (_bucketList[0].empty() && !_bucketList[1].empty())
+                maxCellP = _bucketList[1].max();
+            else return;
+
+        }else
+            return;
+
+
         #ifdef DEBUG
+        printf("from0To1: %d\n", from0To1);
+        printf("from1To0: %d\n", from1To0);
+        cout << maxCellP << endl;
         printf("maxCellP name: %s\n", maxCellP->name().c_str());
         #endif
         int from, to;
         from = maxCellP->block();
         to = from ^ 1;
-        while (!_data.balanced(_blockState[from] - 1) || !_data.balanced(_blockState[to] + 1)) {
-            maxCellP = _bucketList.next(maxCellP);
-            #ifdef DEBUG
-            printf("maxCellP name: %s\n", maxCellP->name().c_str());
-            #endif
-            if (maxCellP == NULL) return;
-            from = maxCellP->block();
-            to = from ^ 1;
-        }
-        _bucketList.erase(maxCellP);
+
+        _bucketList[from].erase(maxCellP);
         --_blockState[from];
         ++_blockState[to];
         moveBaseCell(maxCellP);
         maxCellP->block() = to;
+
+        _bucketList[from].decreaseMaxGain();
+        _bucketList[to].decreaseMaxGain();
         
         _totalUpdateCost += maxCellP->gain();
         if (_totalUpdateCost > _bestUpdateCost) {
@@ -155,7 +207,8 @@ void FM::pass() {
 
         #ifdef DEBUG
         _data.printCell();
-        _bucketList.print();
+        _bucketList[0].print();
+        _bucketList[1].print();
         printf("total update cost: %d\n", _totalUpdateCost);
         printf("best update cost: %d\n", _bestUpdateCost);
         printf("finish iteration\n");
@@ -174,82 +227,77 @@ void FM::moveBaseCell(Cell* baseCell) {
         printf("update net: %s\n", _data.netP(netId)->name().c_str());
         printf("update to\n");
         #endif
-        if (_blockNetState[to][netId].second.size() == 0) {
-            if (_blockNetState[to][netId].first.size() == 0) {
-                set<Cell*>& cellPS= _blockNetState[from][netId].first;
+        if (_blockNetState[to][netId].second == 0) {
+            if (_blockNetState[to][netId].first == 0) {
                 #ifdef DEBUG
                 printf("update to 0\n");
                 #endif
-                for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
-                    if (cellLocked(*it)) continue;
+                Cell* cellP;
+                for (int i = 0; i < _data.netP(netId)->cellPSize(); ++i) {
+                    cellP = _data.netP(netId)->cellP(i);
+                    if (cellP->block() == to || cellLocked(cellP)) continue;
                     #ifdef DEBUG
-                    printf("cell name: %s\n", (*it)->name().c_str());
+                    printf("cell name: %s\n", (cellP)->name().c_str());
                     #endif
-                    _bucketList.erase(*it);
-                    ++(*it)->gain();
-                    (*it)->iterator() = _bucketList.insert(*it);
+                    _bucketList[from].increase(cellP);
                 }
             }
-            else if (_blockNetState[to][netId].first.size() == 1) {
-                set<Cell*>& cellPS= _blockNetState[to][netId].first;
+            else if (_blockNetState[to][netId].first == 1) {
                 #ifdef DEBUG
                 printf("update to 1\n");
                 #endif
-                for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
-                    if (cellLocked(*it)) continue;
+                Cell* cellP;
+                for (int i = 0; i < _data.netP(netId)->cellPSize(); ++i) {
+                    cellP = _data.netP(netId)->cellP(i);
+                    if (cellP->block() == from || cellLocked(cellP)) continue;
                     #ifdef DEBUG
-                    printf("cell name: %s\n", (*it)->name().c_str());
-                    printf("cell gain: %d\n", (*it)->gain());
+                    printf("cell name: %s\n", (cellP)->name().c_str());
                     #endif
-                    _bucketList.erase(*it);
-                    --(*it)->gain();
-                    (*it)->iterator() = _bucketList.insert(*it);
+                    _bucketList[to].decrease(cellP);
                 }
             }
         }
 
-        _blockNetState[from][netId].first.erase(baseCell);
-        _blockNetState[to][netId].second.emplace(baseCell);
+        --_blockNetState[from][netId].first;
+        ++_blockNetState[to][netId].second;
         
         #ifdef DEBUG
         printf("update from\n");
         #endif
-        if (_blockNetState[from][netId].second.size() == 0) {
-            if (_blockNetState[from][netId].first.size() == 0) {
-                set<Cell*>& cellPS= _blockNetState[to][netId].first;
+        if (_blockNetState[from][netId].second == 0) {
+            if (_blockNetState[from][netId].first == 0) {
                 #ifdef DEBUG
                 printf("update from 0\n");
                 #endif
-                for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
-                    if (cellLocked(*it)) continue;
+                Cell* cellP;
+                for (int i = 0; i < _data.netP(netId)->cellPSize(); ++i) {
+                    cellP = _data.netP(netId)->cellP(i);
+                    if (cellP->block() == from || cellLocked(cellP)) continue;
                     #ifdef DEBUG
-                    printf("cell name: %s\n", (*it)->name().c_str());
+                    printf("cell name: %s\n", (cellP)->name().c_str());
                     #endif
-                    _bucketList.erase(*it);
-                    --(*it)->gain();
-                    (*it)->iterator() = _bucketList.insert(*it);
+                    _bucketList[to].decrease(cellP);
                 }
             }
-            else if (_blockNetState[from][netId].first.size() == 1) {
-                set<Cell*>& cellPS= _blockNetState[from][netId].first;
+            else if (_blockNetState[from][netId].first == 1) {
                 #ifdef DEBUG
                 printf("update from 1\n");
                 #endif
-                for (auto it = cellPS.begin(); it != cellPS.end(); ++it) {
-                    if (cellLocked(*it)) continue;
+                Cell* cellP;
+                for (int i = 0; i < _data.netP(netId)->cellPSize(); ++i) {
+                    cellP = _data.netP(netId)->cellP(i);
+                    if (cellP->block() == to || cellLocked(cellP)) continue;
                     #ifdef DEBUG
-                    printf("cell name: %s\n", (*it)->name().c_str());
+                    printf("cell name: %s\n", (cellP)->name().c_str());
                     #endif
-                    _bucketList.erase(*it);
-                    ++(*it)->gain();
-                    (*it)->iterator() = _bucketList.insert(*it);
+                    _bucketList[from].increase(cellP);
                 }
             }
         }
     }
 }
 bool FM::cellLocked(Cell* cellP) {
-    return cellP->iterator() == _bucketList.end();
+    return (cellP->iterator() == _bucketList[0].end() || cellP->iterator() == _bucketList[1].end());
 }
 bool FM::checkBlockState() {
     // printf("_blockState.first: %d\n", _blockState.first);
@@ -264,12 +312,12 @@ bool FM::checkBlockState() {
     // printf("_blockState[1] size: %d\n", (int)_blockNetState[1].size());
     if (_data.netPSize() != (int)_blockNetState[0].size()) return false;
     if (_data.netPSize() != (int)_blockNetState[1].size()) return false;
-    for (int i = 0; i < (int)_blockNetState.size(); ++i) {
+    for (int i = 0; i < _data.netPSize(); ++i) {
         // printf("_blockNetState[0][i].first: %d\n", _blockNetState[0][i].first);
         // printf("_blockNetState[0][i].second: %d\n", _blockNetState[1][i].second);
         // printf("_blockNetState[1][i].first: %d\n", _blockNetState[0][i].first);
         // printf("_blockNetState[1][i].second: %d\n", _blockNetState[1][i].second);
-        if (_data.netP(i)->cellPSize() != (int)(_blockNetState[0][i].first.size() + _blockNetState[0][i].second.size() + _blockNetState[1][i].first.size() + _blockNetState[1][i].second.size()))
+        if (_data.netP(i)->cellPSize() != (int)(_blockNetState[0][i].first + _blockNetState[0][i].second + _blockNetState[1][i].first + _blockNetState[1][i].second))
             return false;
     }
     return true;

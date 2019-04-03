@@ -2,10 +2,10 @@
 #include "global.hpp"
 
 void showMemoryUsage(bool peak) {
-  if (peak)
-    fprintf(stderr, "Peak Memory Usage: %f MB\n", getPeakMemoryUsage() / MEMORY_SCALE);
-  else
-    fprintf(stderr, "Curr Memory Usage: %f MB\n", getCurrMemoryUsage() / MEMORY_SCALE);
+    if (peak)
+        fprintf(stderr, "Peak Memory Usage: %f MB\n", getPeakMemoryUsage() / MEMORY_SCALE);
+    else
+        fprintf(stderr, "Curr Memory Usage: %f MB\n", getCurrMemoryUsage() / MEMORY_SCALE);
 }
 
 double getPeakMemoryUsage() {

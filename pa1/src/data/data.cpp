@@ -6,7 +6,10 @@ Net* Data::net(const string& name) {
     if (it != _netM.end())
         return &it->second;
     else {
-        return &_netM.emplace(name, name).first->second;
+        auto res = &_netM.emplace(name, name).first->second;
+        _netPV.emplace_back(res);
+        _netPV.back()->setId(_netPV.size() - 1);
+        return res;
     }
 }
 Cell* Data::cell(const string& name) {
@@ -14,7 +17,10 @@ Cell* Data::cell(const string& name) {
     if (it != _cellM.end())
         return &it->second;
     else {
-        return &_cellM.emplace(name, name).first->second;
+        auto res =  &_cellM.emplace(name, name).first->second;
+        _cellPV.emplace_back(res);
+        _cellPV.back()->setId(_cellPV.size() - 1);
+        return res;
     }
 }
 void Data::spread() {
@@ -32,7 +38,7 @@ void Data::spread() {
 };
 void Data::print() {
     for (int i = 0; i < (int)_netPV.size(); ++i) {
-        printf("Net name: %s\n", _netPV[i]->name().c_str());
+        printf("Net name: %d, %s\n", _netPV[i]->id(), _netPV[i]->name().c_str());
         for (int j = 0; j < (int)_netPV[i]->cellPSize(); ++j) {
             printf("  cell: %s\n", _netPV[i]->cellP(j)->name().c_str());
         }
