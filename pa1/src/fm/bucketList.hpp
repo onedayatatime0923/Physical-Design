@@ -35,7 +35,7 @@ private:
 
     list<Cell*>&    cellList(int gain)  { assert(gain >= -1 * _n && gain <= _n); return _cellLV[gain + _n]; }
 
-    vector<list<Cell*>>  _cellLV;
+    vector<list<Cell*> > _cellLV;
     int                 _maxGain;
     int                 _n;
 };
