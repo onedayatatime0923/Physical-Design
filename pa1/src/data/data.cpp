@@ -2,22 +2,22 @@
 #include "data.hpp"
 
 Net* Data::net(const string& name) {
-    auto it = _netM.find(name);
+    map<string, Net>::iterator it = _netM.find(name);
     if (it != _netM.end())
         return &it->second;
     else {
-        auto res = &_netM.emplace(name, name).first->second;
+        Net* res = &_netM.emplace(name, name).first->second;
         _netPV.emplace_back(res);
         _netPV.back()->setId(_netPV.size() - 1);
         return res;
     }
 }
 Cell* Data::cell(const string& name) {
-    auto it = _cellM.find(name);
+    map<string, Cell>::iterator it = _cellM.find(name);
     if (it != _cellM.end())
         return &it->second;
     else {
-        auto res =  &_cellM.emplace(name, name).first->second;
+        Cell* res =  &_cellM.emplace(name, name).first->second;
         _cellPV.emplace_back(res);
         _cellPV.back()->setId(_cellPV.size() - 1);
         return res;
@@ -25,12 +25,12 @@ Cell* Data::cell(const string& name) {
 }
 void Data::spread() {
     _netPV.reserve(_netM.size());
-    for (auto it = _netM.begin(); it != _netM.end(); ++it) {
+    for (map<string, Net>::iterator it = _netM.begin(); it != _netM.end(); ++it) {
         _netPV.emplace_back(&it->second);
         _netPV.back()->setId(_netPV.size() - 1);
     }
     _cellPV.reserve(_cellM.size());
-    for (auto it = _cellM.begin(); it != _cellM.end(); ++it) {
+    for (map<string, Cell>::iterator it = _cellM.begin(); it != _cellM.end(); ++it) {
         _cellPV.emplace_back(&it->second);
         _cellPV.back()->setId(_cellPV.size() - 1);
     }
