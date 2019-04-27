@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <climits>
-#include "mst.h"
+#include "mst.hpp"
 
 using namespace std;
 

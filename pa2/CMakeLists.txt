@@ -9,12 +9,12 @@ set(BASEPATH    ${PROJECT_SOURCE_DIR})
 set(BINPATH     ${BASEPATH}/bin)
 set(INCPATH     ${BASEPATH}/include)
 set(LIBPATH     ${BASEPATH}/lib)
-SET(SRCPATH     ${BASEPATH}/src)
+set(SRCPATH     ${BASEPATH}/src)
 ############################################################
 # Create compile flags
 ############################################################
-# SET(CMAKE_CXX_FLAGS "-O3 -std=c++11 -DNDEBUG")
-SET(CMAKE_CXX_FLAGS "-Wall -O3")
+# SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG")
+set(CMAKE_CXX_FLAGS "-Wall -O3")
 set(CMAKE_CXX_STANDARD 11)
 ############################################################
 # process variables
