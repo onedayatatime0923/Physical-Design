@@ -8,6 +8,7 @@
 
 #include <assert.h>
 #include <iostream>
+#include <limits.h>
 #include <list>
 #include <map>
 #include <set>

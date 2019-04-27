@@ -23,19 +23,19 @@ public:
 		setSizes.assign(N, 1);
 	}
 	int find(int i) {
-		return (p[i] == i) ? i : p[i] = findSet(p[i]);
+		return (p[i] == i) ? i : p[i] = find(p[i]);
 	}
 	bool isSameSet(int i, int j) {
-		return findSet(i) == findSet(j);
+		return find(i) == find(j);
 	}
-	void union(int i, int j) {
+	void merge(int i, int j) {
 		if (!isSameSet(i, j)) {
-			int x = findSet(i), y = findSet(j);
+			int x = find(i), y = find(j);
 			if (rank[x] > rank[y]) {
-				setSizes[findSet(x)] += setSizes[findSet(y)];
+				setSizes[find(x)] += setSizes[find(y)];
 				p[y] = x;
 			} else {
-				setSizes[findSet(y)] += setSizes[findSet(x)];
+				setSizes[find(y)] += setSizes[find(x)];
 				p[x] = y;
 				if (rank[x] == rank[y])
 					rank[y]++;
@@ -44,9 +44,9 @@ public:
 		}
 	}
 	int setSize(int i) {
-		return setSizes[findSet(i)];
+		return setSizes[find(i)];
 	}
-	int numDisjointSets() {
+	int nSets() {
 		return numSets;
 	}
 };

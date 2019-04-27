@@ -15,6 +15,7 @@ namespace SelfParser {
 
     RoutingDB db;
 
+    Point origin, tileSize;
 
     void ShowSyntax() {
         cout << "syntax: " << endl;
@@ -65,7 +66,6 @@ namespace SelfParser {
         }
 
         CapacityTable& capacityTable = selfDB.capacityTable();
-        Point origin, tileSize;
 
         selfDB.setSize(db.GetHoriGlobalTileNo(), db.GetVertiGlobalTileNo());
 
@@ -113,6 +113,25 @@ namespace SelfParser {
             }
         }
 
+        return 0;
+    }
+    int xCoor(int v) {
+        return (v * tileSize[0]) + origin[0] + (tileSize[0] / 2);
+    }
+    int yCoor(int v) {
+        return (v * tileSize[1]) + origin[1] + (tileSize[1] / 2);
+    }
+    int dumpFile(int argc, char** argv, DB& selfDB) {
+        FILE* output = fopen(argv[2], "w");
+        for (int i = 0; i < selfDB.netSize(); ++i) {
+            fprintf(output, "%s %d %d\n", selfDB.net(i).name().c_str(), selfDB.net(i).id(), selfDB.net(i).segmentSize());
+            for (int j = 0; j < selfDB.net(i).segmentSize(); ++j) {
+                Point3D& p1 = selfDB.net(i).segment(j).point1();
+                Point3D& p2 = selfDB.net(i).segment(j).point2();
+                fprintf(output, "(%d,%d,%d)-(%d,%d,%d)\n", xCoor(p1[0]), yCoor(p1[1]), p1[2], xCoor(p2[0]), yCoor(p2[1]), p2[2]);
+            }
+            fprintf(output, "!\n");
+        }
         return 0;
     }
     void verify(int argc, char** argv) {

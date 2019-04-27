@@ -18,13 +18,12 @@
 
 ***********************************************************************/
 
-#ifndef NTUidRoute__ds__pqueue_h
-#define NTUidRoute__ds__pqueue_h
+#ifndef ds__pqueue_h
+#define ds__pqueue_h
 
 #include "dsGlobal.hpp"
 #include <ext/pb_ds/priority_queue.hpp>
 
-NTUidRoute_NAMESPACING_START
 
 template<typename T, typename Cmp = less<T> >
 using PQueue = __gnu_pbds::priority_queue<T, Cmp>;
@@ -44,6 +43,5 @@ using PairingHeap = __gnu_pbds::priority_queue<T, Cmp, __gnu_pbds::pairing_heap_
 template<typename T, typename Cmp = less<T> >
 using ThinHeap = __gnu_pbds::priority_queue<T, Cmp, __gnu_pbds::thin_heap_tag>;
 
-NTUidRoute_NAMESPACING_END
 
 #endif // PQUEUE_HPP

@@ -2,8 +2,23 @@
 #ifndef dr__drAstar_h
 #define ds__drAstar_h
 
-#include "db/db.hpp"
+// #define DRASTAR_DEBUG
 
+#include "db/db.hpp"
+#include "dataStructure/hash.hpp"
+#include "dataStructure/disjointSet.hpp"
+#include "dataStructure/pqueue.hpp"
+#include "dataStructure/kdtree.hpp"
+
+enum EPathDir {
+    XF = 0,
+    XR = 1,
+    YF = 2,
+    YR = 3,
+    ZF = 4,
+    ZR = 5,
+    NONE = 6
+};
 class DrAstar {
 public:
   DrAstar(DB& db) : _db(db) {};
@@ -19,39 +34,23 @@ private:
 
     void    init                ();
 
-    int     routeNet            (Net& net);
-    void    initComponent       (Net& net);
+    int     routeNet            ();
+    void    initComponent       ();
     void    initPoint           (const Point& p, set<pair<int, int>>& sameComp);
     void    pushComponentSV     ();
 
     bool    findPathAss         ();
     void    findNeighbors       (const Point3D& p, vector<Point3D>& vRet) const;
-    void    nearestPointOnTrack (DType x, Track* trackP, DType& upper, DType& lower) const;
-    void    upDownNeighbor      (const Point3D& p, const int& layerId, vector<Point3D>& vRet) const;
 
     void    backtrace           (AstarNode* u);
     int     backtrace           (AstarNode* x, int i);
-    int     minAreaOverhead     (int layer ,int length, bool hasSpace);
 
-    void    connectNodeToPin    (AstarNode* currentNode);
     void    addRoutedWireOrVia  (const Point3D& start, const Point3D& current);
-    void    addPatch            (const Point3D& start, const Point3D& current,const Point3D& parent);
-    void    addVia              (const Point3D& a, const Point3D& b);
-    void    connectPointToPin   (const Point3D& point, Pin* pinP);
     EPathDir    pathDir         (const Point3D& p1, const Point3D& p2) const;
-    int     directLength(Point3D &p1, Point3D &p2, bool preferred);
     
-    
-    bool    prefDir        (const Point3D& p1, const Point3D& p2) const;
-    bool    connectGuide   (const Point3D& p) const;
-    Via*    chooseVia       (const Point3D& p1, const Point3D& p2) const;
-    // DType   costG(const Point3D& u, const Point3D& v) const;
-    DType   costG(AstarNode* u,AstarNode* v, int groupId);
-    DType   costH(const Point3D& u, const Point3D& v) const;
+    int   costG(AstarNode* u,AstarNode* v, int groupId);
+    int   costH(const Point3D& u, const Point3D& v) const;
 
-
-    bool    onGrid  (const Point3D& p) const;
-    bool    onTrack (DType x, Track* track) const;
 
     // member
 
@@ -60,9 +59,7 @@ private:
     // Astar Parameter 
     /////////////////////////////////////////////////////
     struct AstarParam {
-      DType viaCost = 250;
-      DType minAreaCost = 800;
-      DType jogCost = 2;
+      int viaCost = 1;
     } _astarParam;
 
 
@@ -79,7 +76,7 @@ private:
 
 
     struct AstarNode {
-        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c), pinP(nullptr), segmentP(nullptr), upperbound(0), lowerbound(0) { initialize(); }
+        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c) { initialize(); }
 
         Point3D             coor;                                   // set when neibor node is selected
         AstarNode*          parent[2];                              // set when neibor node is selected

@@ -13,8 +13,8 @@ set(SRCPATH     ${BASEPATH}/src)
 ############################################################
 # Create compile flags
 ############################################################
-# SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG")
-set(CMAKE_CXX_FLAGS "-Wall -O3")
+SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG")
+# set(CMAKE_CXX_FLAGS "-Wall -O3")
 set(CMAKE_CXX_STANDARD 11)
 ############################################################
 # process variables

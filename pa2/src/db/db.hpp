@@ -13,9 +13,10 @@ public:
 
     CapacityTable& capacityTable()  { return _capacityTable; }
 
-    int             netSize   ()        { return _netV.size(); }
-    Net&            net       (int i)   { return _netV[i]; }
-    const Net&      net       (int i)  const { return _netV[i]; }
+    const Point&    size        ()        { return _size; }
+    int             netSize     ()        { return _netV.size(); }
+    Net&            net         (int i)   { return _netV[i]; }
+    const Net&      net         (int i)  const { return _netV[i]; }
     // setter
     void setSize    (int x, int y) { _size.set(x,y); }
     void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }

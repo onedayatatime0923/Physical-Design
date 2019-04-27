@@ -10,4 +10,10 @@ void Net::print() {
         printf(" %s", _pointV[i].str().c_str());
     }
     printf("\n");
+    printf("Segment:");
+    for (int i = 0; i < (int)_segmentV.size(); ++i) {
+        if (i % 5 == 0) printf("\n");
+        printf(" %s", _segmentV[i].str().c_str());
+    }
+    printf("\n");
 }
