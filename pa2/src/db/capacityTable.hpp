@@ -2,7 +2,8 @@
 #ifndef data__capacityTable_h
 #define data__capacityTable_h
 
-#include "misc/global.hpp"
+#include "dbGlobal.hpp"
+#include "point.hpp"
 
 
 class CapacityTable {
@@ -12,10 +13,10 @@ public:
     int     capacity        (const Point3D& p, Direction d);
 
     // setter
-    void    setHor          (int i);
-    void    setHor          (const Point& p, int i);
-    void    setVer          (int i);
-    void    setVer          (const Point& p, int i);
+    void    setHor          (int i) { _horCap = i; };
+    void    setHor          (const Point& p, int i) { _horCapM[p] = i; };
+    void    setVer          (int i) { _verCap = i; };
+    void    setVer          (const Point& p, int i) { _verCapM[p] = i; };
 
     void    print   ();
 

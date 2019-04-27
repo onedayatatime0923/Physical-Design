@@ -2,7 +2,7 @@
 #ifndef data__net_h
 #define data__net_h
 
-#include "misc/global.hpp"
+#include "dbGlobal.hpp"
 #include "segment.hpp"
 
 
@@ -24,6 +24,12 @@ public:
 
 
     void    print   ();
+
+    // setter
+
+    void            pushPoint(int x, int y) { _pointV.emplace_back(x, y); }
+    void            pushSegment(const Segment3D& s) { _segmentV.emplace_back(s); }
+    
 
 private:
     int                 _index;

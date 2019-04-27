@@ -237,7 +237,6 @@ namespace SelfParser {
             read_object = none;
         }
         }
-        cout << endl;
     }
 }
 

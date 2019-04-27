@@ -86,6 +86,11 @@ AddSubNet	pa2/src/parser/routingdb.cpp	/^    void RoutingDB::AddSubNet(Net& n, P
 AddSubNetUid	pa2/src/parser/routingdb.hpp	/^        void AddSubNetUid(int id)              { subnetUidV.push_back(id); }$/;"	f	class:SelfParser::Net
 AddVertiCapacity	pa2/src/parser/routingdb.hpp	/^        void AddVertiCapacity(short v)       { verti_capacityV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
 AddViaSpacing	pa2/src/parser/routingdb.hpp	/^        void AddViaSpacing(short v)          { via_spacingV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
+AstarNode	pa2/src/dr/drAstar.hpp	/^        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c), pinP(nullptr), segmentP(nullptr), upperbound(0), lowerbound(0) { initialize(); }$/;"	f	struct:DrAstar::AstarNode
+AstarNode	pa2/src/dr/drAstar.hpp	/^    struct AstarNode {$/;"	s	class:DrAstar
+AstarNodeComp0	pa2/src/dr/drAstar.hpp	/^    struct AstarNodeComp0 {$/;"	s	class:DrAstar
+AstarNodeComp1	pa2/src/dr/drAstar.hpp	/^    struct AstarNodeComp1 {$/;"	s	class:DrAstar
+AstarParam	pa2/src/dr/drAstar.hpp	/^    struct AstarParam {$/;"	s	class:DrAstar
 BucketList	pa1/src/fm/bucketList.hpp	/^    BucketList() {};$/;"	f	class:BucketList
 BucketList	pa1/src/fm/bucketList.hpp	/^    BucketList(int n) { initialize(n); }$/;"	f	class:BucketList
 BucketList	pa1/src/fm/bucketList.hpp	/^class BucketList {$/;"	c
@@ -598,10 +603,10 @@ DEC	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	457;"	d	fil
 DEC	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	472;"	d	file:
 DEC	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	457;"	d	file:
 DOWN	pa2/src/db/dbGlobal.hpp	/^    UP, DOWN, LEFT, RIGHT$/;"	e	enum:Direction
-DType	pa2/src/misc/global.hpp	/^typedef int DType;$/;"	t
 Data	pa1/src/data/data.hpp	/^class Data {$/;"	c
 Direction	pa2/src/db/dbGlobal.hpp	/^enum Direction {$/;"	g
-DtypeFMT	pa2/src/misc/global.hpp	32;"	d
+DrAstar	pa2/src/dr/drAstar.hpp	/^  DrAstar(DB& db) : _db(db) {};$/;"	f	class:DrAstar
+DrAstar	pa2/src/dr/drAstar.hpp	/^class DrAstar {$/;"	c
 EQUALS	pa1/build/Makefile	/^EQUALS = =$/;"	m
 EQUALS	pa2/build/Makefile	/^EQUALS = =$/;"	m
 FM	pa1/src/fm/fm.cpp	/^FM::FM(Data& data) : _data(data) {$/;"	f	class:FM
@@ -684,9 +689,21 @@ HEX	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	483;"	d	file:
 HEX	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	468;"	d	file:
 HandleArgument	pa2/src/main/test.cpp	/^void HandleArgument(const int argc, char** argv)$/;"	f
 HandleArgument	pa2/src/parser/parser.hpp	/^    void HandleArgument(const int argc, char** argv) {$/;"	f	namespace:SelfParser
+Hasher	pa2/src/db/point.hpp	/^	struct Hasher {$/;"	s	class:Point3D
 ID_VOID_MAIN	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	6;"	d	file:
 ID_VOID_MAIN	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	6;"	d	file:
 IncDistance	pa2/src/parser/mst.cpp	/^void MST::IncDistance(int point_id_1, int point_id_2, int inc_distance)$/;"	f	class:MST
+IterMap0Type	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap0Type::point_iterator> IterMap0Type;$/;"	t	class:DrAstar
+IterMap1Type	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap1Type::point_iterator> IterMap1Type;$/;"	t	class:DrAstar
+KDTREE_HPP	pa2/src/dataStructure/kdtree.hpp	3;"	d
+KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^    KDTree2D    () : _kdtree(2, _pointCloud) {}$/;"	f	class:KDTree2D
+KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^class KDTree2D {$/;"	c
+KDTree3D	pa2/src/dataStructure/kdtree.hpp	/^    KDTree3D    (DType zDirectWeight = 1) : _zDirectWeight(zDirectWeight), _kdtree(3, _pointCloud) {}$/;"	f	class:KDTree3D
+KDTree3D	pa2/src/dataStructure/kdtree.hpp	/^class KDTree3D {$/;"	c
+KDTree_L1_2D	pa2/src/dataStructure/kdtree.hpp	/^typedef nanoflann::KDTreeSingleIndexAdaptor<nanoflann::L1_Adaptor<DType, PointCloud2D >, PointCloud2D, 2> KDTree_L1_2D;$/;"	t
+KDTree_L1_3D	pa2/src/dataStructure/kdtree.hpp	/^typedef nanoflann::KDTreeSingleIndexAdaptor<nanoflann::L1_Adaptor<DType, PointCloud3D >, PointCloud3D, 3> KDTree_L1_3D;$/;"	t
+KDTree_L2_2D	pa2/src/dataStructure/kdtree.hpp	/^typedef nanoflann::KDTreeSingleIndexAdaptor<nanoflann::L2_Simple_Adaptor<DType, PointCloud2D >, PointCloud2D, 2> KDTree_L2_2D;$/;"	t
+KDTree_L2_3D	pa2/src/dataStructure/kdtree.hpp	/^typedef nanoflann::KDTreeSingleIndexAdaptor<nanoflann::L2_Simple_Adaptor<DType, PointCloud3D >, PointCloud3D, 3> KDTree_L2_3D;$/;"	t
 LEFT	pa2/src/db/dbGlobal.hpp	/^    UP, DOWN, LEFT, RIGHT$/;"	e	enum:Direction
 MAX_SPANNING_TREE	pa2/src/parser/mst.hpp	/^enum {MIN_SPANNING_TREE, MAX_SPANNING_TREE};$/;"	e	enum:__anon1
 MIN_SPANNING_TREE	pa2/src/parser/mst.hpp	/^enum {MIN_SPANNING_TREE, MAX_SPANNING_TREE};$/;"	e	enum:__anon1
@@ -703,8 +720,8 @@ MST_SubNet_Compare	pa2/src/parser/mst.hpp	/^struct MST_SubNet_Compare$/;"	s
 MST_SubNet_LongToShort_Sort	pa2/src/parser/mst.cpp	/^bool MST::MST_SubNet_LongToShort_Sort(const MST_SubNet& m1, const MST_SubNet& m2)$/;"	f	class:MST
 MST_SubNet_ShortToLong_Sort	pa2/src/parser/mst.cpp	/^bool MST::MST_SubNet_ShortToLong_Sort(const MST_SubNet& m1, const MST_SubNet& m2)$/;"	f	class:MST
 ManhattanDistance	pa2/src/parser/tree.cpp	/^    int RoutingTree::ManhattanDistance(Pin& p1, Pin& p2)$/;"	f	class:SelfParser::RoutingTree
-Mdistance	pa2/src/db/point.hpp	/^inline DType Point3D::Mdistance(const Point3D& p1, const Point3D& p2) {$/;"	f	class:Point3D
-Mdistance	pa2/src/db/point.hpp	/^inline DType Point::Mdistance(const Point& p1, const Point& p2) {$/;"	f	class:Point
+Mdistance	pa2/src/db/point.hpp	/^inline int Point3D::Mdistance(const Point3D& p1, const Point3D& p2) {$/;"	f	class:Point3D
+Mdistance	pa2/src/db/point.hpp	/^inline int Point::Mdistance(const Point& p1, const Point& p2) {$/;"	f	class:Point
 MinimumSpanningTreeConstruction	pa2/src/parser/tree.cpp	/^    void RoutingTree::MinimumSpanningTreeConstruction()$/;"	f	class:SelfParser::RoutingTree
 MinimumSpanningTreeConstruction	pa2/src/parser/tree.cpp	/^    void RoutingTree::MinimumSpanningTreeConstruction(Net& n)$/;"	f	class:SelfParser::RoutingTree
 Net	pa1/src/data/net.hpp	/^    Net(const string& name) : _name(name) {};$/;"	f	class:Net
@@ -713,6 +730,8 @@ Net	pa2/src/db/net.hpp	/^    Net(int index, int id, const string& name) : _index
 Net	pa2/src/db/net.hpp	/^class Net {$/;"	c
 Net	pa2/src/parser/routingdb.hpp	/^        Net(string _name, int _uid) $/;"	f	class:SelfParser::Net
 Net	pa2/src/parser/routingdb.hpp	/^    class Net$/;"	c	namespace:SelfParser
+NodePHeap0Type	pa2/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp0>             NodePHeap0Type;$/;"	t	class:DrAstar
+NodePHeap1Type	pa2/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp1>             NodePHeap1Type;$/;"	t	class:DrAstar
 PLATFORM_ID	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	313;"	d	file:
 PLATFORM_ID	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	316;"	d	file:
 PLATFORM_ID	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	319;"	d	file:
@@ -844,12 +863,16 @@ Parser	pa2/src/parser/io.hpp	/^    class Parser$/;"	c	namespace:SelfParser
 Pin	pa2/src/parser/routingdb.hpp	/^        Pin(int _uid, short _gx, short _gy) $/;"	f	class:SelfParser::Pin
 Pin	pa2/src/parser/routingdb.hpp	/^    class Pin$/;"	c	namespace:SelfParser
 Point	pa2/src/db/point.hpp	/^    Point              ():_x(0), _y(0){};$/;"	f	class:Point
-Point	pa2/src/db/point.hpp	/^    Point              (const DType& x, const DType& y): _x(x), _y(y){};$/;"	f	class:Point
+Point	pa2/src/db/point.hpp	/^    Point              (const int& x, const int& y): _x(x), _y(y){};$/;"	f	class:Point
 Point	pa2/src/db/point.hpp	/^class Point{$/;"	c
 Point3D	pa2/src/db/point.hpp	/^	Point3D (): _point(0,0), _layer(0) {};$/;"	f	class:Point3D
-Point3D	pa2/src/db/point.hpp	/^	Point3D (DType x, DType y, DType layer) : _point(x,y), _layer(layer) {};$/;"	f	class:Point3D
-Point3D	pa2/src/db/point.hpp	/^	Point3D (const Point& x, DType layer) : _point(x), _layer(layer) {};$/;"	f	class:Point3D
+Point3D	pa2/src/db/point.hpp	/^	Point3D (const Point& x, int layer) : _point(x), _layer(layer) {};$/;"	f	class:Point3D
+Point3D	pa2/src/db/point.hpp	/^	Point3D (int x, int y, int layer) : _point(x,y), _layer(layer) {};$/;"	f	class:Point3D
 Point3D	pa2/src/db/point.hpp	/^class Point3D{$/;"	c
+PointCloud2D	pa2/src/dataStructure/kdtree.hpp	/^class PointCloud2D {$/;"	c
+PointCloud3D	pa2/src/dataStructure/kdtree.hpp	/^class PointCloud3D {$/;"	c
+PointMapType	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;$/;"	t	class:DrAstar
+PointSetType	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;$/;"	t	class:DrAstar
 RIGHT	pa2/src/db/dbGlobal.hpp	/^    UP, DOWN, LEFT, RIGHT$/;"	e	enum:Direction
 RM	pa1/build/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
 RM	pa2/build/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
@@ -913,8 +936,8 @@ STRINGIFY_HELPER	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	308;
 STRINGIFY_HELPER	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	293;"	d	file:
 SUFFIXES	pa1/build/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	pa2/build/Makefile	/^SUFFIXES =$/;"	m
-Segment3D	pa2/src/db/segment.hpp	/^    Segment3D(DType x1 = 0, DType y1 = 0, DType z1 = 0, DType x2 = 0, DType y2 = 0, DType z2 = 0)$/;"	f	class:Segment3D
 Segment3D	pa2/src/db/segment.hpp	/^    Segment3D(const Point3D& p1, const Point3D& p2) $/;"	f	class:Segment3D
+Segment3D	pa2/src/db/segment.hpp	/^    Segment3D(int x1 = 0, int y1 = 0, int z1 = 0, int x2 = 0, int y2 = 0, int z2 = 0)$/;"	f	class:Segment3D
 Segment3D	pa2/src/db/segment.hpp	/^class Segment3D {$/;"	c
 SelfParser	pa2/src/parser/io.cpp	/^namespace SelfParser {$/;"	n	file:
 SelfParser	pa2/src/parser/io.hpp	/^namespace SelfParser {$/;"	n
@@ -948,12 +971,16 @@ ShowSyntax	pa2/src/parser/parser.hpp	/^    void ShowSyntax() {$/;"	f	namespace:S
 SubNet	pa2/src/parser/routingdb.hpp	/^        SubNet() { ; }$/;"	f	class:SelfParser::SubNet
 SubNet	pa2/src/parser/routingdb.hpp	/^        SubNet(int _uid, Net& _n, Pin& _s_pin, Pin& _t_pin)$/;"	f	class:SelfParser::SubNet
 SubNet	pa2/src/parser/routingdb.hpp	/^    class SubNet$/;"	c	namespace:SelfParser
+UFDS	pa2/src/dataStructure/disjointSet.hpp	/^	UFDS() {};$/;"	f	class:UFDS
+UFDS	pa2/src/dataStructure/disjointSet.hpp	/^	UFDS(int N) { init(N); }$/;"	f	class:UFDS
+UFDS	pa2/src/dataStructure/disjointSet.hpp	/^class UFDS {$/;"	c
 UP	pa2/src/db/dbGlobal.hpp	/^    UP, DOWN, LEFT, RIGHT$/;"	e	enum:Direction
 UpdateAllSubNetDistance	pa2/src/parser/mst.cpp	/^void MST::UpdateAllSubNetDistance()$/;"	f	class:MST
 __MST_H__	pa2/src/parser/mst.hpp	2;"	d
 __PARSER_H__	pa2/src/parser/io.hpp	2;"	d
 __ROUTINGDB_H__	pa2/src/parser/routingdb.hpp	2;"	d
 __TREE_H__	pa2/src/parser/tree.hpp	2;"	d
+_astarParam	pa2/src/dr/drAstar.hpp	/^    } _astarParam;$/;"	m	class:DrAstar	typeref:struct:DrAstar::AstarParam
 _balanceDegree	pa1/src/data/data.hpp	/^    float _balanceDegree;$/;"	m	class:Data
 _bestUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _bestUpdateCost;$/;"	m	class:FM
 _block	pa1/src/data/cell.hpp	/^    int                     _block;$/;"	m	class:Cell
@@ -965,8 +992,11 @@ _cellLV	pa1/src/fm/bucketList.hpp	/^    vector<list<Cell*> > _cellLV;$/;"	m	clas
 _cellM	pa1/src/data/data.hpp	/^    map<string, Cell>   _cellM;$/;"	m	class:Data
 _cellPV	pa1/src/data/data.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Data
 _cellPV	pa1/src/data/net.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Net
+_componentDS	pa2/src/dr/drAstar.hpp	/^    UFDS                    _componentDS;           \/\/ size = _componentSV.size();$/;"	m	class:DrAstar
+_componentSV	pa2/src/dr/drAstar.hpp	/^    vector<PointSetType>    _componentSV;$/;"	m	class:DrAstar
 _data	pa1/src/fm/fm.hpp	/^    Data&                           _data;$/;"	m	class:FM
 _data	pa1/src/parser/parser.hpp	/^    Data& _data;$/;"	m	class:Parser
+_db	pa2/src/dr/drAstar.hpp	/^    DB&         _db;$/;"	m	class:DrAstar
 _finalBlock	pa1/src/data/cell.hpp	/^    int                     _finalBlock;$/;"	m	class:Cell
 _gain	pa1/src/data/cell.hpp	/^    int                     _gain;$/;"	m	class:Cell
 _horCap	pa2/src/db/capacityTable.hpp	/^    int                 _horCap;$/;"	m	class:CapacityTable
@@ -976,33 +1006,52 @@ _id	pa1/src/data/net.hpp	/^    int                 _id;$/;"	m	class:Net
 _id	pa2/src/db/net.hpp	/^    int                 _id;$/;"	m	class:Net
 _index	pa2/src/db/net.hpp	/^    int                 _index;$/;"	m	class:Net
 _iterator	pa1/src/data/cell.hpp	/^    BucketList::iterator    _iterator;$/;"	m	class:Cell
-_layer	pa2/src/db/point.hpp	/^        DType   _layer;$/;"	m	class:Point3D
+_kdtree	pa2/src/dataStructure/kdtree.hpp	/^    KDTree_L1_2D _kdtree;$/;"	m	class:KDTree2D
+_kdtree	pa2/src/dataStructure/kdtree.hpp	/^    KDTree_L1_3D    _kdtree;$/;"	m	class:KDTree3D
+_layer	pa2/src/db/point.hpp	/^        int   _layer;$/;"	m	class:Point3D
 _maxGain	pa1/src/fm/bucketList.hpp	/^    int                 _maxGain;$/;"	m	class:BucketList
 _n	pa1/src/fm/bucketList.hpp	/^    int                 _n;$/;"	m	class:BucketList
 _name	pa1/src/data/cell.hpp	/^    string              _name;$/;"	m	class:Cell
 _name	pa1/src/data/net.hpp	/^    string              _name;$/;"	m	class:Net
 _name	pa2/src/db/net.hpp	/^    string              _name;$/;"	m	class:Net
 _netM	pa1/src/data/data.hpp	/^    map<string, Net>    _netM;$/;"	m	class:Data
+_netP	pa2/src/dr/drAstar.hpp	/^    Net*        _netP;$/;"	m	class:DrAstar
 _netPV	pa1/src/data/cell.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Cell
 _netPV	pa1/src/data/data.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Data
 _netV	pa2/src/db/db.hpp	/^    vector<Net>         _netV;$/;"	m	class:DB
 _p1	pa2/src/db/segment.hpp	/^    Point3D     _p1;$/;"	m	class:Segment3D
 _p2	pa2/src/db/segment.hpp	/^    Point3D     _p2;$/;"	m	class:Segment3D
 _point	pa2/src/db/point.hpp	/^        Point   _point;$/;"	m	class:Point3D
+_pointCloud	pa2/src/dataStructure/kdtree.hpp	/^    PointCloud2D _pointCloud;$/;"	m	class:KDTree2D
+_pointCloud	pa2/src/dataStructure/kdtree.hpp	/^    PointCloud3D    _pointCloud;$/;"	m	class:KDTree3D
+_pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point3D>  _pointV;$/;"	m	class:PointCloud3D
+_pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point>  _pointV;$/;"	m	class:PointCloud2D
 _pointV	pa2/src/db/net.hpp	/^    vector<Point>       _pointV;$/;"	m	class:Net
 _segmentV	pa2/src/db/net.hpp	/^    vector<Segment3D>   _segmentV;$/;"	m	class:Net
 _size	pa2/src/db/db.hpp	/^    Point               _size;$/;"	m	class:DB
+_srcCompId	pa2/src/dr/drAstar.hpp	/^    int                     _srcCompId;$/;"	m	class:DrAstar
+_totalPoint2NodeMV	pa2/src/dr/drAstar.hpp	/^    vector<PointMapType>    _totalPoint2NodeMV;     \/\/ layerId -> point hashMap$/;"	m	class:DrAstar
 _totalUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _totalUpdateCost;$/;"	m	class:FM
 _verCap	pa2/src/db/capacityTable.hpp	/^    int                 _verCap;$/;"	m	class:CapacityTable
 _verCapM	pa2/src/db/capacityTable.hpp	/^    map<Point, int>     _verCapM;$/;"	m	class:CapacityTable
-_x	pa2/src/db/point.hpp	/^    DType _x;$/;"	m	class:Point
-_y	pa2/src/db/point.hpp	/^    DType _y;$/;"	m	class:Point
+_x	pa2/src/db/point.hpp	/^    int _x;$/;"	m	class:Point
+_y	pa2/src/db/point.hpp	/^    int _y;$/;"	m	class:Point
+_zDirectWeight	pa2/src/dataStructure/kdtree.hpp	/^    DType           _zDirectWeight;$/;"	m	class:KDTree3D
+add	pa2/src/dataStructure/kdtree.hpp	/^    void add        (const DType x, const DType y)                  { _pointV.emplace_back(x, y); }$/;"	f	class:PointCloud2D
+add	pa2/src/dataStructure/kdtree.hpp	/^    void add        (const DType x, const DType y, const DType z)   { _pointV.emplace_back(x, y, z); }$/;"	f	class:PointCloud3D
 addCell	pa1/src/data/net.hpp	/^    void    addCell     (Cell* cell)    { _cellPV.push_back(cell); }$/;"	f	class:Net
 addNet	pa1/src/data/cell.hpp	/^    void    addNet      (Net* net) { _netPV.push_back(net); }$/;"	f	class:Cell
+addRoutedWireOrVia	pa2/src/dr/drAstar.cpp	/^void DrAstar::addRoutedWireOrVia(const Point3D& start, const Point3D& current) {$/;"	f	class:DrAstar
+adjV	pa2/src/dr/drAstar.hpp	/^        vector<AstarNode*>  adjV;                                   \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
 assignCell	pa1/src/fm/fm.cpp	/^void FM::assignCell() {$/;"	f	class:FM
+backtrace	pa2/src/dr/drAstar.cpp	/^int DrAstar::backtrace(AstarNode* x, int i) {$/;"	f	class:DrAstar
+backtrace	pa2/src/dr/drAstar.cpp	/^void DrAstar::backtrace(AstarNode* u) {$/;"	f	class:DrAstar
 balanceDegree	pa1/src/data/data.hpp	/^    float&  balanceDegree()     { return _balanceDegree; }$/;"	f	class:Data
 balanced	pa1/src/data/data.hpp	/^    bool    balanced(int i)     { return ((1-_balanceDegree)\/2) * _cellPV.size() <= i && i <= ((1+_balanceDegree)\/2) * _cellPV.size(); }$/;"	f	class:Data
 block	pa1/src/data/cell.hpp	/^    int&            block       ()  { return _block; }$/;"	f	class:Cell
+buildIndex	pa2/src/dataStructure/kdtree.hpp	/^    void buildIndex()                                           { _kdtree.buildIndex();                                 }$/;"	f	class:KDTree3D
+buildIndex	pa2/src/dataStructure/kdtree.hpp	/^    void buildIndex()                                           { _kdtree.buildIndex();                     }$/;"	f	class:KDTree2D
+capacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::capacity(const Point3D& p, Direction d) {$/;"	f	class:CapacityTable
 capacityTable	pa2/src/db/db.hpp	/^    CapacityTable& capacityTable()  { return _capacityTable; }$/;"	f	class:DB
 capacity_adjustV	pa2/src/parser/routingdb.hpp	/^        vector <CapacityAdjust> capacity_adjustV;$/;"	m	class:SelfParser::RoutingDB
 cell	pa1/src/data/data.cpp	/^Cell* Data::cell(const string& name) {$/;"	f	class:Data
@@ -1015,12 +1064,24 @@ cellPSize	pa1/src/data/net.hpp	/^    int             cellPSize   ()  { return _c
 check	pa2/src/db/segment.hpp	/^    bool        check   ()      const   { return int(_p1[0] != _p2[0]) + int(_p1[1] != _p2[1]) + int(_p1[2] != _p2[2]) == 1; }$/;"	f	class:Segment3D
 checkBlockState	pa1/src/fm/fm.cpp	/^bool FM::checkBlockState() {$/;"	f	class:FM
 clear	pa1/src/fm/bucketList.cpp	/^void BucketList::clear() {$/;"	f	class:BucketList
+clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear      ()                                              { _pointV.clear(); }$/;"	f	class:PointCloud2D
+clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear      ()                                              { _pointV.clear(); }$/;"	f	class:PointCloud3D
+clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                                  }$/;"	f	class:KDTree3D
+clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                      }$/;"	f	class:KDTree2D
+clear	pa2/src/dr/drAstar.cpp	/^void DrAstar::clear() {$/;"	f	class:DrAstar
+componentId	pa2/src/dr/drAstar.hpp	/^        int                 componentId; \/\/ -1 for non-comp points  \/\/ set when backtrace$/;"	m	struct:DrAstar::AstarNode
 const	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	10;"	d	file:
 const	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	10;"	d	file:
+coor	pa2/src/dr/drAstar.hpp	/^        Point3D             coor;                                   \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costF	pa2/src/dr/drAstar.hpp	/^        int                 costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costG	pa2/src/dr/drAstar.cpp	/^DType DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
+costG	pa2/src/dr/drAstar.hpp	/^        int                 costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costH	pa2/src/dr/drAstar.cpp	/^DType DrAstar::costH(const Point3D& u, const Point3D& v) const {$/;"	f	class:DrAstar
 create_eps_file	pa2/tool/eval.pl	/^sub create_eps_file {$/;"	s
 data__capacityTable_h	pa2/src/db/capacityTable.hpp	3;"	d
 data__cell_h	pa1/src/data/cell.hpp	4;"	d
 data__data_h	pa1/src/data/data.hpp	3;"	d
+data__dbGlobal_h	pa2/src/db/dbGlobal.hpp	5;"	d
 data__net_h	pa1/src/data/net.hpp	4;"	d
 data__net_h	pa2/src/db/net.hpp	3;"	d
 data__point_h	pa2/src/db/point.hpp	3;"	d
@@ -1032,16 +1093,23 @@ decrease	pa1/src/fm/bucketList.cpp	/^void BucketList::decrease(Cell* cellP) {$/;
 decreaseMaxGain	pa1/src/fm/bucketList.cpp	/^void BucketList::decreaseMaxGain() {$/;"	f	class:BucketList
 distance	pa2/src/parser/mst.hpp	/^	int distance;$/;"	m	class:MST_SubNet
 distanceM	pa2/src/parser/mst.hpp	/^	map <MST_SubNet, int, MST_SubNet_Compare> distanceM;$/;"	m	class:MST
+ds__drAstar_h	pa2/src/dr/drAstar.hpp	3;"	d
+ds__dsGlobal_h	pa2/src/dataStructure/dsGlobal.hpp	2;"	d
+ds__hash_h	pa2/src/dataStructure/hash.hpp	2;"	d
 dumpFile	pa1/src/parser/parser.cpp	/^void Parser::dumpFile(int cut, const string& output) {$/;"	f	class:Parser
 dump_all_rcap	pa2/tool/eval.pl	/^sub dump_all_rcap {$/;"	s
 empty	pa1/src/fm/bucketList.hpp	/^    bool        empty   ()  { return _maxGain == (-1 * _n) -1; }$/;"	f	class:BucketList
 end	pa1/src/fm/bucketList.hpp	/^    iterator    end     () { return _cellLV[0].end(); }$/;"	f	class:BucketList
 erase	pa1/src/fm/bucketList.cpp	/^void BucketList::erase(Cell* cellP) {$/;"	f	class:BucketList
+explored	pa2/src/dr/drAstar.hpp	/^        bool                explored[2];                            \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
 features	pa1/build/CMakeFiles/feature_tests.c	/^  const char features[] = {"\\n"$/;"	v
 features	pa1/build/CMakeFiles/feature_tests.cxx	/^  const char features[] = {"\\n"$/;"	v
 features	pa2/build/CMakeFiles/feature_tests.c	/^  const char features[] = {"\\n"$/;"	v
 features	pa2/build/CMakeFiles/feature_tests.cxx	/^  const char features[] = {"\\n"$/;"	v
 finalBlock	pa1/src/data/cell.hpp	/^    int&            finalBlock  ()  { return _finalBlock; }$/;"	f	class:Cell
+find	pa2/src/dataStructure/disjointSet.hpp	/^	int find(int i) {$/;"	f	class:UFDS
+findNeighbors	pa2/src/dr/drAstar.cpp	/^void DrAstar::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {$/;"	f	class:DrAstar
+findPathAss	pa2/src/dr/drAstar.cpp	/^bool DrAstar::findPathAss() {$/;"	f	class:DrAstar
 fm__bucketList_h	pa1/src/fm/bucketList.hpp	3;"	d
 fm__fm_h	pa1/src/fm/fm.hpp	3;"	d
 gain	pa1/src/data/cell.hpp	/^    int&            gain        ()  { return _gain; }$/;"	f	class:Cell
@@ -1098,7 +1166,12 @@ info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c
 info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
+init	pa2/src/dataStructure/disjointSet.hpp	/^    void init(int N) {$/;"	f	class:UFDS
+init	pa2/src/dr/drAstar.cpp	/^void DrAstar::init() {$/;"	f	class:DrAstar
+initComponent	pa2/src/dr/drAstar.cpp	/^void DrAstar::initComponent() {$/;"	f	class:DrAstar
+initPoint	pa2/src/dr/drAstar.cpp	/^void DrAstar::initPoint(const Point& p, set<pair<int, int>>& sameComp) {$/;"	f	class:DrAstar
 initialize	pa1/src/fm/bucketList.hpp	/^    void        initialize(int n)   { _cellLV.resize((2*n) + 1); _maxGain = (-1 * n) - 1; _n = n; }$/;"	f	class:BucketList
+initialize	pa2/src/dr/drAstar.hpp	/^        void initialize() {$/;"	f	struct:DrAstar::AstarNode
 initializeBlockState	pa1/src/fm/fm.cpp	/^void FM::initializeBlockState() {$/;"	f	class:FM
 initializeBucketList	pa1/src/fm/fm.cpp	/^void FM::initializeBucketList() {$/;"	f	class:FM
 initializeCellBlock	pa1/src/fm/fm.cpp	/^void FM::initializeCellBlock() {$/;"	f	class:FM
@@ -1107,15 +1180,29 @@ initializeCost	pa1/src/fm/fm.cpp	/^int FM::initializeCost() {$/;"	f	class:FM
 inputFile	pa2/src/parser/parser.hpp	/^    ifstream inputFile;$/;"	m	namespace:SelfParser
 inputSubNetV	pa2/src/parser/mst.hpp	/^	vector <MST_SubNet> inputSubNetV;$/;"	m	class:MST
 insert	pa1/src/fm/bucketList.cpp	/^BucketList::iterator BucketList::insert(Cell* cellP) {$/;"	f	class:BucketList
+insert	pa2/src/dataStructure/kdtree.hpp	/^    void insert(const DType x, const DType y)                   { _pointCloud.add(x, y);                    }$/;"	f	class:KDTree2D
+insert	pa2/src/dataStructure/kdtree.hpp	/^    void insert(const DType x, const DType y, const DType z)    { _pointCloud.add(x, y, z * _zDirectWeight);            }$/;"	f	class:KDTree3D
+insert	pa2/src/dataStructure/kdtree.hpp	/^    void insert(const Point& p)                                 { _pointCloud.add(p[0], p[1]);              }$/;"	f	class:KDTree2D
+insert	pa2/src/dataStructure/kdtree.hpp	/^    void insert(const Point3D& p)                               { _pointCloud.add(p[0], p[1], p[2] * _zDirectWeight);   }$/;"	f	class:KDTree3D
+isSameSet	pa2/src/dataStructure/disjointSet.hpp	/^	bool isSameSet(int i, int j) {$/;"	f	class:UFDS
 iterator	pa1/src/data/cell.hpp	/^    BucketList::iterator& iterator()        { return _iterator; }$/;"	f	class:Cell
 iterator	pa1/src/fm/bucketList.hpp	/^    typedef list<Cell*>::iterator iterator;$/;"	t	class:BucketList
-layer	pa2/src/db/point.hpp	/^	DType           layer       ()                      const { return _layer; }$/;"	f	class:Point3D
-layer	pa2/src/db/point.hpp	/^	DType&          layer       ()                            { return _layer; }$/;"	f	class:Point3D
-layer	pa2/src/db/segment.hpp	/^    DType       layer   ()      const   { return min(_p1.layer(), _p2.layer()); }$/;"	f	class:Segment3D
+jogCost	pa2/src/dr/drAstar.hpp	/^      DType jogCost = 2;$/;"	m	struct:DrAstar::AstarParam
+kdtree_get_bbox	pa2/src/dataStructure/kdtree.hpp	/^	bool kdtree_get_bbox(BBOX& \/* bb *\/) const { return false; }$/;"	f	class:PointCloud2D
+kdtree_get_bbox	pa2/src/dataStructure/kdtree.hpp	/^	bool kdtree_get_bbox(BBOX& \/* bb *\/) const { return false; }$/;"	f	class:PointCloud3D
+kdtree_get_point_count	pa2/src/dataStructure/kdtree.hpp	/^	inline size_t kdtree_get_point_count() const { return _pointV.size(); }$/;"	f	class:PointCloud2D
+kdtree_get_point_count	pa2/src/dataStructure/kdtree.hpp	/^	inline size_t kdtree_get_point_count() const { return _pointV.size(); }$/;"	f	class:PointCloud3D
+kdtree_get_pt	pa2/src/dataStructure/kdtree.hpp	/^	inline DType kdtree_get_pt  (const size_t idx, const size_t dim)    const   {$/;"	f	class:PointCloud2D
+kdtree_get_pt	pa2/src/dataStructure/kdtree.hpp	/^	inline DType kdtree_get_pt  (const size_t idx, const size_t dim)    const   {$/;"	f	class:PointCloud3D
+knnSearch	pa2/src/dataStructure/kdtree.hpp	/^    void knnSearch(const Point& queryP, const size_t nSearch, vector<Point >& resV, vector<DType>& disV) {$/;"	f	class:KDTree2D
+knnSearch	pa2/src/dataStructure/kdtree.hpp	/^    void knnSearch(const Point3D& queryP, const size_t nSearch, vector<Point3D >& resV, vector<DType>& disV) {$/;"	f	class:KDTree3D
+layer	pa2/src/db/point.hpp	/^	int           layer       ()                      const { return _layer; }$/;"	f	class:Point3D
+layer	pa2/src/db/point.hpp	/^	int&          layer       ()                            { return _layer; }$/;"	f	class:Point3D
+layer	pa2/src/db/segment.hpp	/^    int       layer   ()      const   { return min(_p1.layer(), _p2.layer()); }$/;"	f	class:Segment3D
 layer1	pa2/src/parser/routingdb.hpp	/^        short layer1;$/;"	m	class:SelfParser::CapacityAdjust
 layer2	pa2/src/parser/routingdb.hpp	/^        short layer2;$/;"	m	class:SelfParser::CapacityAdjust
 layer_no	pa2/src/parser/routingdb.hpp	/^        short layer_no;$/;"	m	class:SelfParser::RoutingDB
-length	pa2/src/db/segment.hpp	/^    DType       length  ()      const   { return Point3D::Mdistance(_p1, _p2);  }$/;"	f	class:Segment3D
+length	pa2/src/db/segment.hpp	/^    int       length  ()      const   { return Point3D::Mdistance(_p1, _p2);  }$/;"	f	class:Segment3D
 link	pa2/src/parser/mst.hpp	/^	MST_Set* link;$/;"	m	class:MST_Set
 lower_left_x	pa2/src/parser/routingdb.hpp	/^        int lower_left_x;$/;"	m	class:SelfParser::RoutingDB
 lower_left_y	pa2/src/parser/routingdb.hpp	/^        int lower_left_y;$/;"	m	class:SelfParser::RoutingDB
@@ -1131,9 +1218,11 @@ main	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}
 main	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
 main	pa2/build/CMakeFiles/feature_tests.c	/^int main(int argc, char** argv) { (void)argv; return features[argc]; }$/;"	f
 main	pa2/build/CMakeFiles/feature_tests.cxx	/^int main(int argc, char** argv) { (void)argv; return features[argc]; }$/;"	f
+main	pa2/src/main/ds.cpp	/^int main(int argc, char** argv) {$/;"	f
 main	pa2/src/main/main.cpp	/^int main(int argc, char** argv) {$/;"	f
 main	pa2/src/main/test.cpp	/^int main(int argc, char** argv) $/;"	f
 max	pa1/src/fm/bucketList.hpp	/^    Cell*       max     () { assert(cellList(_maxGain).size() > 0); return cellList(_maxGain).front(); }$/;"	f	class:BucketList
+minAreaCost	pa2/src/dr/drAstar.hpp	/^      DType minAreaCost = 800;$/;"	m	struct:DrAstar::AstarParam
 min_spacingV	pa2/src/parser/routingdb.hpp	/^        vector <short> min_spacingV;$/;"	m	class:SelfParser::RoutingDB
 min_widthV	pa2/src/parser/routingdb.hpp	/^        vector <short> min_widthV;$/;"	m	class:SelfParser::RoutingDB
 misc__global_h	pa1/src/misc/global.hpp	3;"	d
@@ -1144,20 +1233,30 @@ name	pa1/src/data/cell.hpp	/^    const string&   name        ()  { return _name;
 name	pa1/src/data/net.hpp	/^    const string&   name        ()  { return _name; }$/;"	f	class:Net
 name	pa2/src/db/net.hpp	/^    const string&   name    () { return _name; }$/;"	f	class:Net
 name	pa2/src/parser/routingdb.hpp	/^        string name;$/;"	m	class:SelfParser::Net
+nearestSearch	pa2/src/dataStructure/kdtree.hpp	/^    void nearestSearch(const Point& queryP, Point& ret, DType& dist) {$/;"	f	class:KDTree2D
+nearestSearch	pa2/src/dataStructure/kdtree.hpp	/^    void nearestSearch(const Point3D& queryP, Point3D& ret, DType& dist) {$/;"	f	class:KDTree3D
 net	pa1/src/data/data.cpp	/^Net* Data::net(const string& name) {$/;"	f	class:Data
+net	pa2/src/db/db.hpp	/^    Net&            net       (int i)   { return _netV[i]; }$/;"	f	class:DB
+net	pa2/src/db/db.hpp	/^    const Net&      net       (int i)  const { return _netV[i]; }$/;"	f	class:DB
 netP	pa1/src/data/cell.hpp	/^    Net*            netP        (int i )    { return _netPV[i]; }$/;"	f	class:Cell
 netP	pa1/src/data/data.hpp	/^    Net*    netP    (int i )    { return _netPV[i]; }$/;"	f	class:Data
 netPSize	pa1/src/data/cell.hpp	/^    int             netPSize    ()  { return _netPV.size(); }$/;"	f	class:Cell
 netPSize	pa1/src/data/data.hpp	/^    int     netPSize()          { return _netPV.size(); }$/;"	f	class:Data
+netSize	pa2/src/db/db.hpp	/^    int             netSize   ()        { return _netV.size(); }$/;"	f	class:DB
 netUidPosM	pa2/src/parser/routingdb.hpp	/^        map <int, int> netUidPosM; \/\/hash of net's uid <-> position in vector$/;"	m	class:SelfParser::RoutingDB
 netV	pa2/src/parser/routingdb.hpp	/^        vector <Net> netV;$/;"	m	class:SelfParser::RoutingDB
 next	pa1/src/fm/bucketList.cpp	/^Cell* BucketList::next(Cell* cellP) {$/;"	f	class:BucketList
+numDisjointSets	pa2/src/dataStructure/disjointSet.hpp	/^	int numDisjointSets() {$/;"	f	class:UFDS
+numSets	pa2/src/dataStructure/disjointSet.hpp	/^	int numSets;$/;"	m	class:UFDS
 number_of_point	pa2/src/parser/mst.hpp	/^	int number_of_point;$/;"	m	class:MST
 operator !=	pa2/src/db/point.hpp	/^	bool            operator !=  (const Point3D& p)       const  { return _point[0] != p._point[0] || _point[1] != p._point[1] || _layer != p._layer;           }$/;"	f	class:Point3D
 operator !=	pa2/src/db/point.hpp	/^    bool            operator !=  (const Point& p)       const  { return _x != p._x || _y != p._y;                    }$/;"	f	class:Point
 operator !=	pa2/src/db/segment.hpp	/^    bool             operator !=  (const Segment3D& s)              const { return !(*this == s);                                          }$/;"	f	class:Segment3D
+operator ()	pa2/src/db/point.hpp	/^        size_t operator()(const Point3D& p) const {$/;"	f	struct:Point3D::Hasher
 operator ()	pa2/src/db/point.hpp	/^    struct CompareX { bool operator() (const Point& p1, const Point& p2) { return p1._x != p2._x ? p1._x < p2._x : p1._y < p2._y; } };$/;"	f	struct:Point::CompareX
 operator ()	pa2/src/db/point.hpp	/^    struct CompareY { bool operator() (const Point& p1, const Point& p2) { return p1._y != p2._y ? p1._y < p2._y : p1._x < p2._x; } };$/;"	f	struct:Point::CompareY
+operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp0
+operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp1
 operator ()	pa2/src/parser/mst.hpp	/^    bool operator()(MST_SubNet m1, MST_SubNet m2) const$/;"	f	struct:MST_SubNet_Compare
 operator *	pa2/src/db/point.hpp	/^    Point           operator *   (const int& i)                { return Point(_x * i, _y * i);   }$/;"	f	class:Point
 operator *=	pa2/src/db/point.hpp	/^	Point3D&          operator *=  (const int& i)                { _point[0] *= i; _point[1] *= i; _layer *= i; return *this; }$/;"	f	class:Point3D
@@ -1184,22 +1283,27 @@ operator ==	pa2/src/db/point.hpp	/^    bool            operator ==  (const Point
 operator ==	pa2/src/db/segment.hpp	/^    bool             operator ==  (const Segment3D& s)              const { return _p1 == s._p1 && _p2 == s._p2;                           }$/;"	f	class:Segment3D
 operator >	pa2/src/db/point.hpp	/^	bool            operator >   (const Point3D& p)       const  { return (_point[0] > p._point[0]) || (_point[0] == p._point[0] && _point[1] > p._point[1]) || (_point[0] == p._point[0] && _point[1] == p._point[1] && _layer > p._layer);   };$/;"	f	class:Point3D
 operator >	pa2/src/db/point.hpp	/^    bool            operator >   (const Point& p)       const  { return (_x > p._x) || (_x == p._x && _y > p._y);   }$/;"	f	class:Point
-operator []	pa2/src/db/point.hpp	/^	DType&       operator[] (const int& i)                   { if(i == 0)       return _point[0];$/;"	f	class:Point3D
-operator []	pa2/src/db/point.hpp	/^	const DType& operator[] (const int& i) const             { if(i == 0)       return _point[0];$/;"	f	class:Point3D
-operator []	pa2/src/db/point.hpp	/^    DType&       operator[] (const int& i)                   { if(i == 0) return _x;$/;"	f	class:Point
-operator []	pa2/src/db/point.hpp	/^    const DType& operator[] (const int& i) const             { if(i == 0) return _x;$/;"	f	class:Point
-operator []	pa2/src/db/segment.hpp	/^    DType&       operator[] (const int& i)      { if(i == 0)        return _p1[0];$/;"	f	class:Segment3D
-operator []	pa2/src/db/segment.hpp	/^    const DType& operator[] (const int& i) const{ if(i == 0)        return _p1[0];$/;"	f	class:Segment3D
+operator []	pa2/src/db/point.hpp	/^	const int& operator[] (const int& i) const             { if(i == 0)       return _point[0];$/;"	f	class:Point3D
+operator []	pa2/src/db/point.hpp	/^	int&       operator[] (const int& i)                   { if(i == 0)       return _point[0];$/;"	f	class:Point3D
+operator []	pa2/src/db/point.hpp	/^    const int& operator[] (const int& i) const             { if(i == 0) return _x;$/;"	f	class:Point
+operator []	pa2/src/db/point.hpp	/^    int&       operator[] (const int& i)                   { if(i == 0) return _x;$/;"	f	class:Point
+operator []	pa2/src/db/segment.hpp	/^    const int& operator[] (const int& i) const{ if(i == 0)        return _p1[0];$/;"	f	class:Segment3D
+operator []	pa2/src/db/segment.hpp	/^    int&       operator[] (const int& i)      { if(i == 0)        return _p1[0];$/;"	f	class:Segment3D
 outputFile	pa2/src/main/test.cpp	/^ofstream outputFile;$/;"	v
 outputFile	pa2/src/parser/parser.hpp	/^    ofstream outputFile;$/;"	m	namespace:SelfParser
+p	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
+parent	pa2/src/dr/drAstar.hpp	/^        AstarNode*          parent[2];                              \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 parse	pa1/src/parser/parser.cpp	/^void Parser::parse(const string& input) {$/;"	f	class:Parser
 parse	pa2/src/parser/parser.hpp	/^    int parse(int argc, char** argv, DB& selfDB) {$/;"	f	namespace:SelfParser
 parser__parser_h	pa1/src/parser/parser.hpp	3;"	d
 parser__parser_h	pa2/src/parser/parser.hpp	9;"	d
 pass	pa1/src/fm/fm.cpp	/^void FM::pass() {$/;"	f	class:FM
+pathDir	pa2/src/dr/drAstar.cpp	/^EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {$/;"	f	class:DrAstar
 pinUid	pa2/src/parser/mst.hpp	/^	int pinUid;$/;"	m	class:MST_Set
 pinUidV	pa2/src/parser/routingdb.hpp	/^        vector <int> pinUidV;$/;"	m	class:SelfParser::Net
 pinV	pa2/src/parser/routingdb.hpp	/^        vector <Pin> pinV;$/;"	m	class:SelfParser::RoutingDB
+point	pa2/src/dataStructure/kdtree.hpp	/^    const Point&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud2D
+point	pa2/src/dataStructure/kdtree.hpp	/^    const Point3D&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud3D
 point	pa2/src/db/net.hpp	/^    Point&          point       (int i)  { return _pointV[i]; }$/;"	f	class:Net
 point	pa2/src/db/net.hpp	/^    const Point&    point       (int i)  const { return _pointV[i]; }$/;"	f	class:Net
 point	pa2/src/db/point.hpp	/^	Point&          point       ()                            { return _point; }$/;"	f	class:Point3D
@@ -1213,34 +1317,53 @@ point_id_1	pa2/src/parser/mst.hpp	/^	int point_id_1;$/;"	m	class:MST_SubNet
 point_id_2	pa2/src/parser/mst.hpp	/^	int point_id_2;$/;"	m	class:MST_SubNet
 print	pa1/src/data/data.cpp	/^void Data::print() {$/;"	f	class:Data
 print	pa1/src/fm/bucketList.cpp	/^void BucketList::print() {$/;"	f	class:BucketList
+print	pa2/src/db/capacityTable.cpp	/^void CapacityTable::print() {$/;"	f	class:CapacityTable
+print	pa2/src/db/db.cpp	/^void DB::print() {$/;"	f	class:DB
+print	pa2/src/db/net.cpp	/^void Net::print() {$/;"	f	class:Net
 printCell	pa1/src/data/data.cpp	/^void Data::printCell() {$/;"	f	class:Data
-pushNet	pa2/src/db/db.hpp	/^    Net& pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, nmae); return _netV.back(); }$/;"	f	class:DB
+pushComponentSV	pa2/src/dr/drAstar.cpp	/^void DrAstar::pushComponentSV() {$/;"	f	class:DrAstar
+pushNet	pa2/src/db/db.hpp	/^    void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }$/;"	f	class:DB
+pushPoint	pa2/src/db/db.hpp	/^    void pushPoint  (int x, int y) { _netV.back().pushPoint(x,y); }$/;"	f	class:DB
+pushPoint	pa2/src/db/net.hpp	/^    void            pushPoint(int x, int y) { _pointV.emplace_back(x, y); }$/;"	f	class:Net
+pushSegment	pa2/src/db/net.hpp	/^    void            pushSegment(const Segment3D& s) { _segmentV.emplace_back(s); }$/;"	f	class:Net
 qnxnto	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
+rank	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
 reduce_capacity	pa2/src/parser/routingdb.hpp	/^        short reduce_capacity;$/;"	m	class:SelfParser::CapacityAdjust
 representative	pa2/src/parser/mst.hpp	/^	int representative;$/;"	m	class:MST_Set
+reserve	pa2/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)                                      { _pointV.reserve(n);            }$/;"	f	class:PointCloud2D
+reserve	pa2/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)                                      { _pointV.reserve(n);            }$/;"	f	class:PointCloud3D
+resetComponentId	pa2/src/dr/drAstar.hpp	/^        void resetComponentId() {$/;"	f	struct:DrAstar::AstarNode
 resultSubNetV	pa2/src/parser/mst.hpp	/^	vector <MST_SubNet> resultSubNetV;$/;"	m	class:MST
+route	pa2/src/dr/drAstar.cpp	/^void DrAstar::route() {$/;"	f	class:DrAstar
+routeNet	pa2/src/dr/drAstar.cpp	/^int DrAstar::routeNet() {$/;"	f	class:DrAstar
 segment	pa2/src/db/net.hpp	/^    Segment3D&       segment       (int i)  { return _segmentV[i]; }$/;"	f	class:Net
 segment	pa2/src/db/net.hpp	/^    const Segment3D& segment       (int i)  const { return _segmentV[i]; }$/;"	f	class:Net
 segmentSize	pa2/src/db/net.hpp	/^    int             segmentSize   ()  { return _segmentV.size(); }$/;"	f	class:Net
-set	pa2/src/db/point.hpp	/^	void         	set        	(const DType& x, const DType& y, const DType& layer) {_point.set(x,y); _layer= layer; };$/;"	f	class:Point3D
-set	pa2/src/db/point.hpp	/^    void         set        (const DType& x, const DType& y) {_x = x; _y = y;};$/;"	f	class:Point
+set	pa2/src/db/point.hpp	/^	void         	set        	(const int& x, const int& y, const int& layer) {_point.set(x,y); _layer= layer; };$/;"	f	class:Point3D
+set	pa2/src/db/point.hpp	/^    void         set        (const int& x, const int& y) {_x = x; _y = y;};$/;"	f	class:Point
+setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (const Point& p, int i) { _horCapM[p] = i; };$/;"	f	class:CapacityTable
+setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (int i) { _horCap = i; };$/;"	f	class:CapacityTable
 setId	pa1/src/data/cell.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Cell
 setId	pa1/src/data/net.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Net
-setLayer	pa2/src/db/point.hpp	/^	void         	setLayer   	(const DType& layer)      { _layer = layer; }$/;"	f	class:Point3D
-setSize	pa2/src/db/db.hpp	/^    void setSize    (int x, int, y) { _size.set(x,y); }$/;"	f	class:DB
-setX	pa2/src/db/point.hpp	/^	void         	setX       	(const DType& x) {_point[0] = x;};$/;"	f	class:Point3D
-setX	pa2/src/db/point.hpp	/^    void         setX       (const DType& x) {_x = x;};$/;"	f	class:Point
-setXY	pa2/src/db/point.hpp	/^	void         	setXY      	(const DType& x, const DType& y) {_point.set(x,y); }$/;"	f	class:Point3D
-setY	pa2/src/db/point.hpp	/^	void         	setY       	(const DType& y) {_point[1] = y;};$/;"	f	class:Point3D
-setY	pa2/src/db/point.hpp	/^    void         setY       (const DType& y) {_y = y;};$/;"	f	class:Point
+setLayer	pa2/src/db/point.hpp	/^	void         	setLayer   	(const int& layer)      { _layer = layer; }$/;"	f	class:Point3D
+setSize	pa2/src/db/db.hpp	/^    void setSize    (int x, int y) { _size.set(x,y); }$/;"	f	class:DB
+setSizes	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
+setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (const Point& p, int i) { _verCapM[p] = i; };$/;"	f	class:CapacityTable
+setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (int i) { _verCap = i; };$/;"	f	class:CapacityTable
+setX	pa2/src/db/point.hpp	/^	void         	setX       	(const int& x) {_point[0] = x;};$/;"	f	class:Point3D
+setX	pa2/src/db/point.hpp	/^    void         setX       (const int& x) {_x = x;};$/;"	f	class:Point
+setXY	pa2/src/db/point.hpp	/^	void         	setXY      	(const int& x, const int& y) {_point.set(x,y); }$/;"	f	class:Point3D
+setY	pa2/src/db/point.hpp	/^	void         	setY       	(const int& y) {_point[1] = y;};$/;"	f	class:Point3D
+setY	pa2/src/db/point.hpp	/^    void         setY       (const int& y) {_y = y;};$/;"	f	class:Point
+setZDirectWeight	pa2/src/dataStructure/kdtree.hpp	/^    void setZDirectWeight   (DType z)                           { _zDirectWeight = z;                                   }$/;"	f	class:KDTree3D
 solve	pa1/src/fm/fm.cpp	/^int FM::solve() {$/;"	f	class:FM
 source_pin	pa2/src/parser/routingdb.hpp	/^        Pin* source_pin;$/;"	m	class:SelfParser::SubNet
 spread	pa1/src/data/data.cpp	/^void Data::spread() {$/;"	f	class:Data
-str	pa2/src/db/point.hpp	/^    string              str             () const { return (to_string(_point[0]) + "-" + to_string(_point[1]) + "-" + to_string(_layer)); }$/;"	f	class:Point3D
 str	pa2/src/db/point.hpp	/^    string              str             () const { return (to_string(_x) + "-" + to_string(_y)); }$/;"	f	class:Point
+str	pa2/src/db/point.hpp	/^    string          str             () const { return (to_string(_point[0]) + "-" + to_string(_point[1]) + "-" + to_string(_layer)); }$/;"	f	class:Point3D
 str	pa2/src/db/segment.hpp	/^    string      str         ()              const { return ((_p1.str()) + "-" + (_p2.str())); }$/;"	f	class:Segment3D
 subnetUidV	pa2/src/parser/routingdb.hpp	/^        vector <int> subnetUidV;$/;"	m	class:SelfParser::Net
 subnetV	pa2/src/parser/routingdb.hpp	/^        vector <SubNet> subnetV;$/;"	m	class:SelfParser::RoutingDB
@@ -1251,21 +1374,26 @@ uid	pa2/src/parser/routingdb.hpp	/^        int uid;$/;"	m	class:SelfParser::Net
 uid	pa2/src/parser/routingdb.hpp	/^        int uid;$/;"	m	class:SelfParser::Pin
 uid	pa2/src/parser/routingdb.hpp	/^        int uid;$/;"	m	class:SelfParser::SubNet
 verCapacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::verCapacity(const Point& p) {$/;"	f	class:CapacityTable
+verify	pa2/src/parser/parser.hpp	/^    void verify(int argc, char** argv) {$/;"	f	namespace:SelfParser
 verti_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> verti_capacityV;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
+viaCost	pa2/src/dr/drAstar.hpp	/^      DType viaCost = 250;$/;"	m	struct:DrAstar::AstarParam
 via_spacingV	pa2/src/parser/routingdb.hpp	/^        vector <short> via_spacingV;$/;"	m	class:SelfParser::RoutingDB
 volatile	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
 volatile	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
 x	pa2/src/parser/mst.hpp	/^	int x;$/;"	m	class:MST_Point
-x1	pa2/src/db/segment.hpp	/^    DType       x1      ()      const   { return _p1[0];                        }$/;"	f	class:Segment3D
-x2	pa2/src/db/segment.hpp	/^    DType       x2      ()      const   { return _p2[0];                        }$/;"	f	class:Segment3D
+x1	pa2/src/db/segment.hpp	/^    int       x1      ()      const   { return _p1[0];                        }$/;"	f	class:Segment3D
+x2	pa2/src/db/segment.hpp	/^    int       x2      ()      const   { return _p2[0];                        }$/;"	f	class:Segment3D
 xytogrid	pa2/tool/eval.pl	/^sub xytogrid($$) {$/;"	s
 y	pa2/src/parser/mst.hpp	/^	int y;$/;"	m	class:MST_Point
-y1	pa2/src/db/segment.hpp	/^    DType       y1      ()      const   { return _p1[1];                        }$/;"	f	class:Segment3D
-y2	pa2/src/db/segment.hpp	/^    DType       y2      ()      const   { return _p2[1];                        }$/;"	f	class:Segment3D
-z1	pa2/src/db/segment.hpp	/^    DType       z1      ()      const   { return _p1.layer();                   }$/;"	f	class:Segment3D
-z2	pa2/src/db/segment.hpp	/^    DType       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
+y1	pa2/src/db/segment.hpp	/^    int       y1      ()      const   { return _p1[1];                        }$/;"	f	class:Segment3D
+y2	pa2/src/db/segment.hpp	/^    int       y2      ()      const   { return _p2[1];                        }$/;"	f	class:Segment3D
+z1	pa2/src/db/segment.hpp	/^    int       z1      ()      const   { return _p1.layer();                   }$/;"	f	class:Segment3D
+z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
 ~CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust
+~DrAstar	pa2/src/dr/drAstar.hpp	/^  ~DrAstar() {}$/;"	f	class:DrAstar
+~KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree2D   () {}$/;"	f	class:KDTree2D
+~KDTree3D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree3D   () {}$/;"	f	class:KDTree3D
 ~MST	pa2/src/parser/mst.hpp	/^	~MST() {;}$/;"	f	class:MST
 ~MST_Point	pa2/src/parser/mst.hpp	/^	~MST_Point()              { ; }$/;"	f	class:MST_Point
 ~MST_Set	pa2/src/parser/mst.hpp	/^	~MST_Set()                         {;}$/;"	f	class:MST_Set

@@ -60,141 +60,70 @@ namespace SelfParser {
 
 
         {
-        /* Parser */
-        // cout << "[Parser]" << endl;
-        Parser parser;
-        parser.ReadISPD(inputFile);
-        }
-        // cout << endl;
-
-        /* =================================== */
-        /* Show input information after parser */
-        // cout << "RoutingDB Info: " << endl;
-
-        cout << "..# of horizontal global tiles: " 
-        << db.GetHoriGlobalTileNo() << endl;
-        cout << "..# of vertical global tiles: " 
-        << db.GetVertiGlobalTileNo() << endl;
-        cout << "..# of layers: " << db.GetLayerNo() << endl;
-
-        cout << "..vertical default capacity: "; 
-        for (int i = 0; i < db.GetLayerNo(); i++)
-        { cout << db.GetLayerVertiCapacity(i) << " "; }
-        cout << endl;
-
-        cout << "..horizontal default capacity: "; 
-        for (int i = 0; i < db.GetLayerNo(); i++)
-        { cout << db.GetLayerHoriCapacity(i) << " "; }
-        cout << endl;
-
-        cout << "..minimum width: "; 
-        for (int i = 0; i < db.GetLayerNo(); i++)
-        { cout << db.GetLayerMinWidth(i) << " "; }
-        cout << endl;
-
-        cout << "..minimum spacing: "; 
-        for (int i = 0; i < db.GetLayerNo(); i++)
-        { cout << db.GetLayerMinSpacing(i) << " "; }
-        cout << endl;
-
-        cout << "..via spacing: "; 
-        for (int i = 0; i < db.GetLayerNo(); i++)
-        { cout << db.GetLayerViaSpacing(i) << " "; }
-        cout << endl;
-
-        cout << "..chip lower left x: " << db.GetLowerLeftX() << endl; 
-        cout << "..chip lower left y: " << db.GetLowerLeftY() << endl; 
-        cout << "..global tile width: " << db.GetTileWidth() << endl; 
-        cout << "..global tile height: " << db.GetTileHeight() << endl; 
-
-        cout << "..# of capacity adjustment: " << db.GetCapacityAdjustNo() << endl;
-        for (int i = 0; i < db.GetCapacityAdjustNo(); i++)
-        {
-        CapacityAdjust& ca = db.GetCapacityAdjust(i);
-        cout << "...." << ca.GetGx1() << " " << ca.GetGy1() << " " << ca.GetLayer1() 
-            << " " << ca.GetGx2() << " " << ca.GetGy2() << " " << ca.GetLayer2() 
-            << " " << ca.GetReduceCapacity() << endl;
+            Parser parser;
+            parser.ReadISPD(inputFile);
         }
 
-        cout << endl;
+        CapacityTable& capacityTable = selfDB.capacityTable();
+        Point origin, tileSize;
 
-        cout << "..# of net: " << db.GetNetNo() << endl;
+        selfDB.setSize(db.GetHoriGlobalTileNo(), db.GetVertiGlobalTileNo());
 
-        for (int i = 0; i < db.GetNetNo(); i++)
-        {
-        Net& n = db.GetNetByPosition(i);
+        capacityTable.setHor(db.GetLayerHoriCapacity(0) / 2);
+        capacityTable.setVer(db.GetLayerVertiCapacity(1) / 2);
 
-        cout << "..net[" << n.GetUid() << "] " << n.GetName() << endl;
-        cout << "...# of pin: " << n.GetPinNo() << endl;
-        for (int i = 0; i < n.GetPinNo(); i++)
-        {
-            Pin& p = n.GetPin(i);
-            cout << "...."; 
-            p.ShowInfo();
+
+        origin.set(db.GetLowerLeftX(), db.GetLowerLeftY());
+        tileSize.set(db.GetTileWidth(), db.GetTileHeight());
+
+        int layer, capacity;
+        Point p1, p2;
+        Point pSmall, pBig;
+        for (int i = 0; i < db.GetCapacityAdjustNo(); i++) {
+            CapacityAdjust& ca = db.GetCapacityAdjust(i);
+            p1.set(ca.GetGx1(), ca.GetGy1());
+            p2.set(ca.GetGx2(), ca.GetGy2());
+            pSmall = min(p1, p2);
+            pBig = max(p1, p2);
+            assert(ca.GetLayer1() == ca.GetLayer2());
+            layer = ca.GetLayer1();
+            capacity = ca.GetReduceCapacity() / 2;
+            for (Point p = pSmall; p < pBig;) {
+                if (layer == 1) {
+                    capacityTable.setHor(p, capacity);
+                    ++p[0];
+                }
+                else if (layer == 2) {
+                    capacityTable.setVer(p, capacity);
+                    ++p[1];
+                }
+                else assert(false);
+            }
         }
 
-        cout << endl;
 
+
+        for (int i = 0; i < db.GetNetNo(); i++) {
+            Net& n = db.GetNetByPosition(i);
+            selfDB.pushNet(i, n.GetUid(), n.GetName());
+
+            for (int i = 0; i < n.GetPinNo(); i++) {
+                Pin& p = n.GetPin(i);
+                selfDB.pushPoint(p.GetGx(), p.GetGy());
+            }
         }
-
-        cout << endl;
-        /* =================================== */
-
-
-
-        {
-        cout << "[Tree Construction (Net Decomposition)]" << endl;
-
-        RoutingTree tree;
-        tree.MinimumSpanningTreeConstruction();
-
-        tree.ShowInfo();
-        cout << endl;
-        }
-        
-
-
-
-        /* =================================== */
-        /* Show net(subnet) information after net decomposition */
-
-        cout << "Net/SubNet Info: " << endl;
-
-        for (int i = 0; i < db.GetNetNo(); i++)
-        {
-        Net& n = db.GetNetByPosition(i);
-
-        cout << "..net[" << n.GetUid() << "] " << n.GetName() << endl;
-
-        cout << "...# of subnets: " << n.GetSubNetNo() << endl;
-        for (int i = 0; i < n.GetSubNetNo(); i++)
-        {
-            SubNet& e = n.GetSubNet(i);
-            cout << "...."; 
-            e.ShowInfo();
-        }
-        cout << endl;
-        }
-
-        cout << endl;
-        /* =================================== */
-
-
-        {
-        cout << "[Verify]" << endl;
-        char cmd[100];
-
-        //sprintf(cmd, "./eval2008.pl %s %s", argv[1], argv[2]);
-        sprintf(cmd, "./eval.pl %s %s", argv[1], argv[2]);
-        cout << cmd << endl;
-        system(cmd);
-        }
-
-        cout << endl;
-        cout << endl;
 
         return 0;
     }
+    void verify(int argc, char** argv) {
+        cout << "[Verify]" << endl;
+        char cmd[100];
+
+        sprintf(cmd, "./tool/eval.pl %s %s", argv[1], argv[2]);
+        cout << cmd << endl;
+        system(cmd);
+    }
+
 
 }
 

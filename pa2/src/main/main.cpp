@@ -9,6 +9,7 @@ int main(int argc, char** argv) {
 
     DB db; 
     SelfParser::parse(argc, argv, db);
+    db.print();
 }
 
 
