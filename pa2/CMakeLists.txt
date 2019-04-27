@@ -13,7 +13,9 @@ set(SRCPATH     ${BASEPATH}/src)
 ############################################################
 # Create compile flags
 ############################################################
-SET(CMAKE_CXX_COMPILER /usr/local/bin/g++)
+if (CMAKE_VERSION VERSION_LESS "3.1")
+    SET(CMAKE_CXX_COMPILER /usr/local/bin/g++)
+endif ()
 SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG -std=c++11")
 # set(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
 ############################################################
