@@ -39,7 +39,7 @@ public:
     struct CompareY { bool operator() (const Point& p1, const Point& p2) { return p1._y != p2._y ? p1._y < p2._y : p1._x < p2._x; } };
 
     static int        Mdistance       (const Point& p1, const Point& p2);
-    string              str             () const { return (to_string(_x) + "-" + to_string(_y)); }
+    string              str             () const { return (std::to_string(_x) + "-" + std::to_string(_y)); }
 private:
     int _x;
     int _y;

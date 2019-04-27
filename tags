@@ -2137,7 +2137,7 @@ squash_deleted	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void squash
 st_iterator	pa2/include/sparsehash/internal/sparsehashtable.h	/^      st_iterator;$/;"	t	struct:sparse_hashtable_const_iterator
 st_iterator	pa2/include/sparsehash/internal/sparsehashtable.h	/^      st_iterator;$/;"	t	struct:sparse_hashtable_destructive_iterator
 st_iterator	pa2/include/sparsehash/internal/sparsehashtable.h	/^      st_iterator;$/;"	t	struct:sparse_hashtable_iterator
-str	pa2/src/db/point.hpp	/^    string              str             () const { return (to_string(_x) + "-" + to_string(_y)); }$/;"	f	class:Point
+str	pa2/src/db/point.hpp	/^    string              str             () const { return (std::to_string(_x) + "-" + std::to_string(_y)); }$/;"	f	class:Point
 str	pa2/src/db/point.hpp	/^    string          str             () const { return (to_string(_point[0]) + "-" + to_string(_point[1]) + "-" + to_string(_layer)); }$/;"	f	class:Point3D
 str	pa2/src/db/segment.hpp	/^    string      str         ()              const { return ((_p1.str()) + "-" + (_p2.str())); }$/;"	f	class:Segment3D
 sub	pa2/src/dataStructure/nanoflann.hpp	/^      } sub;$/;"	m	union:nanoflann::KDTreeBaseClass::Node::__anon1	typeref:struct:nanoflann::KDTreeBaseClass::Node::__anon1::nonleaf
