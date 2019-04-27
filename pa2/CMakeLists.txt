@@ -15,8 +15,7 @@ set(SRCPATH     ${BASEPATH}/src)
 ############################################################
 SET(CMAKE_CXX_COMPILER /usr/local/bin/g++)
 SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG -std=c++11")
-# SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG")
-# set(CMAKE_CXX_FLAGS "-Wall -O3")
+# set(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
 ############################################################
 # process variables
 ############################################################
