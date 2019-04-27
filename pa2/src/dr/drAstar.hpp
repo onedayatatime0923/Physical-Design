@@ -72,7 +72,7 @@ private:
     vector<PointMapType>    _totalPoint2NodeMV;     // layerId -> point hashMap
 
     int                     _srcCompId;
-    UFDS                    _componentDS;           // size = _componentSV.size();
+    UF                      _componentDS;           // size = _componentSV.size();
 
 
     struct AstarNode {

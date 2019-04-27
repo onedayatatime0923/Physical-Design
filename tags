@@ -1107,9 +1107,9 @@ SubNet	pa2/src/parser/routingdb.hpp	/^        SubNet() { ; }$/;"	f	class:SelfPar
 SubNet	pa2/src/parser/routingdb.hpp	/^        SubNet(int _uid, Net& _n, Pin& _s_pin, Pin& _t_pin)$/;"	f	class:SelfParser::SubNet
 SubNet	pa2/src/parser/routingdb.hpp	/^    class SubNet$/;"	c	namespace:SelfParser
 Table	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef sparsetable<value_type, DEFAULT_GROUP_SIZE, value_alloc_type> Table;$/;"	t	class:sparse_hashtable
-UFDS	pa2/src/dataStructure/disjointSet.hpp	/^	UFDS() {};$/;"	f	class:UFDS
-UFDS	pa2/src/dataStructure/disjointSet.hpp	/^	UFDS(int N) { init(N); }$/;"	f	class:UFDS
-UFDS	pa2/src/dataStructure/disjointSet.hpp	/^class UFDS {$/;"	c
+UF	pa2/src/dataStructure/disjointSet.hpp	/^    UF() : id(0), sz(0) {}$/;"	f	class:UF
+UF	pa2/src/dataStructure/disjointSet.hpp	/^    UF(int N) : id(0), sz(0) { init(N); }$/;"	f	class:UF
+UF	pa2/src/dataStructure/disjointSet.hpp	/^class UF    {$/;"	c
 UP	pa2/src/db/dbGlobal.hpp	/^    UP, DOWN, LEFT, RIGHT$/;"	e	enum:Direction
 UTIL_GTL_HASHTABLE_COMMON_H_	pa2/include/sparsehash/internal/hashtable-common.h	41;"	d
 UTIL_GTL_LIBC_ALLOCATOR_WITH_REALLOC_H_	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	33;"	d
@@ -1144,7 +1144,7 @@ _cellLV	pa1/src/fm/bucketList.hpp	/^    vector<list<Cell*> > _cellLV;$/;"	m	clas
 _cellM	pa1/src/data/data.hpp	/^    map<string, Cell>   _cellM;$/;"	m	class:Data
 _cellPV	pa1/src/data/data.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Data
 _cellPV	pa1/src/data/net.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Net
-_componentDS	pa2/src/dr/drAstar.hpp	/^    UFDS                    _componentDS;           \/\/ size = _componentSV.size();$/;"	m	class:DrAstar
+_componentDS	pa2/src/dr/drAstar.hpp	/^    UF                      _componentDS;           \/\/ size = _componentSV.size();$/;"	m	class:DrAstar
 _componentSV	pa2/src/dr/drAstar.hpp	/^    vector<PointSetType>    _componentSV;$/;"	m	class:DrAstar
 _data	pa1/src/fm/fm.hpp	/^    Data&                           _data;$/;"	m	class:FM
 _data	pa1/src/parser/parser.hpp	/^    Data& _data;$/;"	m	class:Parser
@@ -1274,6 +1274,7 @@ child2	pa2/src/dataStructure/nanoflann.hpp	/^    Node *child1, *child2; \/\/!< C
 clear	pa1/src/fm/bucketList.cpp	/^void BucketList::clear() {$/;"	f	class:BucketList
 clear	pa2/include/sparsehash/internal/densehashtable.h	/^  void clear() {$/;"	f	class:dense_hashtable
 clear	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void clear() {$/;"	f	class:sparse_hashtable
+clear	pa2/src/dataStructure/disjointSet.hpp	/^    void clear() {$/;"	f	class:UF
 clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear      ()                                              { _pointV.clear(); }$/;"	f	class:PointCloud2D
 clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear      ()                                              { _pointV.clear(); }$/;"	f	class:PointCloud3D
 clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                                  }$/;"	f	class:KDTree3D
@@ -1288,11 +1289,13 @@ clear_deleted_key	pa2/include/sparsehash/internal/densehashtable.h	/^  void clea
 clear_deleted_key	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void clear_deleted_key() {$/;"	f	class:sparse_hashtable
 clear_no_resize	pa2/include/sparsehash/internal/densehashtable.h	/^  void clear_no_resize() {$/;"	f	class:dense_hashtable
 clear_to_size	pa2/include/sparsehash/internal/densehashtable.h	/^  void clear_to_size(size_type new_num_buckets) {$/;"	f	class:dense_hashtable
+cnt	pa2/src/dataStructure/disjointSet.hpp	/^    int *id, cnt, *sz;$/;"	m	class:UF
 componentId	pa2/src/dr/drAstar.hpp	/^        int                 componentId; \/\/ -1 for non-comp points  \/\/ set when backtrace$/;"	m	struct:DrAstar::AstarNode
 computeBoundingBox	pa2/src/dataStructure/nanoflann.hpp	/^  void computeBoundingBox(BoundingBox &bbox) {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 computeBoundingBox	pa2/src/dataStructure/nanoflann.hpp	/^  void computeBoundingBox(BoundingBox &bbox) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 computeInitialDistances	pa2/src/dataStructure/nanoflann.hpp	/^  DistanceType computeInitialDistances(const Derived &obj,$/;"	f	class:nanoflann::KDTreeBaseClass
 computeMinMax	pa2/src/dataStructure/nanoflann.hpp	/^  void computeMinMax(const Derived &obj, IndexType *ind, IndexType count,$/;"	f	class:nanoflann::KDTreeBaseClass
+connected	pa2/src/dataStructure/disjointSet.hpp	/^    bool connected(int x, int y)    {$/;"	f	class:UF
 consider_shrink	pa2/include/sparsehash/internal/hashtable-common.h	/^  bool consider_shrink() const {$/;"	f	class:sparsehash_internal::sh_hashtable_settings
 consider_shrink_	pa2/include/sparsehash/internal/hashtable-common.h	/^  bool consider_shrink_;$/;"	m	class:sparsehash_internal::sh_hashtable_settings
 const	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	10;"	d	file:
@@ -1468,7 +1471,7 @@ find	pa2/include/sparsehash/internal/densehashtable.h	/^  const_iterator find(co
 find	pa2/include/sparsehash/internal/densehashtable.h	/^  iterator find(const key_type& key) {$/;"	f	class:dense_hashtable
 find	pa2/include/sparsehash/internal/sparsehashtable.h	/^  const_iterator find(const key_type& key) const {$/;"	f	class:sparse_hashtable
 find	pa2/include/sparsehash/internal/sparsehashtable.h	/^  iterator find(const key_type& key) {$/;"	f	class:sparse_hashtable
-find	pa2/src/dataStructure/disjointSet.hpp	/^	int find(int i) {$/;"	f	class:UFDS
+find	pa2/src/dataStructure/disjointSet.hpp	/^    int find(int p)	{$/;"	f	class:UF
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
@@ -1542,6 +1545,7 @@ ht	pa2/include/sparsehash/internal/sparsehashtable.h	/^  const sparse_hashtable<
 ht	pa2/include/sparsehash/internal/sparsehashtable.h	/^  const sparse_hashtable<V,K,HF,ExK,SetK,EqK,A> *ht;$/;"	m	struct:sparse_hashtable_iterator
 id	pa1/src/data/cell.hpp	/^    int             id          ()  { return _id; }$/;"	f	class:Cell
 id	pa1/src/data/net.hpp	/^    int             id          ()  { return _id; }$/;"	f	class:Net
+id	pa2/src/dataStructure/disjointSet.hpp	/^    int *id, cnt, *sz;$/;"	m	class:UF
 id	pa2/src/db/net.hpp	/^    int             id      () { return _id; }$/;"	f	class:Net
 identity_	pa2/include/sparsehash/template_util.h	/^struct identity_ {$/;"	s
 if_	pa2/include/sparsehash/template_util.h	/^struct if_<false, A, B> {$/;"	s
@@ -1594,7 +1598,7 @@ info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c
 info_version_internal	pa1/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	pa2/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
-init	pa2/src/dataStructure/disjointSet.hpp	/^    void init(int N) {$/;"	f	class:UFDS
+init	pa2/src/dataStructure/disjointSet.hpp	/^    void init(int N) {$/;"	f	class:UF
 init	pa2/src/dataStructure/nanoflann.hpp	/^  inline void init() { clear(); }$/;"	f	class:nanoflann::RadiusResultSet
 init	pa2/src/dataStructure/nanoflann.hpp	/^  inline void init(IndexType *indices_, DistanceType *dists_) {$/;"	f	class:nanoflann::KNNResultSet
 init	pa2/src/dataStructure/nanoflann.hpp	/^  void init() {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
@@ -1631,7 +1635,6 @@ insert_noresize	pa2/include/sparsehash/internal/sparsehashtable.h	/^  std::pair<
 integral_constant	pa2/include/sparsehash/template_util.h	/^struct integral_constant {$/;"	s
 internal	pa2/include/sparsehash/type_traits.h	/^namespace internal {$/;"	n
 internal_init	pa2/src/dataStructure/nanoflann.hpp	/^  void internal_init() {$/;"	f	class:nanoflann::PooledAllocator
-isSameSet	pa2/src/dataStructure/disjointSet.hpp	/^	bool isSameSet(int i, int j) {$/;"	f	class:UFDS
 is_class_or_union	pa2/include/sparsehash/type_traits.h	/^template <class T> struct is_class_or_union {$/;"	s	namespace:internal
 is_convertible	pa2/include/sparsehash/type_traits.h	/^struct is_convertible$/;"	s
 is_enum	pa2/include/sparsehash/type_traits.h	/^template <class T> struct is_enum$/;"	s
@@ -1774,7 +1777,7 @@ max_size	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  size_
 max_size	pa2/include/sparsehash/internal/sparsehashtable.h	/^  size_type max_size() const          { return table.max_size(); }$/;"	f	class:sparse_hashtable
 maybe_shrink	pa2/include/sparsehash/internal/densehashtable.h	/^  bool maybe_shrink() {$/;"	f	class:dense_hashtable
 maybe_shrink	pa2/include/sparsehash/internal/sparsehashtable.h	/^  bool maybe_shrink() {$/;"	f	class:sparse_hashtable
-merge	pa2/src/dataStructure/disjointSet.hpp	/^	void merge(int i, int j) {$/;"	f	class:UFDS
+merge	pa2/src/dataStructure/disjointSet.hpp	/^    void merge(int x, int y)	{$/;"	f	class:UF
 metric_L1	pa2/src/dataStructure/nanoflann.hpp	/^struct metric_L1 : public Metric {$/;"	s	namespace:nanoflann
 metric_L2	pa2/src/dataStructure/nanoflann.hpp	/^struct metric_L2 : public Metric {$/;"	s	namespace:nanoflann
 metric_L2_Simple	pa2/src/dataStructure/nanoflann.hpp	/^struct metric_L2_Simple : public Metric {$/;"	s	namespace:nanoflann
@@ -1791,7 +1794,7 @@ misc__global_h	pa2/src/misc/global.hpp	3;"	d
 moveBaseCell	pa1/src/fm/fm.cpp	/^void FM::moveBaseCell(Cell* baseCell) {$/;"	f	class:FM
 move_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void move_from(MoveDontCopyT mover, sparse_hashtable &ht,$/;"	f	class:sparse_hashtable
 n	pa2/src/parser/routingdb.hpp	/^        Net* n;$/;"	m	class:SelfParser::SubNet
-nSets	pa2/src/dataStructure/disjointSet.hpp	/^	int nSets() {$/;"	f	class:UFDS
+nSets	pa2/src/dataStructure/disjointSet.hpp	/^    int nSets() {$/;"	f	class:UF
 name	pa1/src/data/cell.hpp	/^    const string&   name        ()  { return _name; }$/;"	f	class:Cell
 name	pa1/src/data/net.hpp	/^    const string&   name        ()  { return _name; }$/;"	f	class:Net
 name	pa2/src/db/net.hpp	/^    const string&   name    () { return _name; }$/;"	f	class:Net
@@ -1813,7 +1816,6 @@ next	pa1/src/fm/bucketList.cpp	/^Cell* BucketList::next(Cell* cellP) {$/;"	f	cla
 node_type	pa2/src/dataStructure/nanoflann.hpp	/^    } node_type;$/;"	m	struct:nanoflann::KDTreeBaseClass::Node	typeref:union:nanoflann::KDTreeBaseClass::Node::__anon1
 nonempty_bucket_count	pa2/include/sparsehash/internal/densehashtable.h	/^  size_type nonempty_bucket_count() const { return num_elements; }$/;"	f	class:dense_hashtable
 nonleaf	pa2/src/dataStructure/nanoflann.hpp	/^      struct nonleaf {$/;"	s	union:nanoflann::KDTreeBaseClass::Node::__anon1
-numSets	pa2/src/dataStructure/disjointSet.hpp	/^	int numSets;$/;"	m	class:UFDS
 num_buckets	pa2/include/sparsehash/internal/densehashtable.h	/^  size_type num_buckets;$/;"	m	class:dense_hashtable
 num_deleted	pa2/include/sparsehash/internal/densehashtable.h	/^  size_type num_deleted;  \/\/ how many occupied buckets are marked deleted$/;"	m	class:dense_hashtable
 num_deleted	pa2/include/sparsehash/internal/sparsehashtable.h	/^  size_type num_deleted;   \/\/ how many occupied buckets are marked deleted$/;"	m	class:sparse_hashtable
@@ -1911,7 +1913,6 @@ origin	pa2/src/parser/parser.hpp	/^    Point origin, tileSize;$/;"	m	namespace:S
 other	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^    typedef libc_allocator_with_realloc<U> other;$/;"	t	struct:libc_allocator_with_realloc::rebind
 outputFile	pa2/src/main/test.cpp	/^ofstream outputFile;$/;"	v
 outputFile	pa2/src/parser/parser.hpp	/^    ofstream outputFile;$/;"	m	namespace:SelfParser
-p	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
 parent	pa2/src/dr/drAstar.hpp	/^        AstarNode*          parent[2];                              \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 parse	pa1/src/parser/parser.cpp	/^void Parser::parse(const string& input) {$/;"	f	class:Parser
 parse	pa2/src/parser/parser.hpp	/^    int parse(int argc, char** argv, DB& selfDB) {$/;"	f	namespace:SelfParser
@@ -1977,7 +1978,6 @@ radiusSearch	pa2/src/dataStructure/nanoflann.hpp	/^  radiusSearch(const ElementT
 radiusSearch	pa2/src/dataStructure/nanoflann.hpp	/^  radiusSearch(const ElementType *query_point, const DistanceType &radius,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 radiusSearchCustomCallback	pa2/src/dataStructure/nanoflann.hpp	/^  size_t radiusSearchCustomCallback($/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 radiusSearchCustomCallback	pa2/src/dataStructure/nanoflann.hpp	/^  size_t radiusSearchCustomCallback($/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-rank	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
 read_bigendian_number	pa2/include/sparsehash/internal/hashtable-common.h	/^bool read_bigendian_number(INPUT* fp, IntType* value, size_t length) {$/;"	f	namespace:sparsehash_internal
 read_data	pa2/include/sparsehash/internal/hashtable-common.h	/^inline bool read_data(INPUT* fp, void* data, size_t length) {$/;"	f	namespace:sparsehash_internal
 read_data_internal	pa2/include/sparsehash/internal/hashtable-common.h	/^inline bool read_data_internal(INPUT* fp, void*,$/;"	f	namespace:sparsehash_internal
@@ -2052,9 +2052,7 @@ setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (int i) { _hor
 setId	pa1/src/data/cell.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Cell
 setId	pa1/src/data/net.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Net
 setLayer	pa2/src/db/point.hpp	/^	void         	setLayer   	(const int& layer)      { _layer = layer; }$/;"	f	class:Point3D
-setSize	pa2/src/dataStructure/disjointSet.hpp	/^	int setSize(int i) {$/;"	f	class:UFDS
 setSize	pa2/src/db/db.hpp	/^    void setSize    (int x, int y) { _size.set(x,y); }$/;"	f	class:DB
-setSizes	pa2/src/dataStructure/disjointSet.hpp	/^	vector<int> p, rank, setSizes;$/;"	m	class:UFDS
 setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (const Point& p, int i) { _verCapM[p] = i; };$/;"	f	class:CapacityTable
 setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (int i) { _verCap = i; };$/;"	f	class:CapacityTable
 setX	pa2/src/db/point.hpp	/^	void         	setX       	(const int& x) {_point[0] = x;};$/;"	f	class:Point3D
@@ -2147,6 +2145,7 @@ swap	pa2/include/sparsehash/internal/densehashtable.h	/^  void swap(dense_hashta
 swap	pa2/include/sparsehash/internal/densehashtable.h	/^inline void swap(dense_hashtable<V,K,HF,ExK,SetK,EqK,A> &x,$/;"	f
 swap	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void swap(sparse_hashtable& ht) {$/;"	f	class:sparse_hashtable
 swap	pa2/include/sparsehash/internal/sparsehashtable.h	/^inline void swap(sparse_hashtable<V,K,HF,ExK,SetK,EqK,A> &x,$/;"	f
+sz	pa2/src/dataStructure/disjointSet.hpp	/^    int *id, cnt, *sz;$/;"	m	class:UF
 table	pa2/include/sparsehash/internal/densehashtable.h	/^  pointer table;$/;"	m	class:dense_hashtable
 table	pa2/include/sparsehash/internal/sparsehashtable.h	/^  Table table;     \/\/ holds num_buckets and num_elements too$/;"	m	class:sparse_hashtable
 target_pin	pa2/src/parser/routingdb.hpp	/^        Pin* target_pin;$/;"	m	class:SelfParser::SubNet
@@ -2277,5 +2276,6 @@ z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.l
 ~RoutingDB	pa2/src/parser/routingdb.hpp	/^        ~RoutingDB() { ; }$/;"	f	class:SelfParser::RoutingDB
 ~RoutingTree	pa2/src/parser/tree.hpp	/^        ~RoutingTree() {;}$/;"	f	class:SelfParser::RoutingTree
 ~SubNet	pa2/src/parser/routingdb.hpp	/^        ~SubNet() { ; }$/;"	f	class:SelfParser::SubNet
+~UF	pa2/src/dataStructure/disjointSet.hpp	/^    ~UF() { clear(); }$/;"	f	class:UF
 ~dense_hashtable	pa2/include/sparsehash/internal/densehashtable.h	/^  ~dense_hashtable() {$/;"	f	class:dense_hashtable
 ~libc_allocator_with_realloc	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  ~libc_allocator_with_realloc() {}$/;"	f	class:libc_allocator_with_realloc

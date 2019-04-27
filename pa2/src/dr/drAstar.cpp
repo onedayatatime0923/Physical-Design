@@ -2,7 +2,6 @@
 #include "drAstar.hpp"
 
 void DrAstar::route() {
-
     init();
 
     for (int i = 0; i < _db.netSize(); ++i) {

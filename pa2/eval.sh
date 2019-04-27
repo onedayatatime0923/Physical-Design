@@ -19,6 +19,8 @@ case "$1" in
         INPUT=$INPUTDIR/adaptec4.aplace60.2d.30.50.90.gr;;
     "a5") 
         INPUT=$INPUTDIR/adaptec5.mfar50.2d.50.20.100.gr;;
+    "a6") 
+        INPUT=$INPUTDIR/a6.gr;;
     "n1") 
         INPUT=$INPUTDIR/newblue1.ntup50.2d.30.50.90.gr;;
     "n2") 
