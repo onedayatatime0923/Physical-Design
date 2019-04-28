@@ -404,6 +404,9 @@ float DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {
         + _db.capacityTable().cost(u->coor, v->coor);
 }
 
+int DrAstar::costH(const Point3D& u, const Point3D& v) const {
+    return abs(u[0] - v[0]) + abs(u[1] - v[1]) + (abs(u.layer() - v.layer()) * _astarParam.viaCost);
+}
 
 
 void DrAstar::clear() {
