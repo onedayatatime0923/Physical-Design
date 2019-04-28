@@ -2197,7 +2197,7 @@ copy_from	chen/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(
 copy_from	pa2/include/sparsehash/internal/densehashtable.h	/^  void copy_from(const dense_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:dense_hashtable
 copy_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
 cost	chen/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
-cost	chen/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(2, float(p.second - p.first)); }$/;"	f	class:CapacityTable
+cost	chen/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.3, float(p.second - p.first)); }$/;"	f	class:CapacityTable
 cost	pa2/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
 cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.5, float(p.second - p.first)); }$/;"	f	class:CapacityTable
 costF	pa2/src/dr/drAstar.hpp	/^        int                 costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
