@@ -1325,9 +1325,9 @@ copy_from	pa2/include/sparsehash/internal/densehashtable.h	/^  void copy_from(co
 copy_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
 cost	pa2/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
 cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.5, float(p.second - p.first)); }$/;"	f	class:CapacityTable
-costF	pa2/src/dr/drAstar.hpp	/^        float               costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
-costG	pa2/src/dr/drAstar.cpp	/^float DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
-costG	pa2/src/dr/drAstar.hpp	/^        float               costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costF	pa2/src/dr/drAstar.hpp	/^        int                 costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costG	pa2/src/dr/drAstar.cpp	/^int DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
+costG	pa2/src/dr/drAstar.hpp	/^        int                 costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 costH	pa2/src/dr/drAstar.cpp	/^int DrAstar::costH(const Point3D& u, const Point3D& v) const {$/;"	f	class:DrAstar
 count	pa2/include/sparsehash/internal/densehashtable.h	/^  size_type count(const key_type &key) const {$/;"	f	class:dense_hashtable
 count	pa2/include/sparsehash/internal/sparsehashtable.h	/^  size_type count(const key_type &key) const {$/;"	f	class:sparse_hashtable
