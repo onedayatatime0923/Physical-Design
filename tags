@@ -2232,7 +2232,7 @@ verCapacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::verCapacity(const 
 verify	pa2/src/parser/parser.hpp	/^    void verify(int argc, char** argv) {$/;"	f	namespace:SelfParser
 verti_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> verti_capacityV;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
-viaCost	pa2/src/dr/drAstar.hpp	/^      int viaCost = 1;$/;"	m	struct:DrAstar::AstarParam
+viaCost	pa2/src/dr/drAstar.hpp	/^      int viaCost = 0;$/;"	m	struct:DrAstar::AstarParam
 via_spacingV	pa2/src/parser/routingdb.hpp	/^        vector <short> via_spacingV;$/;"	m	class:SelfParser::RoutingDB
 vind	pa2/src/dataStructure/nanoflann.hpp	/^  std::vector<IndexType> vind;$/;"	m	class:nanoflann::KDTreeBaseClass
 volatile	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
@@ -2261,7 +2261,7 @@ yCoor	pa2/src/parser/parser.hpp	/^    int yCoor(int v) {$/;"	f	namespace:SelfPar
 z1	pa2/src/db/segment.hpp	/^    int       z1      ()      const   { return _p1.layer();                   }$/;"	f	class:Segment3D
 z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
 ~CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust
-~DrAstar	pa2/src/dr/drAstar.hpp	/^  ~DrAstar() {}$/;"	f	class:DrAstar
+~DrAstar	pa2/src/dr/drAstar.hpp	/^  ~DrAstar() { clear(); }$/;"	f	class:DrAstar
 ~KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree2D   () {}$/;"	f	class:KDTree2D
 ~KDTree3D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree3D   () {}$/;"	f	class:KDTree3D
 ~KDTreeEigenMatrixAdaptor	pa2/src/dataStructure/nanoflann.hpp	/^  ~KDTreeEigenMatrixAdaptor() { delete index; }$/;"	f	struct:nanoflann::KDTreeEigenMatrixAdaptor

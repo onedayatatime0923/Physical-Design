@@ -59,7 +59,7 @@ foreach(dir ${SUBDIR})
         set(SRC ${SRC} ${FILE})
     ENDIF()
 endforeach()
-add_library(srclib SHARED ${SRC})
+add_library(srclib STATIC ${SRC})
 target_link_libraries(srclib PRIVATE ${LIB})
 ############################################################
 # Create an executable

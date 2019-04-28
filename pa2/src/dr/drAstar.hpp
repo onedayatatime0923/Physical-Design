@@ -22,7 +22,7 @@ enum EPathDir {
 class DrAstar {
 public:
   DrAstar(DB& db) : _db(db) {};
-  ~DrAstar() {}
+  ~DrAstar() { clear(); }
 
   void route();
   void clear();
@@ -59,7 +59,7 @@ private:
     // Astar Parameter 
     /////////////////////////////////////////////////////
     struct AstarParam {
-      int viaCost = 1;
+      int viaCost = 0;
     } _astarParam;
 
 
