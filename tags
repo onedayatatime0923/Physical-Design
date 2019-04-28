@@ -629,7 +629,7 @@ DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassR
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename Distance::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeBaseClass
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename Distance::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-DrAstar	pa2/src/dr/drAstar.hpp	/^  DrAstar(DB& db) : _db(db) {};$/;"	f	class:DrAstar
+DrAstar	pa2/src/dr/drAstar.hpp	/^    DrAstar(DB& db) : _db(db) {};$/;"	f	class:DrAstar
 DrAstar	pa2/src/dr/drAstar.hpp	/^class DrAstar {$/;"	c
 ENFORCE_POD	pa2/include/sparsehash/type_traits.h	340;"	d
 EPathDir	pa2/src/dr/drAstar.hpp	/^enum EPathDir {$/;"	g
@@ -1604,7 +1604,7 @@ init	pa2/src/dataStructure/nanoflann.hpp	/^  inline void init(IndexType *indices
 init	pa2/src/dataStructure/nanoflann.hpp	/^  void init() {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 init	pa2/src/dr/drAstar.cpp	/^void DrAstar::init() {$/;"	f	class:DrAstar
 initComponent	pa2/src/dr/drAstar.cpp	/^void DrAstar::initComponent() {$/;"	f	class:DrAstar
-initPoint	pa2/src/dr/drAstar.cpp	/^void DrAstar::initPoint(const Point& p, set<pair<int, int>>& sameComp) {$/;"	f	class:DrAstar
+initPoint	pa2/src/dr/drAstar.cpp	/^void DrAstar::initPoint(const Point& p) {$/;"	f	class:DrAstar
 init_vind	pa2/src/dataStructure/nanoflann.hpp	/^  void init_vind() {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 initialize	pa1/src/fm/bucketList.hpp	/^    void        initialize(int n)   { _cellLV.resize((2*n) + 1); _maxGain = (-1 * n) - 1; _n = n; }$/;"	f	class:BucketList
 initialize	pa2/src/dr/drAstar.hpp	/^        void initialize() {$/;"	f	struct:DrAstar::AstarNode
@@ -1999,6 +1999,7 @@ reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	class:sparse_hashtable
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	struct:sparse_hashtable_destructive_iterator
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	struct:sparse_hashtable_iterator
+relax	pa2/src/dr/drAstar.cpp	/^void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {$/;"	f	class:DrAstar
 remaining	pa2/src/dataStructure/nanoflann.hpp	/^  size_t remaining; \/* Number of bytes left in current block of storage. *\/$/;"	m	class:nanoflann::PooledAllocator
 removePoint	pa2/src/dataStructure/nanoflann.hpp	/^  void removePoint(size_t idx) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 remove_const	pa2/include/sparsehash/type_traits.h	/^template<typename T> struct remove_const { typedef T type; };$/;"	s
@@ -2232,7 +2233,7 @@ verCapacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::verCapacity(const 
 verify	pa2/src/parser/parser.hpp	/^    void verify(int argc, char** argv) {$/;"	f	namespace:SelfParser
 verti_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> verti_capacityV;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
-viaCost	pa2/src/dr/drAstar.hpp	/^      int viaCost = 0;$/;"	m	struct:DrAstar::AstarParam
+viaCost	pa2/src/dr/drAstar.hpp	/^      int viaCost = 1;$/;"	m	struct:DrAstar::AstarParam
 via_spacingV	pa2/src/parser/routingdb.hpp	/^        vector <short> via_spacingV;$/;"	m	class:SelfParser::RoutingDB
 vind	pa2/src/dataStructure/nanoflann.hpp	/^  std::vector<IndexType> vind;$/;"	m	class:nanoflann::KDTreeBaseClass
 volatile	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:
@@ -2261,7 +2262,7 @@ yCoor	pa2/src/parser/parser.hpp	/^    int yCoor(int v) {$/;"	f	namespace:SelfPar
 z1	pa2/src/db/segment.hpp	/^    int       z1      ()      const   { return _p1.layer();                   }$/;"	f	class:Segment3D
 z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
 ~CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust
-~DrAstar	pa2/src/dr/drAstar.hpp	/^  ~DrAstar() { clear(); }$/;"	f	class:DrAstar
+~DrAstar	pa2/src/dr/drAstar.hpp	/^    ~DrAstar() { clear(); }$/;"	f	class:DrAstar
 ~KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree2D   () {}$/;"	f	class:KDTree2D
 ~KDTree3D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree3D   () {}$/;"	f	class:KDTree3D
 ~KDTreeEigenMatrixAdaptor	pa2/src/dataStructure/nanoflann.hpp	/^  ~KDTreeEigenMatrixAdaptor() { delete index; }$/;"	f	struct:nanoflann::KDTreeEigenMatrixAdaptor

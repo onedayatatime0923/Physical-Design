@@ -21,59 +21,11 @@ enum EPathDir {
 };
 class DrAstar {
 public:
-  DrAstar(DB& db) : _db(db) {};
-  ~DrAstar() { clear(); }
+    DrAstar(DB& db) : _db(db) {};
+    ~DrAstar() { clear(); }
 
-  void route();
-  void clear();
-
-private:
-    struct AstarNode;
-    struct AstarNodeComp0;
-    struct AstarNodeComp1;
-
-    void    init                ();
-
-    int     routeNet            ();
-    void    initComponent       ();
-    void    initPoint           (const Point& p, set<pair<int, int>>& sameComp);
-    void    pushComponentSV     ();
-
-    bool    findPathAss         ();
-    void    findNeighbors       (const Point3D& p, vector<Point3D>& vRet) const;
-
-    void    backtrace           (AstarNode* u);
-    int     backtrace           (AstarNode* x, int i);
-
-    void    addRoutedWireOrVia  (const Point3D& start, const Point3D& current);
-    EPathDir    pathDir         (const Point3D& p1, const Point3D& p2) const;
-    
-    int   costG(AstarNode* u,AstarNode* v, int groupId);
-    int   costH(const Point3D& u, const Point3D& v) const;
-
-
-    // member
-
-    DB&         _db;
-    Net*        _netP;
-    // Astar Parameter 
-    /////////////////////////////////////////////////////
-    struct AstarParam {
-      int viaCost = 0;
-    } _astarParam;
-
-
-
-    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;
-    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;
-
-
-    vector<PointSetType>    _componentSV;
-    vector<PointMapType>    _totalPoint2NodeMV;     // layerId -> point hashMap
-
-    int                     _srcCompId;
-    UF                      _componentDS;           // size = _componentSV.size();
-
+    void route();
+    void clear();
 
     struct AstarNode {
         AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c) { initialize(); }
@@ -116,6 +68,52 @@ private:
     typedef PairingHeap<AstarNode*, AstarNodeComp1>             NodePHeap1Type;
     typedef DenseHashMap<AstarNode*, NodePHeap0Type::point_iterator> IterMap0Type;
     typedef DenseHashMap<AstarNode*, NodePHeap1Type::point_iterator> IterMap1Type;
+private:
+
+    void    init                ();
+
+    int     routeNet            ();
+    void    initComponent       ();
+    void    initPoint           (const Point& p);
+    void    pushComponentSV     ();
+
+    bool    findPathAss         ();
+    void    relax               (AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], NodePHeap0Type& heap0, NodePHeap1Type& heap1, IterMap0Type& iterMap0, IterMap1Type& iterMap1);
+    void    findNeighbors       (const Point3D& p, vector<Point3D>& vRet) const;
+
+    void    backtrace           (AstarNode* u);
+    int     backtrace           (AstarNode* x, int i);
+
+    void    addRoutedWireOrVia  (const Point3D& start, const Point3D& current);
+    EPathDir    pathDir         (const Point3D& p1, const Point3D& p2) const;
+    
+    int   costG(AstarNode* u,AstarNode* v, int groupId);
+    int   costH(const Point3D& u, const Point3D& v) const;
+
+
+    // member
+
+    DB&         _db;
+    Net*        _netP;
+    // Astar Parameter 
+    /////////////////////////////////////////////////////
+    struct AstarParam {
+      int viaCost = 1;
+    } _astarParam;
+
+
+
+    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;
+    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;
+
+
+    vector<PointSetType>    _componentSV;
+    vector<PointMapType>    _totalPoint2NodeMV;     // layerId -> point hashMap
+
+    int                     _srcCompId;
+    UF                      _componentDS;           // size = _componentSV.size();
+
+
 
 };
 #endif

@@ -62,20 +62,12 @@ void DrAstar::initComponent() {
         }
     }
 
-    // add to totalPoint2NodeMV and componentSV
-    set<pair<int, int>> sameComp;
-    // printf("init\n");
-    // printf("size: %d\n", (int) _componentVP->size());
 
     for (int i = 0; i < (int)net.pointSize(); ++i) {
-        initPoint(net.point(i), sameComp);
+        initPoint(net.point(i));
     }
 
     _componentDS.init(_componentSV.size());
-    for (auto& it : sameComp) {
-        // printf("id: %d, %d\n", it.first, it.second);
-        _componentDS.merge(it.first, it.second);
-    }
     #ifdef DRASTAR_DEBUG
     printf("after init component\n");
     for (int i = 0; i < (int)_componentSV.size(); ++i) {
@@ -87,7 +79,7 @@ void DrAstar::initComponent() {
     getchar();
     #endif
 }
-void DrAstar::initPoint(const Point& p, set<pair<int, int>>& sameComp) {
+void DrAstar::initPoint(const Point& p) {
     int componentId = _componentSV.size();
     pushComponentSV();
 
@@ -102,9 +94,7 @@ void DrAstar::initPoint(const Point& p, set<pair<int, int>>& sameComp) {
         int id = it->second->componentId;
         if (id == -1) {
             it->second->componentId = componentId;
-        }else if (sameComp.find({min(id, componentId), max(id, componentId)}) == sameComp.end()) {
-            sameComp.emplace(min(id, componentId), max(id, componentId));
-        }
+        }else assert(false);
     }
 }
 void DrAstar::pushComponentSV() {
@@ -178,11 +168,11 @@ bool DrAstar::findPathAss() {
             if (_componentDS.find(componentId) == _srcCompId) {
                 node->costG[0] = 0;
                 node->costF[0] = costF;
-                iterMap0[node] = heap0.push(node);
+                relax(node, 0, kdtree, heap0, heap1, iterMap0, iterMap1);
             } else {
                 node->costG[1] = 0;
                 node->costF[1] = costF;
-                iterMap1[node] = heap1.push(node);
+                relax(node, 1, kdtree, heap0, heap1, iterMap0, iterMap1);
             }
         }
     }
@@ -223,78 +213,84 @@ bool DrAstar::findPathAss() {
             return true;
         }
 
-        // find neighbors
-        if (currentNode->adjV.empty()) {
-            vector<Point3D > vAdjPts;
-            findNeighbors(currentNode->coor, vAdjPts);
-            for (Point3D& adjPoint : vAdjPts) {
-                #ifdef DRASTAR_DEBUG
-                printf("adj point: %s\n", adjPoint.str().c_str());
-                #endif
-                auto iter = _totalPoint2NodeMV[adjPoint.layer()].find(adjPoint);
-                if (iter == _totalPoint2NodeMV[adjPoint.layer()].end()) {
-                    AstarNode* newNode = new AstarNode(adjPoint);
-                    _totalPoint2NodeMV[adjPoint.layer()][adjPoint] = newNode;
-                    currentNode->adjV.emplace_back(newNode);
-                } else {
-                    // assert(false);
-                    currentNode->adjV.emplace_back(iter->second);
-                }
-            }
-        }
-
-        // relaxation
-        for (AstarNode* neiNode : currentNode->adjV) {
-            // skip explored node
-            if (neiNode->explored[groupId]) continue;
-
-            // skip invalid neighbors
-
-            int newCostG = currentNode->costG[groupId] + costG(currentNode, neiNode, groupId);
-
-            // need to update
-            if (newCostG < neiNode->costG[groupId]) {
-                #ifdef DRASTAR_DEBUG
-                printf("neighbor point: %s, cost: %d\n", neiNode->coor.str().c_str(), newCostG);
-                #endif
-                // set parent
-                neiNode->parent[groupId] = currentNode;
-
-                // set cost
-                int dNearest;
-                Point3D pNearest;
-                kdtree[groupId ^ 1].nearestSearch(neiNode->coor, pNearest, dNearest);
-                
-                int new_costF = newCostG + (dNearest);
-
-                // printf("dNearest: %d\n", dNearest);
-                // printf("pNearest: %s\n", pNearest.str().c_str());
-
-                neiNode->costG[groupId] = newCostG;
-                neiNode->costF[groupId] = new_costF;
-
-                if (groupId == 0) {
-                    auto it = iterMap0.find(neiNode);
-                    if (it != iterMap0.end())
-                        heap0.modify(it->second, neiNode);
-                    else
-                        iterMap0[neiNode] = heap0.push(neiNode);
-                }
-                else {
-                    auto it = iterMap1.find(neiNode);
-                    if (it != iterMap1.end())
-                        heap1.modify(it->second, neiNode);
-                    else
-                        iterMap1[neiNode] = heap1.push(neiNode);
-                }
-            }
-        }
-        // set explored
-        currentNode->explored[groupId] = true;
+        relax(currentNode, groupId, kdtree, heap0, heap1, iterMap0, iterMap1);
     }
     // printf("heap0 empty: %d\n", heap0.empty());
     // printf("heap1 empty: %d\n", heap1.empty());
     return false;
+}
+void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {
+    // printf("relax\n");
+    // find neighbors
+    if (currentNode->adjV.empty()) {
+        vector<Point3D > vAdjPts;
+        findNeighbors(currentNode->coor, vAdjPts);
+        for (Point3D& adjPoint : vAdjPts) {
+            #ifdef DRASTAR_DEBUG
+            printf("adj point: %s\n", adjPoint.str().c_str());
+            #endif
+            auto iter = _totalPoint2NodeMV[adjPoint.layer()].find(adjPoint);
+            if (iter == _totalPoint2NodeMV[adjPoint.layer()].end()) {
+                AstarNode* newNode = new AstarNode(adjPoint);
+                _totalPoint2NodeMV[adjPoint.layer()][adjPoint] = newNode;
+                currentNode->adjV.emplace_back(newNode);
+            } else {
+                // assert(false);
+                currentNode->adjV.emplace_back(iter->second);
+            }
+        }
+    }
+
+    for (AstarNode* neiNode : currentNode->adjV) {
+        // skip explored node
+        if (neiNode->explored[groupId]) continue;
+
+        // skip invalid neighbors
+
+        int newCostG = currentNode->costG[groupId] + costG(currentNode, neiNode, groupId);
+
+        // need to update
+        if (newCostG < neiNode->costG[groupId]) {
+            #ifdef DRASTAR_DEBUG
+            printf("neighbor point: %s\n", neiNode->coor.str().c_str());
+            #endif
+            // set parent
+            neiNode->parent[groupId] = currentNode;
+
+            // set cost
+            int dNearest;
+            Point3D pNearest;
+            kdtree[groupId ^ 1].nearestSearch(neiNode->coor, pNearest, dNearest);
+            
+            int new_costF = newCostG + (dNearest);
+            #ifdef DRASTAR_DEBUG
+            printf("costG: %d, costH: %d\n", newCostG, dNearest);
+            #endif
+
+            // printf("dNearest: %d\n", dNearest);
+            // printf("pNearest: %s\n", pNearest.str().c_str());
+
+            neiNode->costG[groupId] = newCostG;
+            neiNode->costF[groupId] = new_costF;
+
+            if (groupId == 0) {
+                auto it = iterMap0.find(neiNode);
+                if (it != iterMap0.end())
+                    heap0.modify(it->second, neiNode);
+                else
+                    iterMap0[neiNode] = heap0.push(neiNode);
+            }
+            else {
+                auto it = iterMap1.find(neiNode);
+                if (it != iterMap1.end())
+                    heap1.modify(it->second, neiNode);
+                else
+                    iterMap1[neiNode] = heap1.push(neiNode);
+            }
+        }
+    }
+    // set explored
+    currentNode->explored[groupId] = true;
 }
 void DrAstar::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {
     // Same layer
