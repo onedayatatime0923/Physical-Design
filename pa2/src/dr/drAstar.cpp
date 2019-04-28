@@ -247,7 +247,7 @@ void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], D
 
         // skip invalid neighbors
 
-        int newCostG = currentNode->costG[groupId] + costG(currentNode, neiNode, groupId);
+        float newCostG = currentNode->costG[groupId] + costG(currentNode, neiNode, groupId);
 
         // need to update
         if (newCostG < neiNode->costG[groupId]) {
@@ -399,14 +399,11 @@ EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {
     } 
     else assert(false);
 }
-int DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {
+float DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {
     return abs(u->coor[0] - v->coor[0]) + abs(u->coor[1] - v->coor[1]) + (abs(u->coor.layer() - v->coor.layer()) * _astarParam.viaCost)
         + _db.capacityTable().cost(u->coor, v->coor);
 }
 
-int DrAstar::costH(const Point3D& u, const Point3D& v) const {
-    return abs(u[0] - v[0]) + abs(u[1] - v[1]) + (abs(u.layer() - v.layer()) * _astarParam.viaCost);
-}
 
 
 void DrAstar::clear() {

@@ -32,8 +32,8 @@ public:
 
         Point3D             coor;                                   // set when neibor node is selected
         AstarNode*          parent[2];                              // set when neibor node is selected
-        int                 costG[2];                               // set when neibor node is selected
-        int                 costF[2];                               // set when neibor node is selected
+        float               costG[2];                               // set when neibor node is selected
+        float               costF[2];                               // set when neibor node is selected
 
         int                 componentId; // -1 for non-comp points  // set when backtrace
 
@@ -87,8 +87,8 @@ private:
     void    addRoutedWireOrVia  (const Point3D& start, const Point3D& current);
     EPathDir    pathDir         (const Point3D& p1, const Point3D& p2) const;
     
-    int   costG(AstarNode* u,AstarNode* v, int groupId);
-    int   costH(const Point3D& u, const Point3D& v) const;
+    float   costG(AstarNode* u,AstarNode* v, int groupId);
+    int     costH(const Point3D& u, const Point3D& v) const;
 
 
     // member
