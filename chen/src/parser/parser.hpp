@@ -102,20 +102,14 @@ namespace SelfParser {
         }
 
 
-        {
-            RoutingTree tree;
-            tree.MinimumSpanningTreeConstruction();
-        }
 
         for (int i = 0; i < db.GetNetNo(); i++) {
             Net& n = db.GetNetByPosition(i);
-
             selfDB.pushNet(i, n.GetUid(), n.GetName());
 
-            for (int i = 0; i < n.GetSubNetNo(); i++) {
-                SubNet& e = n.GetSubNet(i);
-                selfDB.pushPoint(e.GetSourcePin().GetGx(), e.GetSourcePin().GetGy(),
-                                e.GetTargetPin().GetGx(), e.GetTargetPin().GetGy());
+            for (int i = 0; i < n.GetPinNo(); i++) {
+                Pin& p = n.GetPin(i);
+                selfDB.pushPoint(p.GetGx(), p.GetGy());
             }
         }
 
@@ -124,11 +118,10 @@ namespace SelfParser {
     int dumpFile(int argc, char** argv, DB& selfDB) {
         FILE* output = fopen(argv[2], "w");
         for (int i = 0; i < selfDB.netSize(); ++i) {
-            set<Segment3D>& segmentS = selfDB.net(i).segmentS();
-            fprintf(output, "%s %d %lu\n", selfDB.net(i).name().c_str(), selfDB.net(i).id(), segmentS.size());
-            for (auto it = segmentS.begin(); it != segmentS.end(); ++it) {
-                const Point3D& p1 = it->point1();
-                const Point3D& p2 = it->point2();
+            fprintf(output, "%s %d %d\n", selfDB.net(i).name().c_str(), selfDB.net(i).id(), selfDB.net(i).segmentSize());
+            for (int j = 0; j < selfDB.net(i).segmentSize(); ++j) {
+                Point3D& p1 = selfDB.net(i).segment(j).point1();
+                Point3D& p2 = selfDB.net(i).segment(j).point2();
                 fprintf(output, "(%d,%d,%d)-(%d,%d,%d)\n", db.CalCenterX(p1[0]), db.CalCenterY(p1[1]), p1[2], db.CalCenterX(p2[0]), db.CalCenterY(p2[1]), p2[2]);
             }
             fprintf(output, "!\n");

@@ -5,60 +5,115 @@
 // #define DRASTAR_DEBUG
 
 #include "db/db.hpp"
-#include "dataStructure/pqueue.hpp"
 #include "dataStructure/hash.hpp"
+#include "dataStructure/disjointSet.hpp"
+#include "dataStructure/pqueue.hpp"
+#include "dataStructure/kdtree.hpp"
 
-namespace AStar
-{
+enum EPathDir {
+    XF = 0,
+    XR = 1,
+    YF = 2,
+    YR = 3,
+    ZF = 4,
+    ZR = 5,
+    NONE = 6
+};
+class DrAstar {
+public:
+    DrAstar(DB& db) : _db(db) {};
+    ~DrAstar() { clear(); }
 
-    using CoordinateList = vector<Point3D>;
+    void route();
+    void clear();
 
-    struct Node {
-        float G, H;
-        Point3D coordinates;
-        Node *parent;
+    struct AstarNode {
+        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c) { initialize(); }
 
-        Node(Point3D coord_, Node *parent_ = nullptr);
-        float getScore() const { return G + H; }
-    };
-    struct NodeCompareCoor {
-        bool operator () (const Node* n1, const Node* n2) {
-            return n1->coordinates < n2->coordinates;
+        Point3D             coor;                                   // set when neibor node is selected
+        AstarNode*          parent[2];                              // set when neibor node is selected
+        float               costG[2];                               // set when neibor node is selected
+        float               costF[2];                               // set when neibor node is selected
+
+        int                 componentId; // -1 for non-comp points  // set when backtrace
+
+        bool                explored[2];                            // set when selected
+        vector<AstarNode*>  adjV;                                   // set when selected
+
+        void initialize() {
+            parent[0] = parent[1] = nullptr;
+            costG[0] = costG[1] = costF[0] = costF[1] = INT_MAX;
+            explored[0] = explored[1] = false;
+        }
+        void resetComponentId() {
+            componentId = -1;
         }
     };
-    struct NodeCompareCost {
-        bool operator () (const Node* n1, const Node* n2) {
-            if      (n1->getScore() != n2->getScore()) return n1->getScore() > n2->getScore();
-            else if (n1->G != n2->G) return n1->G < n2->G;
+    struct AstarNodeComp0 {
+        bool operator () (const AstarNode* n1, const AstarNode* n2) {
+            if      (n1->costF[0] != n2->costF[0]) return n1->costF[0] > n2->costF[0];
+            else if (n1->costG[0] != n2->costG[0]) return n1->costG[0] < n2->costG[0];
             else return false;
         }
     };
-    using NodeSet = set<Node*, NodeCompareCoor>;
-    typedef PairingHeap<Node*, NodeCompareCost>                 NodePHeapType;
-    typedef map<Node*, NodePHeapType::point_iterator>           NodeIterMapType;
-
-    class Generator {
-
-        void findNeighbors(const Point3D& p, vector<Point3D>& retV) const;
-        bool detectCollision(Point3D coordinates_);
-        Node* findNodeOnList(NodeSet& nodes_, Point3D coordinates_);
-        void releaseNodes(NodeSet& nodes_);
-        void releaseNodes(NodeIterMapType& nodes_);
-
-    public:
-        Generator(DB& db_) : db(db_) {};
-        void findPath(Net& net, Point3D source_, Point3D target_);
-        void addCollision(Point3D coordinates_);
-        void removeCollision(Point3D coordinates_);
-        void clearCollisions();
-
-    private:
-        DB& db;
+  
+    struct AstarNodeComp1 {
+        bool operator () (const AstarNode* n1, const AstarNode* n2) {
+            if      (n1->costF[1] != n2->costF[1]) return n1->costF[1] > n2->costF[1];
+            else if (n1->costG[1] != n2->costG[1]) return n1->costG[1] < n2->costG[1];
+            else return false;
+        }
     };
+    typedef PairingHeap<AstarNode*, AstarNodeComp0>             NodePHeap0Type;
+    typedef PairingHeap<AstarNode*, AstarNodeComp1>             NodePHeap1Type;
+    typedef DenseHashMap<AstarNode*, NodePHeap0Type::point_iterator> IterMap0Type;
+    typedef DenseHashMap<AstarNode*, NodePHeap1Type::point_iterator> IterMap1Type;
+private:
 
-}
+    void    init                ();
+
+    int     routeNet            ();
+    void    initComponent       ();
+    void    initPoint           (const Point& p);
+    void    pushComponentSV     ();
+
+    bool    findPathAss         ();
+    void    relax               (AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], NodePHeap0Type& heap0, NodePHeap1Type& heap1, IterMap0Type& iterMap0, IterMap1Type& iterMap1);
+    void    findNeighbors       (const Point3D& p, vector<Point3D>& vRet) const;
+
+    void    backtrace           (AstarNode* u);
+    int     backtrace           (AstarNode* x, int i);
+
+    void    addRoutedWireOrVia  (const Point3D& start, const Point3D& current);
+    EPathDir    pathDir         (const Point3D& p1, const Point3D& p2) const;
+    
+    float   costG(AstarNode* u,AstarNode* v, int groupId);
+    int     costH(const Point3D& u, const Point3D& v) const;
+
+
+    // member
+
+    DB&         _db;
+    Net*        _netP;
+    // Astar Parameter 
+    /////////////////////////////////////////////////////
+    struct AstarParam {
+      int viaCost = 1;
+    } _astarParam;
 
 
 
+    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;
+    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;
 
+
+    vector<PointSetType>    _componentSV;
+    vector<PointMapType>    _totalPoint2NodeMV;     // layerId -> point hashMap
+
+    int                     _srcCompId;
+    UF                      _componentDS;           // size = _componentSV.size();
+
+
+
+};
 #endif

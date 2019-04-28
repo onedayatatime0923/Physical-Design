@@ -106,7 +106,7 @@ ARCHITECTURE_ID	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ARCHITECTURE_ID	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	447;"	d	file:
 ARCHITECTURE_ID	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	450;"	d	file:
 ARCHITECTURE_ID	pa2/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	453;"	d	file:
-AStar	chen/src/dr/drAstar.hpp	/^namespace AStar$/;"	n
+AStar	pa2/src/dr/drAstar.hpp	/^namespace AStar$/;"	n
 AddCapapcityAdjust	chen/src/parser/routingdb.cpp	/^    void RoutingDB::AddCapapcityAdjust(short gx1, short gy1, short layer1, $/;"	f	class:SelfParser::RoutingDB
 AddCapapcityAdjust	pa2/src/parser/routingdb.cpp	/^    void RoutingDB::AddCapapcityAdjust(short gx1, short gy1, short layer1, $/;"	f	class:SelfParser::RoutingDB
 AddHoriCapacity	chen/src/parser/routingdb.hpp	/^        void AddHoriCapacity(short v)        { hori_capacityV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
@@ -135,11 +135,11 @@ AddVertiCapacity	chen/src/parser/routingdb.hpp	/^        void AddVertiCapacity(s
 AddVertiCapacity	pa2/src/parser/routingdb.hpp	/^        void AddVertiCapacity(short v)       { verti_capacityV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
 AddViaSpacing	chen/src/parser/routingdb.hpp	/^        void AddViaSpacing(short v)          { via_spacingV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
 AddViaSpacing	pa2/src/parser/routingdb.hpp	/^        void AddViaSpacing(short v)          { via_spacingV.push_back(v); }$/;"	f	class:SelfParser::RoutingDB
-AstarNode	pa2/src/dr/drAstar.hpp	/^        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c) { initialize(); }$/;"	f	struct:DrAstar::AstarNode
-AstarNode	pa2/src/dr/drAstar.hpp	/^    struct AstarNode {$/;"	s	class:DrAstar
-AstarNodeComp0	pa2/src/dr/drAstar.hpp	/^    struct AstarNodeComp0 {$/;"	s	class:DrAstar
-AstarNodeComp1	pa2/src/dr/drAstar.hpp	/^    struct AstarNodeComp1 {$/;"	s	class:DrAstar
-AstarParam	pa2/src/dr/drAstar.hpp	/^    struct AstarParam {$/;"	s	class:DrAstar
+AstarNode	chen/src/dr/drAstar.hpp	/^        AstarNode(const Point3D &co = Point3D(), const int c = -1) : coor(co), componentId(c) { initialize(); }$/;"	f	struct:DrAstar::AstarNode
+AstarNode	chen/src/dr/drAstar.hpp	/^    struct AstarNode {$/;"	s	class:DrAstar
+AstarNodeComp0	chen/src/dr/drAstar.hpp	/^    struct AstarNodeComp0 {$/;"	s	class:DrAstar
+AstarNodeComp1	chen/src/dr/drAstar.hpp	/^    struct AstarNodeComp1 {$/;"	s	class:DrAstar
+AstarParam	chen/src/dr/drAstar.hpp	/^    struct AstarParam {$/;"	s	class:DrAstar
 BASE_TEMPLATE_UTIL_H_	chen/include/sparsehash/template_util.h	50;"	d
 BASE_TEMPLATE_UTIL_H_	pa2/include/sparsehash/template_util.h	50;"	d
 BASE_TYPE_TRAITS_H_	chen/include/sparsehash/type_traits.h	58;"	d
@@ -159,13 +159,13 @@ BoundingBox	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRe
 BucketList	pa1/src/fm/bucketList.hpp	/^    BucketList() {};$/;"	f	class:BucketList
 BucketList	pa1/src/fm/bucketList.hpp	/^    BucketList(int n) { initialize(n); }$/;"	f	class:BucketList
 BucketList	pa1/src/fm/bucketList.hpp	/^class BucketList {$/;"	c
-CMAKE_BINARY_DIR	chen/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/eda-lab\/Github\/Physical-Design\/chen\/build$/;"	m
+CMAKE_BINARY_DIR	chen/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa2\/build$/;"	m
 CMAKE_BINARY_DIR	pa1/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa1\/build$/;"	m
 CMAKE_BINARY_DIR	pa2/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa2\/build$/;"	m
 CMAKE_COMMAND	chen/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
 CMAKE_COMMAND	pa1/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
 CMAKE_COMMAND	pa2/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
-CMAKE_SOURCE_DIR	chen/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/eda-lab\/Github\/Physical-Design\/chen$/;"	m
+CMAKE_SOURCE_DIR	chen/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa2$/;"	m
 CMAKE_SOURCE_DIR	pa1/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa1$/;"	m
 CMAKE_SOURCE_DIR	pa2/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/eda-lab\/Github\/Physical-Design\/pa2$/;"	m
 COMPILER_ID	chen/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	101;"	d	file:
@@ -967,11 +967,11 @@ DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassR
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename Distance::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeBaseClass
 DistanceType	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename Distance::DistanceType DistanceType;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-DrAstar	pa2/src/dr/drAstar.hpp	/^    DrAstar(DB& db) : _db(db) {};$/;"	f	class:DrAstar
-DrAstar	pa2/src/dr/drAstar.hpp	/^class DrAstar {$/;"	c
+DrAstar	chen/src/dr/drAstar.hpp	/^    DrAstar(DB& db) : _db(db) {};$/;"	f	class:DrAstar
+DrAstar	chen/src/dr/drAstar.hpp	/^class DrAstar {$/;"	c
 ENFORCE_POD	chen/include/sparsehash/type_traits.h	340;"	d
 ENFORCE_POD	pa2/include/sparsehash/type_traits.h	340;"	d
-EPathDir	pa2/src/dr/drAstar.hpp	/^enum EPathDir {$/;"	g
+EPathDir	chen/src/dr/drAstar.hpp	/^enum EPathDir {$/;"	g
 EQUALS	chen/build/Makefile	/^EQUALS = =$/;"	m
 EQUALS	pa1/build/Makefile	/^EQUALS = =$/;"	m
 EQUALS	pa2/build/Makefile	/^EQUALS = =$/;"	m
@@ -997,11 +997,11 @@ FM	pa1/src/fm/fm.cpp	/^FM::FM(Data& data) : _data(data) {$/;"	f	class:FM
 FM	pa1/src/fm/fm.hpp	/^class FM {$/;"	c
 First0Bit	chen/src/dataStructure/nanoflann.hpp	/^  int First0Bit(IndexType num) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 First0Bit	pa2/src/dataStructure/nanoflann.hpp	/^  int First0Bit(IndexType num) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-G	chen/src/dr/drAstar.hpp	/^        float G, H;$/;"	m	struct:AStar::Node
+G	pa2/src/dr/drAstar.hpp	/^        float G, H;$/;"	m	struct:AStar::Node
 GOOGLE_NAMESPACE	chen/include/sparsehash/internal/sparseconfig.h	7;"	d
 GOOGLE_NAMESPACE	pa2/include/sparsehash/internal/sparseconfig.h	7;"	d
-Generator	chen/src/dr/drAstar.hpp	/^        Generator(DB& db_) : db(db_) {};$/;"	f	class:AStar::Generator
-Generator	chen/src/dr/drAstar.hpp	/^    class Generator {$/;"	c	namespace:AStar
+Generator	pa2/src/dr/drAstar.hpp	/^        Generator(DB& db_) : db(db_) {};$/;"	f	class:AStar::Generator
+Generator	pa2/src/dr/drAstar.hpp	/^    class Generator {$/;"	c	namespace:AStar
 GetCapacityAdjust	chen/src/parser/routingdb.cpp	/^    CapacityAdjust& RoutingDB::GetCapacityAdjust(int id)$/;"	f	class:SelfParser::RoutingDB
 GetCapacityAdjust	pa2/src/parser/routingdb.cpp	/^    CapacityAdjust& RoutingDB::GetCapacityAdjust(int id)$/;"	f	class:SelfParser::RoutingDB
 GetCapacityAdjustNo	chen/src/parser/routingdb.hpp	/^        int GetCapacityAdjustNo()            { return capacity_adjustV.size(); }$/;"	f	class:SelfParser::RoutingDB
@@ -1146,7 +1146,7 @@ GetX	chen/src/parser/mst.hpp	/^	int GetX()               { return x; }$/;"	f	cla
 GetX	pa2/src/parser/mst.hpp	/^	int GetX()               { return x; }$/;"	f	class:MST_Point
 GetY	chen/src/parser/mst.hpp	/^	int GetY()               { return y; }$/;"	f	class:MST_Point
 GetY	pa2/src/parser/mst.hpp	/^	int GetY()               { return y; }$/;"	f	class:MST_Point
-H	chen/src/dr/drAstar.hpp	/^        float G, H;$/;"	m	struct:AStar::Node
+H	pa2/src/dr/drAstar.hpp	/^        float G, H;$/;"	m	struct:AStar::Node
 HASH_FUN_H	chen/include/sparsehash/internal/sparseconfig.h	10;"	d
 HASH_FUN_H	pa2/include/sparsehash/internal/sparseconfig.h	10;"	d
 HASH_NAMESPACE	chen/include/sparsehash/internal/sparseconfig.h	13;"	d
@@ -1228,8 +1228,8 @@ Interval	chen/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef:
 Interval	pa2/src/dataStructure/nanoflann.hpp	/^  struct Interval {$/;"	s	class:nanoflann::KDTreeBaseClass
 Interval	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Interval Interval;$/;"	t	class:nanoflann::KDTreeSingleIndexAdaptor
 Interval	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Interval Interval;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-IterMap0Type	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap0Type::point_iterator> IterMap0Type;$/;"	t	class:DrAstar
-IterMap1Type	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap1Type::point_iterator> IterMap1Type;$/;"	t	class:DrAstar
+IterMap0Type	chen/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap0Type::point_iterator> IterMap0Type;$/;"	t	class:DrAstar
+IterMap1Type	chen/src/dr/drAstar.hpp	/^    typedef DenseHashMap<AstarNode*, NodePHeap1Type::point_iterator> IterMap1Type;$/;"	t	class:DrAstar
 JUMP_	chen/include/sparsehash/internal/densehashtable.h	119;"	d
 JUMP_	chen/include/sparsehash/internal/densehashtable.h	1303;"	d
 JUMP_	chen/include/sparsehash/internal/sparsehashtable.h	1227;"	d
@@ -1362,7 +1362,7 @@ NANOFLANN_VERSION	chen/src/dataStructure/nanoflann.hpp	62;"	d
 NANOFLANN_VERSION	pa2/src/dataStructure/nanoflann.hpp	62;"	d
 NOMINMAX	chen/src/dataStructure/nanoflann.hpp	67;"	d
 NOMINMAX	pa2/src/dataStructure/nanoflann.hpp	67;"	d
-NONE	pa2/src/dr/drAstar.hpp	/^    NONE = 6$/;"	e	enum:EPathDir
+NONE	chen/src/dr/drAstar.hpp	/^    NONE = 6$/;"	e	enum:EPathDir
 Net	chen/src/db/net.hpp	/^    Net(int index, int id, const string& name) : _index(index), _id(id), _name(name) {};$/;"	f	class:Net
 Net	chen/src/db/net.hpp	/^class Net {$/;"	c
 Net	chen/src/parser/routingdb.hpp	/^        Net(string _name, int _uid) $/;"	f	class:SelfParser::Net
@@ -1376,17 +1376,17 @@ Net	pa2/src/parser/routingdb.hpp	/^    class Net$/;"	c	namespace:SelfParser
 Node	chen/src/dataStructure/nanoflann.hpp	/^  struct Node {$/;"	s	class:nanoflann::KDTreeBaseClass
 Node	chen/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Node Node;$/;"	t	class:nanoflann::KDTreeSingleIndexAdaptor
 Node	chen/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Node Node;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-Node	chen/src/dr/drAstar.cpp	/^AStar::Node::Node(Point3D coordinates_, Node *parent_) {$/;"	f	class:AStar::Node
-Node	chen/src/dr/drAstar.hpp	/^    struct Node {$/;"	s	namespace:AStar
 Node	pa2/src/dataStructure/nanoflann.hpp	/^  struct Node {$/;"	s	class:nanoflann::KDTreeBaseClass
 Node	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Node Node;$/;"	t	class:nanoflann::KDTreeSingleIndexAdaptor
 Node	pa2/src/dataStructure/nanoflann.hpp	/^  typedef typename BaseClassRef::Node Node;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-NodeCompareCoor	chen/src/dr/drAstar.hpp	/^    struct NodeCompareCoor {$/;"	s	namespace:AStar
-NodeCompareCost	chen/src/dr/drAstar.hpp	/^    struct NodeCompareCost {$/;"	s	namespace:AStar
-NodeIterMapType	chen/src/dr/drAstar.hpp	/^    typedef map<Node*, NodePHeapType::point_iterator>           NodeIterMapType;$/;"	t	namespace:AStar
-NodePHeap0Type	pa2/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp0>             NodePHeap0Type;$/;"	t	class:DrAstar
-NodePHeap1Type	pa2/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp1>             NodePHeap1Type;$/;"	t	class:DrAstar
-NodePHeapType	chen/src/dr/drAstar.hpp	/^    typedef PairingHeap<Node*, NodeCompareCost>                 NodePHeapType;$/;"	t	namespace:AStar
+Node	pa2/src/dr/drAstar.cpp	/^AStar::Node::Node(Point3D coordinates_, Node *parent_) {$/;"	f	class:AStar::Node
+Node	pa2/src/dr/drAstar.hpp	/^    struct Node {$/;"	s	namespace:AStar
+NodeCompareCoor	pa2/src/dr/drAstar.hpp	/^    struct NodeCompareCoor {$/;"	s	namespace:AStar
+NodeCompareCost	pa2/src/dr/drAstar.hpp	/^    struct NodeCompareCost {$/;"	s	namespace:AStar
+NodeIterMapType	pa2/src/dr/drAstar.hpp	/^    typedef map<Node*, NodePHeapType::point_iterator>           NodeIterMapType;$/;"	t	namespace:AStar
+NodePHeap0Type	chen/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp0>             NodePHeap0Type;$/;"	t	class:DrAstar
+NodePHeap1Type	chen/src/dr/drAstar.hpp	/^    typedef PairingHeap<AstarNode*, AstarNodeComp1>             NodePHeap1Type;$/;"	t	class:DrAstar
+NodePHeapType	pa2/src/dr/drAstar.hpp	/^    typedef PairingHeap<Node*, NodeCompareCost>                 NodePHeapType;$/;"	t	namespace:AStar
 NodePtr	chen/src/dataStructure/nanoflann.hpp	/^  typedef Node *NodePtr;$/;"	t	class:nanoflann::KDTreeBaseClass
 NodePtr	chen/src/dataStructure/nanoflann.hpp	/^  typedef Node *NodePtr;$/;"	t	class:nanoflann::KDTreeSingleIndexAdaptor
 NodePtr	chen/src/dataStructure/nanoflann.hpp	/^  typedef Node *NodePtr;$/;"	t	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
@@ -1613,8 +1613,8 @@ PointCloud2D	chen/src/dataStructure/kdtree.hpp	/^class PointCloud2D {$/;"	c
 PointCloud2D	pa2/src/dataStructure/kdtree.hpp	/^class PointCloud2D {$/;"	c
 PointCloud3D	chen/src/dataStructure/kdtree.hpp	/^class PointCloud3D {$/;"	c
 PointCloud3D	pa2/src/dataStructure/kdtree.hpp	/^class PointCloud3D {$/;"	c
-PointMapType	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;$/;"	t	class:DrAstar
-PointSetType	pa2/src/dr/drAstar.hpp	/^    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;$/;"	t	class:DrAstar
+PointMapType	chen/src/dr/drAstar.hpp	/^    typedef DenseHashMap<Point3D, AstarNode*, Point3D::Hasher>  PointMapType;$/;"	t	class:DrAstar
+PointSetType	chen/src/dr/drAstar.hpp	/^    typedef DenseHashSet<Point3D, Point3D::Hasher>              PointSetType;$/;"	t	class:DrAstar
 PooledAllocator	chen/src/dataStructure/nanoflann.hpp	/^  PooledAllocator() { internal_init(); }$/;"	f	class:nanoflann::PooledAllocator
 PooledAllocator	chen/src/dataStructure/nanoflann.hpp	/^class PooledAllocator {$/;"	c	namespace:nanoflann
 PooledAllocator	pa2/src/dataStructure/nanoflann.hpp	/^  PooledAllocator() { internal_init(); }$/;"	f	class:nanoflann::PooledAllocator
@@ -1848,12 +1848,12 @@ ValInfo	pa2/include/sparsehash/internal/densehashtable.h	/^    ValInfo(const all
 ValInfo	pa2/include/sparsehash/internal/densehashtable.h	/^  class ValInfo : public alloc_impl<value_alloc_type> {$/;"	c	class:dense_hashtable
 WORDSIZE	chen/src/dataStructure/nanoflann.hpp	/^const size_t WORDSIZE = 16;$/;"	m	namespace:nanoflann
 WORDSIZE	pa2/src/dataStructure/nanoflann.hpp	/^const size_t WORDSIZE = 16;$/;"	m	namespace:nanoflann
-XF	pa2/src/dr/drAstar.hpp	/^    XF = 0,$/;"	e	enum:EPathDir
-XR	pa2/src/dr/drAstar.hpp	/^    XR = 1,$/;"	e	enum:EPathDir
-YF	pa2/src/dr/drAstar.hpp	/^    YF = 2,$/;"	e	enum:EPathDir
-YR	pa2/src/dr/drAstar.hpp	/^    YR = 3,$/;"	e	enum:EPathDir
-ZF	pa2/src/dr/drAstar.hpp	/^    ZF = 4,$/;"	e	enum:EPathDir
-ZR	pa2/src/dr/drAstar.hpp	/^    ZR = 5,$/;"	e	enum:EPathDir
+XF	chen/src/dr/drAstar.hpp	/^    XF = 0,$/;"	e	enum:EPathDir
+XR	chen/src/dr/drAstar.hpp	/^    XR = 1,$/;"	e	enum:EPathDir
+YF	chen/src/dr/drAstar.hpp	/^    YF = 2,$/;"	e	enum:EPathDir
+YR	chen/src/dr/drAstar.hpp	/^    YR = 3,$/;"	e	enum:EPathDir
+ZF	chen/src/dr/drAstar.hpp	/^    ZF = 4,$/;"	e	enum:EPathDir
+ZR	chen/src/dr/drAstar.hpp	/^    ZR = 5,$/;"	e	enum:EPathDir
 _DENSEHASHTABLE_H_	chen/include/sparsehash/internal/densehashtable.h	90;"	d
 _DENSEHASHTABLE_H_	pa2/include/sparsehash/internal/densehashtable.h	90;"	d
 _END_GOOGLE_NAMESPACE_	chen/include/sparsehash/internal/sparseconfig.h	43;"	d
@@ -1870,7 +1870,7 @@ __ROUTINGDB_H__	chen/src/parser/routingdb.hpp	2;"	d
 __ROUTINGDB_H__	pa2/src/parser/routingdb.hpp	2;"	d
 __TREE_H__	chen/src/parser/tree.hpp	2;"	d
 __TREE_H__	pa2/src/parser/tree.hpp	2;"	d
-_astarParam	pa2/src/dr/drAstar.hpp	/^    } _astarParam;$/;"	m	class:DrAstar	typeref:struct:DrAstar::AstarParam
+_astarParam	chen/src/dr/drAstar.hpp	/^    } _astarParam;$/;"	m	class:DrAstar	typeref:struct:DrAstar::AstarParam
 _balanceDegree	pa1/src/data/data.hpp	/^    float _balanceDegree;$/;"	m	class:Data
 _bestUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _bestUpdateCost;$/;"	m	class:FM
 _block	pa1/src/data/cell.hpp	/^    int                     _block;$/;"	m	class:Cell
@@ -1883,11 +1883,11 @@ _cellLV	pa1/src/fm/bucketList.hpp	/^    vector<list<Cell*> > _cellLV;$/;"	m	clas
 _cellM	pa1/src/data/data.hpp	/^    map<string, Cell>   _cellM;$/;"	m	class:Data
 _cellPV	pa1/src/data/data.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Data
 _cellPV	pa1/src/data/net.hpp	/^    vector<Cell*>       _cellPV;$/;"	m	class:Net
-_componentDS	pa2/src/dr/drAstar.hpp	/^    UF                      _componentDS;           \/\/ size = _componentSV.size();$/;"	m	class:DrAstar
-_componentSV	pa2/src/dr/drAstar.hpp	/^    vector<PointSetType>    _componentSV;$/;"	m	class:DrAstar
+_componentDS	chen/src/dr/drAstar.hpp	/^    UF                      _componentDS;           \/\/ size = _componentSV.size();$/;"	m	class:DrAstar
+_componentSV	chen/src/dr/drAstar.hpp	/^    vector<PointSetType>    _componentSV;$/;"	m	class:DrAstar
 _data	pa1/src/fm/fm.hpp	/^    Data&                           _data;$/;"	m	class:FM
 _data	pa1/src/parser/parser.hpp	/^    Data& _data;$/;"	m	class:Parser
-_db	pa2/src/dr/drAstar.hpp	/^    DB&         _db;$/;"	m	class:DrAstar
+_db	chen/src/dr/drAstar.hpp	/^    DB&         _db;$/;"	m	class:DrAstar
 _finalBlock	pa1/src/data/cell.hpp	/^    int                     _finalBlock;$/;"	m	class:Cell
 _gain	pa1/src/data/cell.hpp	/^    int                     _gain;$/;"	m	class:Cell
 _horCap	chen/src/db/capacityTable.hpp	/^    int                 _horCap;$/;"	m	class:CapacityTable
@@ -1914,7 +1914,7 @@ _name	pa1/src/data/cell.hpp	/^    string              _name;$/;"	m	class:Cell
 _name	pa1/src/data/net.hpp	/^    string              _name;$/;"	m	class:Net
 _name	pa2/src/db/net.hpp	/^    string              _name;$/;"	m	class:Net
 _netM	pa1/src/data/data.hpp	/^    map<string, Net>    _netM;$/;"	m	class:Data
-_netP	pa2/src/dr/drAstar.hpp	/^    Net*        _netP;$/;"	m	class:DrAstar
+_netP	chen/src/dr/drAstar.hpp	/^    Net*        _netP;$/;"	m	class:DrAstar
 _netPV	pa1/src/data/cell.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Cell
 _netPV	pa1/src/data/data.hpp	/^    vector<Net*>        _netPV;$/;"	m	class:Data
 _netV	chen/src/db/db.hpp	/^    vector<Net>         _netV;$/;"	m	class:DB
@@ -1931,18 +1931,18 @@ _pointCloud	pa2/src/dataStructure/kdtree.hpp	/^    PointCloud2D _pointCloud;$/;"
 _pointCloud	pa2/src/dataStructure/kdtree.hpp	/^    PointCloud3D    _pointCloud;$/;"	m	class:KDTree3D
 _pointV	chen/src/dataStructure/kdtree.hpp	/^	vector<Point3D>  _pointV;$/;"	m	class:PointCloud3D
 _pointV	chen/src/dataStructure/kdtree.hpp	/^	vector<Point>  _pointV;$/;"	m	class:PointCloud2D
-_pointV	chen/src/db/net.hpp	/^    vector<pair<Point, Point>>      _pointV;$/;"	m	class:Net
+_pointV	chen/src/db/net.hpp	/^    vector<Point>       _pointV;$/;"	m	class:Net
 _pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point3D>  _pointV;$/;"	m	class:PointCloud3D
 _pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point>  _pointV;$/;"	m	class:PointCloud2D
-_pointV	pa2/src/db/net.hpp	/^    vector<Point>       _pointV;$/;"	m	class:Net
-_segmentS	chen/src/db/net.hpp	/^    set<Segment3D>                  _segmentS;$/;"	m	class:Net
-_segmentV	pa2/src/db/net.hpp	/^    vector<Segment3D>   _segmentV;$/;"	m	class:Net
+_pointV	pa2/src/db/net.hpp	/^    vector<pair<Point, Point>>      _pointV;$/;"	m	class:Net
+_segmentS	pa2/src/db/net.hpp	/^    set<Segment3D>                  _segmentS;$/;"	m	class:Net
+_segmentV	chen/src/db/net.hpp	/^    vector<Segment3D>   _segmentV;$/;"	m	class:Net
 _size	chen/src/db/capacityTable.hpp	/^    Point               _size;$/;"	m	class:CapacityTable
 _size	chen/src/db/db.hpp	/^    Point               _size;$/;"	m	class:DB
 _size	pa2/src/db/capacityTable.hpp	/^    Point               _size;$/;"	m	class:CapacityTable
 _size	pa2/src/db/db.hpp	/^    Point               _size;$/;"	m	class:DB
-_srcCompId	pa2/src/dr/drAstar.hpp	/^    int                     _srcCompId;$/;"	m	class:DrAstar
-_totalPoint2NodeMV	pa2/src/dr/drAstar.hpp	/^    vector<PointMapType>    _totalPoint2NodeMV;     \/\/ layerId -> point hashMap$/;"	m	class:DrAstar
+_srcCompId	chen/src/dr/drAstar.hpp	/^    int                     _srcCompId;$/;"	m	class:DrAstar
+_totalPoint2NodeMV	chen/src/dr/drAstar.hpp	/^    vector<PointMapType>    _totalPoint2NodeMV;     \/\/ layerId -> point hashMap$/;"	m	class:DrAstar
 _totalUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _totalUpdateCost;$/;"	m	class:FM
 _verCap	chen/src/db/capacityTable.hpp	/^    int                 _verCap;$/;"	m	class:CapacityTable
 _verCap	pa2/src/db/capacityTable.hpp	/^    int                 _verCap;$/;"	m	class:CapacityTable
@@ -1976,7 +1976,7 @@ addPoint	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool addPoint(DistanceTy
 addPoint	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool addPoint(DistanceType dist, IndexType index) {$/;"	f	class:nanoflann::RadiusResultSet
 addPoints	chen/src/dataStructure/nanoflann.hpp	/^  void addPoints(IndexType start, IndexType end) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 addPoints	pa2/src/dataStructure/nanoflann.hpp	/^  void addPoints(IndexType start, IndexType end) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-addRoutedWireOrVia	pa2/src/dr/drAstar.cpp	/^void DrAstar::addRoutedWireOrVia(const Point3D& start, const Point3D& current) {$/;"	f	class:DrAstar
+addRoutedWireOrVia	chen/src/dr/drAstar.cpp	/^void DrAstar::addRoutedWireOrVia(const Point3D& start, const Point3D& current) {$/;"	f	class:DrAstar
 addSegment	chen/src/db/capacityTable.cpp	/^void CapacityTable::addSegment(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
 addSegment	pa2/src/db/capacityTable.cpp	/^void CapacityTable::addSegment(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
 add_reference	chen/include/sparsehash/type_traits.h	/^template <typename T> struct add_reference { typedef T& type; };$/;"	s
@@ -1987,7 +1987,7 @@ address	chen/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  const
 address	chen/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  pointer address(reference r) const  { return &r; }$/;"	f	class:libc_allocator_with_realloc
 address	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  const_pointer address(const_reference r) const  { return &r; }$/;"	f	class:libc_allocator_with_realloc
 address	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  pointer address(reference r) const  { return &r; }$/;"	f	class:libc_allocator_with_realloc
-adjV	pa2/src/dr/drAstar.hpp	/^        vector<AstarNode*>  adjV;                                   \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
+adjV	chen/src/dr/drAstar.hpp	/^        vector<AstarNode*>  adjV;                                   \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
 advance_past_deleted	chen/include/sparsehash/internal/sparsehashtable.h	/^  void advance_past_deleted() {$/;"	f	struct:sparse_hashtable_const_iterator
 advance_past_deleted	chen/include/sparsehash/internal/sparsehashtable.h	/^  void advance_past_deleted() {$/;"	f	struct:sparse_hashtable_destructive_iterator
 advance_past_deleted	chen/include/sparsehash/internal/sparsehashtable.h	/^  void advance_past_deleted() {$/;"	f	struct:sparse_hashtable_iterator
@@ -2025,8 +2025,8 @@ array_or_vector_selector	pa2/src/dataStructure/nanoflann.hpp	/^template <typenam
 assign	chen/src/dataStructure/nanoflann.hpp	/^assign(Container &c, const size_t nElements, const T &value) {$/;"	f	namespace:nanoflann
 assign	pa2/src/dataStructure/nanoflann.hpp	/^assign(Container &c, const size_t nElements, const T &value) {$/;"	f	namespace:nanoflann
 assignCell	pa1/src/fm/fm.cpp	/^void FM::assignCell() {$/;"	f	class:FM
-backtrace	pa2/src/dr/drAstar.cpp	/^int DrAstar::backtrace(AstarNode* x, int i) {$/;"	f	class:DrAstar
-backtrace	pa2/src/dr/drAstar.cpp	/^void DrAstar::backtrace(AstarNode* u) {$/;"	f	class:DrAstar
+backtrace	chen/src/dr/drAstar.cpp	/^int DrAstar::backtrace(AstarNode* x, int i) {$/;"	f	class:DrAstar
+backtrace	chen/src/dr/drAstar.cpp	/^void DrAstar::backtrace(AstarNode* u) {$/;"	f	class:DrAstar
 balanceDegree	pa1/src/data/data.hpp	/^    float&  balanceDegree()     { return _balanceDegree; }$/;"	f	class:Data
 balanced	pa1/src/data/data.hpp	/^    bool    balanced(int i)     { return ((1-_balanceDegree)\/2) * _cellPV.size() <= i && i <= ((1+_balanceDegree)\/2) * _cellPV.size(); }$/;"	f	class:Data
 base	chen/include/sparsehash/internal/densehashtable.h	/^namespace base {   \/\/ just to make google->opensource transition easier$/;"	n
@@ -2108,6 +2108,7 @@ clear	chen/src/dataStructure/kdtree.hpp	/^    void clear      ()                
 clear	chen/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                                  }$/;"	f	class:KDTree3D
 clear	chen/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                      }$/;"	f	class:KDTree2D
 clear	chen/src/dataStructure/nanoflann.hpp	/^  inline void clear() { m_indices_dists.clear(); }$/;"	f	class:nanoflann::RadiusResultSet
+clear	chen/src/dr/drAstar.cpp	/^void DrAstar::clear() {$/;"	f	class:DrAstar
 clear	pa1/src/fm/bucketList.cpp	/^void BucketList::clear() {$/;"	f	class:BucketList
 clear	pa2/include/sparsehash/internal/densehashtable.h	/^  void clear() {$/;"	f	class:dense_hashtable
 clear	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void clear() {$/;"	f	class:sparse_hashtable
@@ -2117,7 +2118,6 @@ clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear      ()                 
 clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                                  }$/;"	f	class:KDTree3D
 clear	pa2/src/dataStructure/kdtree.hpp	/^    void clear()                                                { _pointCloud.clear();                      }$/;"	f	class:KDTree2D
 clear	pa2/src/dataStructure/nanoflann.hpp	/^  inline void clear() { m_indices_dists.clear(); }$/;"	f	class:nanoflann::RadiusResultSet
-clear	pa2/src/dr/drAstar.cpp	/^void DrAstar::clear() {$/;"	f	class:DrAstar
 clear_deleted	chen/include/sparsehash/internal/densehashtable.h	/^  bool clear_deleted(const_iterator &it) {$/;"	f	class:dense_hashtable
 clear_deleted	chen/include/sparsehash/internal/densehashtable.h	/^  bool clear_deleted(iterator &it) {$/;"	f	class:dense_hashtable
 clear_deleted	chen/include/sparsehash/internal/sparsehashtable.h	/^  bool clear_deleted(const_iterator &it) {$/;"	f	class:sparse_hashtable
@@ -2136,7 +2136,7 @@ clear_to_size	chen/include/sparsehash/internal/densehashtable.h	/^  void clear_t
 clear_to_size	pa2/include/sparsehash/internal/densehashtable.h	/^  void clear_to_size(size_type new_num_buckets) {$/;"	f	class:dense_hashtable
 cnt	chen/src/dataStructure/disjointSet.hpp	/^    int *id, cnt, *sz;$/;"	m	class:UF
 cnt	pa2/src/dataStructure/disjointSet.hpp	/^    int *id, cnt, *sz;$/;"	m	class:UF
-componentId	pa2/src/dr/drAstar.hpp	/^        int                 componentId; \/\/ -1 for non-comp points  \/\/ set when backtrace$/;"	m	struct:DrAstar::AstarNode
+componentId	chen/src/dr/drAstar.hpp	/^        int                 componentId; \/\/ -1 for non-comp points  \/\/ set when backtrace$/;"	m	struct:DrAstar::AstarNode
 computeBoundingBox	chen/src/dataStructure/nanoflann.hpp	/^  void computeBoundingBox(BoundingBox &bbox) {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 computeBoundingBox	chen/src/dataStructure/nanoflann.hpp	/^  void computeBoundingBox(BoundingBox &bbox) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 computeBoundingBox	pa2/src/dataStructure/nanoflann.hpp	/^  void computeBoundingBox(BoundingBox &bbox) {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
@@ -2190,20 +2190,20 @@ container_t	chen/src/dataStructure/nanoflann.hpp	/^  typedef std::array<T, DIM> 
 container_t	chen/src/dataStructure/nanoflann.hpp	/^  typedef std::vector<T> container_t;$/;"	t	struct:nanoflann::array_or_vector_selector
 container_t	pa2/src/dataStructure/nanoflann.hpp	/^  typedef std::array<T, DIM> container_t;$/;"	t	struct:nanoflann::array_or_vector_selector
 container_t	pa2/src/dataStructure/nanoflann.hpp	/^  typedef std::vector<T> container_t;$/;"	t	struct:nanoflann::array_or_vector_selector
-coor	pa2/src/dr/drAstar.hpp	/^        Point3D             coor;                                   \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
-coordinates	chen/src/dr/drAstar.hpp	/^        Point3D coordinates;$/;"	m	struct:AStar::Node
+coor	chen/src/dr/drAstar.hpp	/^        Point3D             coor;                                   \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+coordinates	pa2/src/dr/drAstar.hpp	/^        Point3D coordinates;$/;"	m	struct:AStar::Node
 copy_from	chen/include/sparsehash/internal/densehashtable.h	/^  void copy_from(const dense_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:dense_hashtable
 copy_from	chen/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
 copy_from	pa2/include/sparsehash/internal/densehashtable.h	/^  void copy_from(const dense_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:dense_hashtable
 copy_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
 cost	chen/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
-cost	chen/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.3, float(p.second - p.first)); }$/;"	f	class:CapacityTable
+cost	chen/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.2, float(p.second - p.first)); }$/;"	f	class:CapacityTable
 cost	pa2/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
-cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.5, float(p.second - p.first)); }$/;"	f	class:CapacityTable
-costF	pa2/src/dr/drAstar.hpp	/^        int                 costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
-costG	pa2/src/dr/drAstar.cpp	/^int DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
-costG	pa2/src/dr/drAstar.hpp	/^        int                 costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
-costH	pa2/src/dr/drAstar.cpp	/^int DrAstar::costH(const Point3D& u, const Point3D& v) const {$/;"	f	class:DrAstar
+cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.3, float(p.second - p.first)); }$/;"	f	class:CapacityTable
+costF	chen/src/dr/drAstar.hpp	/^        float               costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costG	chen/src/dr/drAstar.cpp	/^float DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
+costG	chen/src/dr/drAstar.hpp	/^        float               costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+costH	chen/src/dr/drAstar.cpp	/^int DrAstar::costH(const Point3D& u, const Point3D& v) const {$/;"	f	class:DrAstar
 count	chen/include/sparsehash/internal/densehashtable.h	/^  size_type count(const key_type &key) const {$/;"	f	class:dense_hashtable
 count	chen/include/sparsehash/internal/sparsehashtable.h	/^  size_type count(const key_type &key) const {$/;"	f	class:sparse_hashtable
 count	chen/src/dataStructure/nanoflann.hpp	/^  CountType count;$/;"	m	class:nanoflann::KNNResultSet
@@ -2241,9 +2241,9 @@ dataset	pa2/src/dataStructure/nanoflann.hpp	/^  const DatasetAdaptor &dataset; \
 dataset	pa2/src/dataStructure/nanoflann.hpp	/^  const DatasetAdaptor &dataset; \/\/!< The source of our data$/;"	m	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 dataset_get	chen/src/dataStructure/nanoflann.hpp	/^  inline ElementType dataset_get(const Derived &obj, size_t idx,$/;"	f	class:nanoflann::KDTreeBaseClass
 dataset_get	pa2/src/dataStructure/nanoflann.hpp	/^  inline ElementType dataset_get(const Derived &obj, size_t idx,$/;"	f	class:nanoflann::KDTreeBaseClass
-db	chen/src/dr/drAstar.hpp	/^        DB& db;$/;"	m	class:AStar::Generator
 db	chen/src/main/test.cpp	/^RoutingDB db;$/;"	v
 db	chen/src/parser/parser.hpp	/^    RoutingDB db;$/;"	m	namespace:SelfParser
+db	pa2/src/dr/drAstar.hpp	/^        DB& db;$/;"	m	class:AStar::Generator
 db	pa2/src/main/test.cpp	/^RoutingDB db;$/;"	v
 db	pa2/src/parser/parser.hpp	/^    RoutingDB db;$/;"	m	namespace:SelfParser
 db__db_h	chen/src/db/db.hpp	3;"	d
@@ -2294,7 +2294,7 @@ destructive_end	chen/include/sparsehash/internal/sparsehashtable.h	/^  destructi
 destructive_end	pa2/include/sparsehash/internal/sparsehashtable.h	/^  destructive_iterator destructive_end() {$/;"	f	class:sparse_hashtable
 destructive_iterator	chen/include/sparsehash/internal/sparsehashtable.h	/^  destructive_iterator;$/;"	t	class:sparse_hashtable
 destructive_iterator	pa2/include/sparsehash/internal/sparsehashtable.h	/^  destructive_iterator;$/;"	t	class:sparse_hashtable
-detectCollision	chen/src/dr/drAstar.cpp	/^bool AStar::Generator::detectCollision(Point3D coordinates_) {$/;"	f	class:AStar::Generator
+detectCollision	pa2/src/dr/drAstar.cpp	/^bool AStar::Generator::detectCollision(Point3D coordinates_) {$/;"	f	class:AStar::Generator
 difference_type	chen/include/sparsehash/internal/densehashtable.h	/^  typedef typename value_alloc_type::difference_type difference_type;$/;"	t	class:dense_hashtable
 difference_type	chen/include/sparsehash/internal/densehashtable.h	/^  typedef typename value_alloc_type::difference_type difference_type;$/;"	t	struct:dense_hashtable_const_iterator
 difference_type	chen/include/sparsehash/internal/densehashtable.h	/^  typedef typename value_alloc_type::difference_type difference_type;$/;"	t	struct:dense_hashtable_iterator
@@ -2463,7 +2463,7 @@ evalMetric	pa2/src/dataStructure/nanoflann.hpp	/^  inline DistanceType evalMetri
 evalMetric	pa2/src/dataStructure/nanoflann.hpp	/^  inline DistanceType evalMetric(const T *a, const size_t b_idx,$/;"	f	struct:nanoflann::L2_Simple_Adaptor
 evalMetric	pa2/src/dataStructure/nanoflann.hpp	/^  inline DistanceType evalMetric(const T *a, const size_t b_idx,$/;"	f	struct:nanoflann::SO2_Adaptor
 evalMetric	pa2/src/dataStructure/nanoflann.hpp	/^  inline DistanceType evalMetric(const T *a, const size_t b_idx,$/;"	f	struct:nanoflann::SO3_Adaptor
-explored	pa2/src/dr/drAstar.hpp	/^        bool                explored[2];                            \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
+explored	chen/src/dr/drAstar.hpp	/^        bool                explored[2];                            \/\/ set when selected$/;"	m	struct:DrAstar::AstarNode
 false_	chen/include/sparsehash/template_util.h	/^typedef false_type false_;$/;"	t
 false_	pa2/include/sparsehash/template_util.h	/^typedef false_type false_;$/;"	t
 false_type	chen/include/sparsehash/template_util.h	/^typedef integral_constant<bool, false> false_type;$/;"	t
@@ -2490,14 +2490,14 @@ find	pa2/src/dataStructure/disjointSet.hpp	/^    int find(int p)	{$/;"	f	class:U
 findNeighbors	chen/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 findNeighbors	chen/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 findNeighbors	chen/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-findNeighbors	chen/src/dr/drAstar.cpp	/^void AStar::Generator::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {$/;"	f	class:AStar::Generator
+findNeighbors	chen/src/dr/drAstar.cpp	/^void DrAstar::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {$/;"	f	class:DrAstar
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 findNeighbors	pa2/src/dataStructure/nanoflann.hpp	/^  bool findNeighbors(RESULTSET &result, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-findNeighbors	pa2/src/dr/drAstar.cpp	/^void DrAstar::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {$/;"	f	class:DrAstar
-findNodeOnList	chen/src/dr/drAstar.cpp	/^AStar::Node* AStar::Generator::findNodeOnList(NodeSet& nodes_, Point3D coordinates_) {$/;"	f	class:AStar::Generator
-findPath	chen/src/dr/drAstar.cpp	/^void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {$/;"	f	class:AStar::Generator
-findPathAss	pa2/src/dr/drAstar.cpp	/^bool DrAstar::findPathAss() {$/;"	f	class:DrAstar
+findNeighbors	pa2/src/dr/drAstar.cpp	/^void AStar::Generator::findNeighbors(const Point3D& p, vector<Point3D>& retV) const {$/;"	f	class:AStar::Generator
+findNodeOnList	pa2/src/dr/drAstar.cpp	/^AStar::Node* AStar::Generator::findNodeOnList(NodeSet& nodes_, Point3D coordinates_) {$/;"	f	class:AStar::Generator
+findPath	pa2/src/dr/drAstar.cpp	/^void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {$/;"	f	class:AStar::Generator
+findPathAss	chen/src/dr/drAstar.cpp	/^bool DrAstar::findPathAss() {$/;"	f	class:DrAstar
 find_or_insert	chen/include/sparsehash/internal/densehashtable.h	/^  value_type& find_or_insert(const key_type& key) {$/;"	f	class:dense_hashtable
 find_or_insert	chen/include/sparsehash/internal/sparsehashtable.h	/^  value_type& find_or_insert(const key_type& key) {$/;"	f	class:sparse_hashtable
 find_or_insert	pa2/include/sparsehash/internal/densehashtable.h	/^  value_type& find_or_insert(const key_type& key) {$/;"	f	class:dense_hashtable
@@ -2519,7 +2519,7 @@ full	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool full() const { return t
 gain	pa1/src/data/cell.hpp	/^    int&            gain        ()  { return _gain; }$/;"	f	class:Cell
 getAllIndices	chen/src/dataStructure/nanoflann.hpp	/^  const std::vector<index_container_t> &getAllIndices() const { return index; }$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 getAllIndices	pa2/src/dataStructure/nanoflann.hpp	/^  const std::vector<index_container_t> &getAllIndices() const { return index; }$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-getScore	chen/src/dr/drAstar.hpp	/^        float getScore() const { return G + H; }$/;"	f	struct:AStar::Node
+getScore	pa2/src/dr/drAstar.hpp	/^        float getScore() const { return G + H; }$/;"	f	struct:AStar::Node
 get_allocator	chen/include/sparsehash/internal/densehashtable.h	/^  allocator_type get_allocator() const {$/;"	f	class:dense_hashtable
 get_allocator	chen/include/sparsehash/internal/sparsehashtable.h	/^  allocator_type get_allocator() const    { return table.get_allocator(); }$/;"	f	class:sparse_hashtable
 get_allocator	pa2/include/sparsehash/internal/densehashtable.h	/^  allocator_type get_allocator() const {$/;"	f	class:dense_hashtable
@@ -2718,17 +2718,17 @@ init	chen/src/dataStructure/disjointSet.hpp	/^    void init(int N) {$/;"	f	class
 init	chen/src/dataStructure/nanoflann.hpp	/^  inline void init() { clear(); }$/;"	f	class:nanoflann::RadiusResultSet
 init	chen/src/dataStructure/nanoflann.hpp	/^  inline void init(IndexType *indices_, DistanceType *dists_) {$/;"	f	class:nanoflann::KNNResultSet
 init	chen/src/dataStructure/nanoflann.hpp	/^  void init() {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
+init	chen/src/dr/drAstar.cpp	/^void DrAstar::init() {$/;"	f	class:DrAstar
 init	pa2/src/dataStructure/disjointSet.hpp	/^    void init(int N) {$/;"	f	class:UF
 init	pa2/src/dataStructure/nanoflann.hpp	/^  inline void init() { clear(); }$/;"	f	class:nanoflann::RadiusResultSet
 init	pa2/src/dataStructure/nanoflann.hpp	/^  inline void init(IndexType *indices_, DistanceType *dists_) {$/;"	f	class:nanoflann::KNNResultSet
 init	pa2/src/dataStructure/nanoflann.hpp	/^  void init() {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
-init	pa2/src/dr/drAstar.cpp	/^void DrAstar::init() {$/;"	f	class:DrAstar
-initComponent	pa2/src/dr/drAstar.cpp	/^void DrAstar::initComponent() {$/;"	f	class:DrAstar
-initPoint	pa2/src/dr/drAstar.cpp	/^void DrAstar::initPoint(const Point& p) {$/;"	f	class:DrAstar
+initComponent	chen/src/dr/drAstar.cpp	/^void DrAstar::initComponent() {$/;"	f	class:DrAstar
+initPoint	chen/src/dr/drAstar.cpp	/^void DrAstar::initPoint(const Point& p) {$/;"	f	class:DrAstar
 init_vind	chen/src/dataStructure/nanoflann.hpp	/^  void init_vind() {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 init_vind	pa2/src/dataStructure/nanoflann.hpp	/^  void init_vind() {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
+initialize	chen/src/dr/drAstar.hpp	/^        void initialize() {$/;"	f	struct:DrAstar::AstarNode
 initialize	pa1/src/fm/bucketList.hpp	/^    void        initialize(int n)   { _cellLV.resize((2*n) + 1); _maxGain = (-1 * n) - 1; _n = n; }$/;"	f	class:BucketList
-initialize	pa2/src/dr/drAstar.hpp	/^        void initialize() {$/;"	f	struct:DrAstar::AstarNode
 initializeBlockState	pa1/src/fm/fm.cpp	/^void FM::initializeBlockState() {$/;"	f	class:FM
 initializeBucketList	pa1/src/fm/fm.cpp	/^void FM::initializeBucketList() {$/;"	f	class:FM
 initializeCellBlock	pa1/src/fm/fm.cpp	/^void FM::initializeCellBlock() {$/;"	f	class:FM
@@ -3167,8 +3167,8 @@ operator ()	chen/src/dataStructure/nanoflann.hpp	/^  inline bool operator()(cons
 operator ()	chen/src/db/point.hpp	/^        size_t operator()(const Point3D& p) const {$/;"	f	struct:Point3D::Hasher
 operator ()	chen/src/db/point.hpp	/^    struct CompareX { bool operator() (const Point& p1, const Point& p2) { return p1._x != p2._x ? p1._x < p2._x : p1._y < p2._y; } };$/;"	f	struct:Point::CompareX
 operator ()	chen/src/db/point.hpp	/^    struct CompareY { bool operator() (const Point& p1, const Point& p2) { return p1._y != p2._y ? p1._y < p2._y : p1._x < p2._x; } };$/;"	f	struct:Point::CompareY
-operator ()	chen/src/dr/drAstar.hpp	/^        bool operator () (const Node* n1, const Node* n2) {$/;"	f	struct:AStar::NodeCompareCoor
-operator ()	chen/src/dr/drAstar.hpp	/^        bool operator () (const Node* n1, const Node* n2) {$/;"	f	struct:AStar::NodeCompareCost
+operator ()	chen/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp0
+operator ()	chen/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp1
 operator ()	chen/src/parser/mst.hpp	/^    bool operator()(MST_SubNet m1, MST_SubNet m2) const$/;"	f	struct:MST_SubNet_Compare
 operator ()	pa2/include/sparsehash/internal/hashtable-common.h	/^  bool operator()(INPUT* fp, value_type* value) const {$/;"	f	struct:sparsehash_internal::pod_serializer
 operator ()	pa2/include/sparsehash/internal/hashtable-common.h	/^  bool operator()(OUTPUT* fp, const value_type& value) const {$/;"	f	struct:sparsehash_internal::pod_serializer
@@ -3176,8 +3176,8 @@ operator ()	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool operator()(const
 operator ()	pa2/src/db/point.hpp	/^        size_t operator()(const Point3D& p) const {$/;"	f	struct:Point3D::Hasher
 operator ()	pa2/src/db/point.hpp	/^    struct CompareX { bool operator() (const Point& p1, const Point& p2) { return p1._x != p2._x ? p1._x < p2._x : p1._y < p2._y; } };$/;"	f	struct:Point::CompareX
 operator ()	pa2/src/db/point.hpp	/^    struct CompareY { bool operator() (const Point& p1, const Point& p2) { return p1._y != p2._y ? p1._y < p2._y : p1._x < p2._x; } };$/;"	f	struct:Point::CompareY
-operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp0
-operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const AstarNode* n1, const AstarNode* n2) {$/;"	f	struct:DrAstar::AstarNodeComp1
+operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const Node* n1, const Node* n2) {$/;"	f	struct:AStar::NodeCompareCoor
+operator ()	pa2/src/dr/drAstar.hpp	/^        bool operator () (const Node* n1, const Node* n2) {$/;"	f	struct:AStar::NodeCompareCost
 operator ()	pa2/src/parser/mst.hpp	/^    bool operator()(MST_SubNet m1, MST_SubNet m2) const$/;"	f	struct:MST_SubNet_Compare
 operator *	chen/include/sparsehash/internal/densehashtable.h	/^  reference operator*() const { return *pos; }$/;"	f	struct:dense_hashtable_const_iterator
 operator *	chen/include/sparsehash/internal/densehashtable.h	/^  reference operator*() const { return *pos; }$/;"	f	struct:dense_hashtable_iterator
@@ -3313,8 +3313,8 @@ outputFile	chen/src/main/test.cpp	/^ofstream outputFile;$/;"	v
 outputFile	chen/src/parser/parser.hpp	/^    ofstream outputFile;$/;"	m	namespace:SelfParser
 outputFile	pa2/src/main/test.cpp	/^ofstream outputFile;$/;"	v
 outputFile	pa2/src/parser/parser.hpp	/^    ofstream outputFile;$/;"	m	namespace:SelfParser
-parent	chen/src/dr/drAstar.hpp	/^        Node *parent;$/;"	m	struct:AStar::Node
-parent	pa2/src/dr/drAstar.hpp	/^        AstarNode*          parent[2];                              \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+parent	chen/src/dr/drAstar.hpp	/^        AstarNode*          parent[2];                              \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
+parent	pa2/src/dr/drAstar.hpp	/^        Node *parent;$/;"	m	struct:AStar::Node
 parse	chen/src/parser/parser.hpp	/^    int parse(int argc, char** argv, DB& selfDB) {$/;"	f	namespace:SelfParser
 parse	pa1/src/parser/parser.cpp	/^void Parser::parse(const string& input) {$/;"	f	class:Parser
 parse	pa2/src/parser/parser.hpp	/^    int parse(int argc, char** argv, DB& selfDB) {$/;"	f	namespace:SelfParser
@@ -3322,7 +3322,7 @@ parser__parser_h	chen/src/parser/parser.hpp	9;"	d
 parser__parser_h	pa1/src/parser/parser.hpp	3;"	d
 parser__parser_h	pa2/src/parser/parser.hpp	9;"	d
 pass	pa1/src/fm/fm.cpp	/^void FM::pass() {$/;"	f	class:FM
-pathDir	pa2/src/dr/drAstar.cpp	/^EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {$/;"	f	class:DrAstar
+pathDir	chen/src/dr/drAstar.cpp	/^EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {$/;"	f	class:DrAstar
 pi_const	chen/src/dataStructure/nanoflann.hpp	/^template <typename T> T pi_const() {$/;"	f	namespace:nanoflann
 pi_const	pa2/src/dataStructure/nanoflann.hpp	/^template <typename T> T pi_const() {$/;"	f	namespace:nanoflann
 pinUid	chen/src/parser/mst.hpp	/^	int pinUid;$/;"	m	class:MST_Set
@@ -3337,14 +3337,14 @@ pod_serializer	chen/include/sparsehash/internal/hashtable-common.h	/^template <t
 pod_serializer	pa2/include/sparsehash/internal/hashtable-common.h	/^template <typename value_type> struct pod_serializer {$/;"	s	namespace:sparsehash_internal
 point	chen/src/dataStructure/kdtree.hpp	/^    const Point&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud2D
 point	chen/src/dataStructure/kdtree.hpp	/^    const Point3D&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud3D
-point	chen/src/db/net.hpp	/^    const pair<Point, Point>&   point       (int i)  const { return _pointV[i]; }$/;"	f	class:Net
-point	chen/src/db/net.hpp	/^    pair<Point, Point>&         point       (int i)  { return _pointV[i]; }$/;"	f	class:Net
+point	chen/src/db/net.hpp	/^    Point&          point       (int i)  { return _pointV[i]; }$/;"	f	class:Net
+point	chen/src/db/net.hpp	/^    const Point&    point       (int i)  const { return _pointV[i]; }$/;"	f	class:Net
 point	chen/src/db/point.hpp	/^	Point&          point       ()                            { return _point; }$/;"	f	class:Point3D
 point	chen/src/db/point.hpp	/^	const Point&    point       ()                      const { return _point; }$/;"	f	class:Point3D
 point	pa2/src/dataStructure/kdtree.hpp	/^    const Point&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud2D
 point	pa2/src/dataStructure/kdtree.hpp	/^    const Point3D&  point       (const size_t i)                        const   { return _pointV[i]; }$/;"	f	class:PointCloud3D
-point	pa2/src/db/net.hpp	/^    Point&          point       (int i)  { return _pointV[i]; }$/;"	f	class:Net
-point	pa2/src/db/net.hpp	/^    const Point&    point       (int i)  const { return _pointV[i]; }$/;"	f	class:Net
+point	pa2/src/db/net.hpp	/^    const pair<Point, Point>&   point       (int i)  const { return _pointV[i]; }$/;"	f	class:Net
+point	pa2/src/db/net.hpp	/^    pair<Point, Point>&         point       (int i)  { return _pointV[i]; }$/;"	f	class:Net
 point	pa2/src/db/point.hpp	/^	Point&          point       ()                            { return _point; }$/;"	f	class:Point3D
 point	pa2/src/db/point.hpp	/^	const Point&    point       ()                      const { return _point; }$/;"	f	class:Point3D
 point1	chen/src/db/segment.hpp	/^    Point3D&        point1()            { return _p1;                           }$/;"	f	class:Segment3D
@@ -3406,15 +3406,15 @@ print	pa2/src/db/capacityTable.cpp	/^void CapacityTable::print() {$/;"	f	class:C
 print	pa2/src/db/db.cpp	/^void DB::print() {$/;"	f	class:DB
 print	pa2/src/db/net.cpp	/^void Net::print() {$/;"	f	class:Net
 printCell	pa1/src/data/data.cpp	/^void Data::printCell() {$/;"	f	class:Data
-pushComponentSV	pa2/src/dr/drAstar.cpp	/^void DrAstar::pushComponentSV() {$/;"	f	class:DrAstar
+pushComponentSV	chen/src/dr/drAstar.cpp	/^void DrAstar::pushComponentSV() {$/;"	f	class:DrAstar
 pushNet	chen/src/db/db.hpp	/^    void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }$/;"	f	class:DB
 pushNet	pa2/src/db/db.hpp	/^    void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }$/;"	f	class:DB
-pushPoint	chen/src/db/db.hpp	/^    void pushPoint  (int x1, int y1, int x2, int y2) { _netV.back().pushPoint(x1, y1, x2, y2); }$/;"	f	class:DB
-pushPoint	chen/src/db/net.hpp	/^    void            pushPoint(int x1, int y1, int x2, int y2) { _pointV.emplace_back(make_pair(Point(x1,y1), Point(x2, y2))); }$/;"	f	class:Net
-pushPoint	pa2/src/db/db.hpp	/^    void pushPoint  (int x, int y) { _netV.back().pushPoint(x,y); }$/;"	f	class:DB
-pushPoint	pa2/src/db/net.hpp	/^    void            pushPoint(int x, int y) { _pointV.emplace_back(x, y); }$/;"	f	class:Net
-pushSegment	chen/src/db/net.hpp	/^    void            pushSegment(const Segment3D& s) { _segmentS.insert(s); }$/;"	f	class:Net
-pushSegment	pa2/src/db/net.hpp	/^    void            pushSegment(const Segment3D& s) { _segmentV.emplace_back(s); }$/;"	f	class:Net
+pushPoint	chen/src/db/db.hpp	/^    void pushPoint  (int x, int y) { _netV.back().pushPoint(x,y); }$/;"	f	class:DB
+pushPoint	chen/src/db/net.hpp	/^    void            pushPoint(int x, int y) { _pointV.emplace_back(x, y); }$/;"	f	class:Net
+pushPoint	pa2/src/db/db.hpp	/^    void pushPoint  (int x1, int y1, int x2, int y2) { _netV.back().pushPoint(x1, y1, x2, y2); }$/;"	f	class:DB
+pushPoint	pa2/src/db/net.hpp	/^    void            pushPoint(int x1, int y1, int x2, int y2) { _pointV.emplace_back(make_pair(Point(x1,y1), Point(x2, y2))); }$/;"	f	class:Net
+pushSegment	chen/src/db/net.hpp	/^    void            pushSegment(const Segment3D& s) { _segmentV.emplace_back(s); }$/;"	f	class:Net
+pushSegment	pa2/src/db/net.hpp	/^    void            pushSegment(const Segment3D& s) { _segmentS.insert(s); }$/;"	f	class:Net
 qnxnto	chen/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	chen/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	pa1/build/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
@@ -3475,9 +3475,9 @@ reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	class:sparse_hashtable
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	struct:sparse_hashtable_destructive_iterator
 reference	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef typename value_alloc_type::reference reference;$/;"	t	struct:sparse_hashtable_iterator
-relax	pa2/src/dr/drAstar.cpp	/^void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {$/;"	f	class:DrAstar
-releaseNodes	chen/src/dr/drAstar.cpp	/^void AStar::Generator::releaseNodes(NodeIterMapType& nodes_) {$/;"	f	class:AStar::Generator
-releaseNodes	chen/src/dr/drAstar.cpp	/^void AStar::Generator::releaseNodes(NodeSet& nodes_) {$/;"	f	class:AStar::Generator
+relax	chen/src/dr/drAstar.cpp	/^void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {$/;"	f	class:DrAstar
+releaseNodes	pa2/src/dr/drAstar.cpp	/^void AStar::Generator::releaseNodes(NodeIterMapType& nodes_) {$/;"	f	class:AStar::Generator
+releaseNodes	pa2/src/dr/drAstar.cpp	/^void AStar::Generator::releaseNodes(NodeSet& nodes_) {$/;"	f	class:AStar::Generator
 remaining	chen/src/dataStructure/nanoflann.hpp	/^  size_t remaining; \/* Number of bytes left in current block of storage. *\/$/;"	m	class:nanoflann::PooledAllocator
 remaining	pa2/src/dataStructure/nanoflann.hpp	/^  size_t remaining; \/* Number of bytes left in current block of storage. *\/$/;"	m	class:nanoflann::PooledAllocator
 removePoint	chen/src/dataStructure/nanoflann.hpp	/^  void removePoint(size_t idx) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
@@ -3512,7 +3512,7 @@ reserve	chen/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)      
 reserve	chen/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)                                      { _pointV.reserve(n);            }$/;"	f	class:PointCloud3D
 reserve	pa2/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)                                      { _pointV.reserve(n);            }$/;"	f	class:PointCloud2D
 reserve	pa2/src/dataStructure/kdtree.hpp	/^    void reserve    (size_t n)                                      { _pointV.reserve(n);            }$/;"	f	class:PointCloud3D
-resetComponentId	pa2/src/dr/drAstar.hpp	/^        void resetComponentId() {$/;"	f	struct:DrAstar::AstarNode
+resetComponentId	chen/src/dr/drAstar.hpp	/^        void resetComponentId() {$/;"	f	struct:DrAstar::AstarNode
 reset_thresholds	chen/include/sparsehash/internal/hashtable-common.h	/^  void reset_thresholds(size_type num_buckets) {$/;"	f	class:sparsehash_internal::sh_hashtable_settings
 reset_thresholds	pa2/include/sparsehash/internal/hashtable-common.h	/^  void reset_thresholds(size_type num_buckets) {$/;"	f	class:sparsehash_internal::sh_hashtable_settings
 resize	chen/include/sparsehash/internal/densehashtable.h	/^  void resize(size_type req_elements) {       \/\/ resize to this or larger$/;"	f	class:dense_hashtable
@@ -3537,8 +3537,8 @@ root_bbox	chen/src/dataStructure/nanoflann.hpp	/^  BoundingBox root_bbox;$/;"	m	
 root_bbox	pa2/src/dataStructure/nanoflann.hpp	/^  BoundingBox root_bbox;$/;"	m	class:nanoflann::KDTreeBaseClass
 root_node	chen/src/dataStructure/nanoflann.hpp	/^  NodePtr root_node;$/;"	m	class:nanoflann::KDTreeBaseClass
 root_node	pa2/src/dataStructure/nanoflann.hpp	/^  NodePtr root_node;$/;"	m	class:nanoflann::KDTreeBaseClass
-route	pa2/src/dr/drAstar.cpp	/^void DrAstar::route() {$/;"	f	class:DrAstar
-routeNet	pa2/src/dr/drAstar.cpp	/^int DrAstar::routeNet() {$/;"	f	class:DrAstar
+route	chen/src/dr/drAstar.cpp	/^void DrAstar::route() {$/;"	f	class:DrAstar
+routeNet	chen/src/dr/drAstar.cpp	/^int DrAstar::routeNet() {$/;"	f	class:DrAstar
 saveIndex	chen/src/dataStructure/nanoflann.hpp	/^  void saveIndex(FILE *stream) { this->saveIndex_(*this, stream); }$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 saveIndex	chen/src/dataStructure/nanoflann.hpp	/^  void saveIndex(FILE *stream) { this->saveIndex_(*this, stream); }$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 saveIndex	pa2/src/dataStructure/nanoflann.hpp	/^  void saveIndex(FILE *stream) { this->saveIndex_(*this, stream); }$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
@@ -3555,10 +3555,10 @@ searchLevel	chen/src/dataStructure/nanoflann.hpp	/^  bool searchLevel(RESULTSET 
 searchLevel	chen/src/dataStructure/nanoflann.hpp	/^  void searchLevel(RESULTSET &result_set, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 searchLevel	pa2/src/dataStructure/nanoflann.hpp	/^  bool searchLevel(RESULTSET &result_set, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 searchLevel	pa2/src/dataStructure/nanoflann.hpp	/^  void searchLevel(RESULTSET &result_set, const ElementType *vec,$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
-segment	pa2/src/db/net.hpp	/^    Segment3D&       segment       (int i)  { return _segmentV[i]; }$/;"	f	class:Net
-segment	pa2/src/db/net.hpp	/^    const Segment3D& segment       (int i)  const { return _segmentV[i]; }$/;"	f	class:Net
-segmentS	chen/src/db/net.hpp	/^    set<Segment3D>&             segmentS()  { return _segmentS; }$/;"	f	class:Net
-segmentSize	pa2/src/db/net.hpp	/^    int             segmentSize   ()  { return _segmentV.size(); }$/;"	f	class:Net
+segment	chen/src/db/net.hpp	/^    Segment3D&       segment       (int i)  { return _segmentV[i]; }$/;"	f	class:Net
+segment	chen/src/db/net.hpp	/^    const Segment3D& segment       (int i)  const { return _segmentV[i]; }$/;"	f	class:Net
+segmentS	pa2/src/db/net.hpp	/^    set<Segment3D>&             segmentS()  { return _segmentS; }$/;"	f	class:Net
+segmentSize	chen/src/db/net.hpp	/^    int             segmentSize   ()  { return _segmentV.size(); }$/;"	f	class:Net
 self_t	chen/src/dataStructure/nanoflann.hpp	/^  typedef KDTreeEigenMatrixAdaptor<MatrixType, DIM, Distance> self_t;$/;"	t	struct:nanoflann::KDTreeEigenMatrixAdaptor
 self_t	pa2/src/dataStructure/nanoflann.hpp	/^  typedef KDTreeEigenMatrixAdaptor<MatrixType, DIM, Distance> self_t;$/;"	t	struct:nanoflann::KDTreeEigenMatrixAdaptor
 serialize	chen/include/sparsehash/internal/densehashtable.h	/^  bool serialize(ValueSerializer serializer, OUTPUT *fp) {$/;"	f	class:dense_hashtable
@@ -3935,7 +3935,7 @@ verti_capacityV	chen/src/parser/routingdb.hpp	/^        vector <short> verti_cap
 verti_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> verti_capacityV;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	chen/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
-viaCost	pa2/src/dr/drAstar.hpp	/^      int viaCost = 1;$/;"	m	struct:DrAstar::AstarParam
+viaCost	chen/src/dr/drAstar.hpp	/^      int viaCost = 1;$/;"	m	struct:DrAstar::AstarParam
 via_spacingV	chen/src/parser/routingdb.hpp	/^        vector <short> via_spacingV;$/;"	m	class:SelfParser::RoutingDB
 via_spacingV	pa2/src/parser/routingdb.hpp	/^        vector <short> via_spacingV;$/;"	m	class:SelfParser::RoutingDB
 vind	chen/src/dataStructure/nanoflann.hpp	/^  std::vector<IndexType> vind;$/;"	m	class:nanoflann::KDTreeBaseClass
@@ -3987,7 +3987,7 @@ z2	chen/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.
 z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
 ~CapacityAdjust	chen/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust
 ~CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust
-~DrAstar	pa2/src/dr/drAstar.hpp	/^    ~DrAstar() { clear(); }$/;"	f	class:DrAstar
+~DrAstar	chen/src/dr/drAstar.hpp	/^    ~DrAstar() { clear(); }$/;"	f	class:DrAstar
 ~KDTree2D	chen/src/dataStructure/kdtree.hpp	/^    ~KDTree2D   () {}$/;"	f	class:KDTree2D
 ~KDTree2D	pa2/src/dataStructure/kdtree.hpp	/^    ~KDTree2D   () {}$/;"	f	class:KDTree2D
 ~KDTree3D	chen/src/dataStructure/kdtree.hpp	/^    ~KDTree3D   () {}$/;"	f	class:KDTree3D

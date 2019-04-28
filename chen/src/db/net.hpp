@@ -15,18 +15,20 @@ public:
     const string&   name    () { return _name; }
 
     int             pointSize   ()  { return _pointV.size(); }
-    pair<Point, Point>&         point       (int i)  { return _pointV[i]; }
-    const pair<Point, Point>&   point       (int i)  const { return _pointV[i]; }
+    Point&          point       (int i)  { return _pointV[i]; }
+    const Point&    point       (int i)  const { return _pointV[i]; }
 
-    set<Segment3D>&             segmentS()  { return _segmentS; }
+    int             segmentSize   ()  { return _segmentV.size(); }
+    Segment3D&       segment       (int i)  { return _segmentV[i]; }
+    const Segment3D& segment       (int i)  const { return _segmentV[i]; }
 
 
     void    print   ();
 
     // setter
 
-    void            pushPoint(int x1, int y1, int x2, int y2) { _pointV.emplace_back(make_pair(Point(x1,y1), Point(x2, y2))); }
-    void            pushSegment(const Segment3D& s) { _segmentS.insert(s); }
+    void            pushPoint(int x, int y) { _pointV.emplace_back(x, y); }
+    void            pushSegment(const Segment3D& s) { _segmentV.emplace_back(s); }
     
 
 private:
@@ -34,8 +36,8 @@ private:
     int                 _id;
     string              _name;
 
-    vector<pair<Point, Point>>      _pointV;
-    set<Segment3D>                  _segmentS;
+    vector<Point>       _pointV;
+    vector<Segment3D>   _segmentV;
 };
 
 #endif

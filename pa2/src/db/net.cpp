@@ -7,13 +7,14 @@ void Net::print() {
     printf("Point:");
     for (int i = 0; i < (int)_pointV.size(); ++i) {
         if (i % 5 == 0) printf("\n");
-        printf(" %s", _pointV[i].str().c_str());
+        printf(" %s-%s", _pointV[i].first.str().c_str(), _pointV[i].second.str().c_str());
     }
     printf("\n");
     printf("Segment:");
-    for (int i = 0; i < (int)_segmentV.size(); ++i) {
-        if (i % 5 == 0) printf("\n");
-        printf(" %s", _segmentV[i].str().c_str());
+    int i = 0;
+    for (auto it = _segmentS.begin(); it != _segmentS.end(); ++it) {
+        if (++i % 5 == 0) printf("\n");
+        printf(" %s", it->str().c_str());
     }
     printf("\n");
 }

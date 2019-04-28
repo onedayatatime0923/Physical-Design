@@ -20,7 +20,7 @@ public:
     // setter
     void setSize    (int x, int y) { _size.set(x,y); _capacityTable.setSize({x,y}); }
     void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }
-    void pushPoint  (int x1, int y1, int x2, int y2) { _netV.back().pushPoint(x1, y1, x2, y2); }
+    void pushPoint  (int x, int y) { _netV.back().pushPoint(x,y); }
     
     void print      ();
 
