@@ -12,19 +12,20 @@ AStar::Node::Node(Point3D coordinates_, Node *parent_) {
 
 void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {
     Node *current = new Node(source_);
-    // NodePHeapType openPHeap;
-    // NodeIterMapType openIterMap;
-    NodeSet openSet, closedSet;
-    openSet.insert(current);
-    // openIterMap[current] = openPHeap.push(current);
+    NodePHeapType openPHeap;
+    NodeIterMapType openIterMap;
+    NodeSet closedSet;
+    // openSet.insert(current);
+    openIterMap[current] = openPHeap.push(current);
 
-    while (!openSet.empty()) {
-        current = *openSet.begin();
-        for (auto node : openSet) {
-            if (node->getScore() <= current->getScore()) {
-                current = node;
-            }
-        }
+    while (!openPHeap.empty()) {
+        current = openPHeap.top();
+        // current = *openSet.begin();
+        // for (auto node : openSet) {
+        //     if (node->getScore() <= current->getScore()) {
+        //         current = node;
+        //     }
+        // }
         // printf("current point: %s\n", current->coordinates.str().c_str());
         // getchar();
 
@@ -33,9 +34,9 @@ void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {
         }
 
         closedSet.insert(current);
-        openSet.erase(current);
-        // openPHeap.pop();
-        // openIterMap.erase(current);
+        openPHeap.pop();
+        openIterMap.erase(current);
+        // openSet.erase(current);
 
         vector<Point3D > coorV;
         findNeighbors(current->coordinates, coorV);
@@ -46,21 +47,22 @@ void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {
                 continue;
             }
 
-            float totalCost = current->G + 1; // + db.capacityTable().cost(current->coordinates, newCoordinates);
+            float totalCost = current->G + 1 + db.capacityTable().cost(current->coordinates, newCoordinates);
 
             // printf("newCoordinates: %s\n", newCoordinates.str().c_str());
             Node successor(newCoordinates, current);
-            auto it = openSet.find(&successor);
-            if (it == openSet.end()) {
+            auto it = openIterMap.find(&successor);
+            if (it == openIterMap.end()) {
                 Node* nextNode = new Node(newCoordinates, current);
                 nextNode->G = totalCost;
                 nextNode->H = Point3D::Mdistance(nextNode->coordinates, target_);
-                openSet.insert(nextNode);
-                // openIterMap[successor] = openPHeap.push(successor);
+                // openSet.insert(nextNode);
+                openIterMap[nextNode] = openPHeap.push(nextNode);
             }
-            else if (totalCost < (*it)->G) {
-                (*it)->parent = current;
-                (*it)->G = totalCost;
+            else if (totalCost < it->first->G) {
+                it->first->parent = current;
+                it->first->G = totalCost;
+                openPHeap.modify(it->second, it->first);
             }
         }
     }
@@ -73,7 +75,7 @@ void AStar::Generator::findPath(Net& net, Point3D source_, Point3D target_) {
         current = current->parent;
     }
 
-    releaseNodes(openSet);
+    releaseNodes(openIterMap);
     releaseNodes(closedSet);
 
 }
