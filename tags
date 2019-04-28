@@ -596,6 +596,7 @@ CalMinimumSpanningTree	pa2/src/parser/mst.cpp	/^void MST::CalMinimumSpanningTree
 CalSpanningTree	pa2/src/parser/mst.cpp	/^void MST::CalSpanningTree()$/;"	f	class:MST
 CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        CapacityAdjust(short _gx1, short _gy1, short _layer1,$/;"	f	class:SelfParser::CapacityAdjust
 CapacityAdjust	pa2/src/parser/routingdb.hpp	/^    class CapacityAdjust$/;"	c	namespace:SelfParser
+CapacityTable	pa2/src/db/capacityTable.hpp	/^    CapacityTable() : _size(-1, -1) {};$/;"	f	class:CapacityTable
 CapacityTable	pa2/src/db/capacityTable.hpp	/^class CapacityTable {$/;"	c
 Cell	pa1/src/data/cell.hpp	/^    Cell(const string& name) : _name(name), _finalBlock(-1) {};$/;"	f	class:Cell
 Cell	pa1/src/data/cell.hpp	/^class Cell {$/;"	c
@@ -1152,7 +1153,7 @@ _db	pa2/src/dr/drAstar.hpp	/^    DB&         _db;$/;"	m	class:DrAstar
 _finalBlock	pa1/src/data/cell.hpp	/^    int                     _finalBlock;$/;"	m	class:Cell
 _gain	pa1/src/data/cell.hpp	/^    int                     _gain;$/;"	m	class:Cell
 _horCap	pa2/src/db/capacityTable.hpp	/^    int                 _horCap;$/;"	m	class:CapacityTable
-_horCapM	pa2/src/db/capacityTable.hpp	/^    map<Point, int>     _horCapM;$/;"	m	class:CapacityTable
+_horCapVV	pa2/src/db/capacityTable.hpp	/^    vector<vector<pair<int, int>>>  _horCapVV;$/;"	m	class:CapacityTable
 _id	pa1/src/data/cell.hpp	/^    int                 _id;$/;"	m	class:Cell
 _id	pa1/src/data/net.hpp	/^    int                 _id;$/;"	m	class:Net
 _id	pa2/src/db/net.hpp	/^    int                 _id;$/;"	m	class:Net
@@ -1180,12 +1181,13 @@ _pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point3D>  _pointV;$/;"	m	clas
 _pointV	pa2/src/dataStructure/kdtree.hpp	/^	vector<Point>  _pointV;$/;"	m	class:PointCloud2D
 _pointV	pa2/src/db/net.hpp	/^    vector<Point>       _pointV;$/;"	m	class:Net
 _segmentV	pa2/src/db/net.hpp	/^    vector<Segment3D>   _segmentV;$/;"	m	class:Net
+_size	pa2/src/db/capacityTable.hpp	/^    Point               _size;$/;"	m	class:CapacityTable
 _size	pa2/src/db/db.hpp	/^    Point               _size;$/;"	m	class:DB
 _srcCompId	pa2/src/dr/drAstar.hpp	/^    int                     _srcCompId;$/;"	m	class:DrAstar
 _totalPoint2NodeMV	pa2/src/dr/drAstar.hpp	/^    vector<PointMapType>    _totalPoint2NodeMV;     \/\/ layerId -> point hashMap$/;"	m	class:DrAstar
 _totalUpdateCost	pa1/src/fm/fm.hpp	/^    int                             _totalUpdateCost;$/;"	m	class:FM
 _verCap	pa2/src/db/capacityTable.hpp	/^    int                 _verCap;$/;"	m	class:CapacityTable
-_verCapM	pa2/src/db/capacityTable.hpp	/^    map<Point, int>     _verCapM;$/;"	m	class:CapacityTable
+_verCapVV	pa2/src/db/capacityTable.hpp	/^    vector<vector<pair<int, int>>>  _verCapVV;$/;"	m	class:CapacityTable
 _x	pa2/src/db/point.hpp	/^    int _x;$/;"	m	class:Point
 _y	pa2/src/db/point.hpp	/^    int _y;$/;"	m	class:Point
 _zDirectWeight	pa2/src/dataStructure/kdtree.hpp	/^    int           _zDirectWeight;$/;"	m	class:KDTree3D
@@ -1202,6 +1204,7 @@ addPoint	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool addPoint(DistanceTy
 addPoint	pa2/src/dataStructure/nanoflann.hpp	/^  inline bool addPoint(DistanceType dist, IndexType index) {$/;"	f	class:nanoflann::RadiusResultSet
 addPoints	pa2/src/dataStructure/nanoflann.hpp	/^  void addPoints(IndexType start, IndexType end) {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor
 addRoutedWireOrVia	pa2/src/dr/drAstar.cpp	/^void DrAstar::addRoutedWireOrVia(const Point3D& start, const Point3D& current) {$/;"	f	class:DrAstar
+addSegment	pa2/src/db/capacityTable.cpp	/^void CapacityTable::addSegment(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
 add_reference	pa2/include/sparsehash/type_traits.h	/^template <typename T> struct add_reference { typedef T& type; };$/;"	s
 add_reference	pa2/include/sparsehash/type_traits.h	/^template <typename T> struct add_reference<T&> { typedef T& type; };$/;"	s
 address	pa2/include/sparsehash/internal/libc_allocator_with_realloc.h	/^  const_pointer address(const_reference r) const  { return &r; }$/;"	f	class:libc_allocator_with_realloc
@@ -1254,7 +1257,6 @@ buildIndex	pa2/src/dataStructure/kdtree.hpp	/^    void buildIndex()             
 buildIndex	pa2/src/dataStructure/nanoflann.hpp	/^  void buildIndex() {$/;"	f	class:nanoflann::KDTreeSingleIndexAdaptor
 buildIndex	pa2/src/dataStructure/nanoflann.hpp	/^  void buildIndex() {$/;"	f	class:nanoflann::KDTreeSingleIndexDynamicAdaptor_
 capacity	pa2/src/dataStructure/nanoflann.hpp	/^  CountType capacity;$/;"	m	class:nanoflann::KNNResultSet
-capacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::capacity(const Point3D& p, Direction d) {$/;"	f	class:CapacityTable
 capacityTable	pa2/src/db/db.hpp	/^    CapacityTable& capacityTable()  { return _capacityTable; }$/;"	f	class:DB
 capacity_adjustV	pa2/src/parser/routingdb.hpp	/^        vector <CapacityAdjust> capacity_adjustV;$/;"	m	class:SelfParser::RoutingDB
 cell	pa1/src/data/data.cpp	/^Cell* Data::cell(const string& name) {$/;"	f	class:Data
@@ -1321,6 +1323,8 @@ container_t	pa2/src/dataStructure/nanoflann.hpp	/^  typedef std::vector<T> conta
 coor	pa2/src/dr/drAstar.hpp	/^        Point3D             coor;                                   \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 copy_from	pa2/include/sparsehash/internal/densehashtable.h	/^  void copy_from(const dense_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:dense_hashtable
 copy_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
+cost	pa2/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
+cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(2, float(p.second - p.first)); }$/;"	f	class:CapacityTable
 costF	pa2/src/dr/drAstar.hpp	/^        int                 costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 costG	pa2/src/dr/drAstar.cpp	/^int DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
 costG	pa2/src/dr/drAstar.hpp	/^        int                 costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
@@ -1535,7 +1539,6 @@ hasher	pa2/include/sparsehash/internal/densehashtable.h	/^  typedef HashFcn hash
 hasher	pa2/include/sparsehash/internal/hashtable-common.h	/^  typedef HashFunc hasher;$/;"	t	class:sparsehash_internal::sh_hashtable_settings
 hasher	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef HashFcn hasher;$/;"	t	class:sparse_hashtable
 high	pa2/src/dataStructure/nanoflann.hpp	/^    ElementType low, high;$/;"	m	struct:nanoflann::KDTreeBaseClass::Interval
-horCapacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::horCapacity(const Point& p) {$/;"	f	class:CapacityTable
 hori_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> hori_capacityV;$/;"	m	class:SelfParser::RoutingDB
 hori_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short hori_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
 ht	pa2/include/sparsehash/internal/densehashtable.h	/^  const dense_hashtable<V,K,HF,ExK,SetK,EqK,A> *ht;$/;"	m	struct:dense_hashtable_const_iterator
@@ -2048,14 +2051,15 @@ serialize	pa2/include/sparsehash/internal/densehashtable.h	/^  bool serialize(Va
 serialize	pa2/include/sparsehash/internal/sparsehashtable.h	/^  bool serialize(ValueSerializer serializer, OUTPUT *fp) {$/;"	f	class:sparse_hashtable
 set	pa2/src/db/point.hpp	/^	void         	set        	(const int& x, const int& y, const int& layer) {_point.set(x,y); _layer= layer; };$/;"	f	class:Point3D
 set	pa2/src/db/point.hpp	/^    void         set        (const int& x, const int& y) {_x = x; _y = y;};$/;"	f	class:Point
-setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (const Point& p, int i) { _horCapM[p] = i; };$/;"	f	class:CapacityTable
-setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (int i) { _horCap = i; };$/;"	f	class:CapacityTable
+setHor	pa2/src/db/capacityTable.cpp	/^void CapacityTable::setHor(int i) {$/;"	f	class:CapacityTable
+setHor	pa2/src/db/capacityTable.hpp	/^    void    setHor          (const Point& p, int i) { _horCapVV[p[0]][p[1]].first = i; }$/;"	f	class:CapacityTable
 setId	pa1/src/data/cell.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Cell
 setId	pa1/src/data/net.hpp	/^    void    setId       (int id)        { _id = id; }$/;"	f	class:Net
 setLayer	pa2/src/db/point.hpp	/^	void         	setLayer   	(const int& layer)      { _layer = layer; }$/;"	f	class:Point3D
-setSize	pa2/src/db/db.hpp	/^    void setSize    (int x, int y) { _size.set(x,y); }$/;"	f	class:DB
-setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (const Point& p, int i) { _verCapM[p] = i; };$/;"	f	class:CapacityTable
-setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (int i) { _verCap = i; };$/;"	f	class:CapacityTable
+setSize	pa2/src/db/capacityTable.hpp	/^    void    setSize         (const Point& s) { _size = s; };$/;"	f	class:CapacityTable
+setSize	pa2/src/db/db.hpp	/^    void setSize    (int x, int y) { _size.set(x,y); _capacityTable.setSize({x,y}); }$/;"	f	class:DB
+setVer	pa2/src/db/capacityTable.cpp	/^void CapacityTable::setVer(int i) {$/;"	f	class:CapacityTable
+setVer	pa2/src/db/capacityTable.hpp	/^    void    setVer          (const Point& p, int i) { _verCapVV[p[0]][p[1]].first = i; }$/;"	f	class:CapacityTable
 setX	pa2/src/db/point.hpp	/^	void         	setX       	(const int& x) {_point[0] = x;};$/;"	f	class:Point3D
 setX	pa2/src/db/point.hpp	/^    void         setX       (const int& x) {_x = x;};$/;"	f	class:Point
 setXY	pa2/src/db/point.hpp	/^	void         	setXY      	(const int& x, const int& y) {_point.set(x,y); }$/;"	f	class:Point3D
@@ -2229,7 +2233,6 @@ value_type	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef V value
 value_type	pa2/include/sparsehash/internal/sparsehashtable.h	/^  typedef Value value_type;$/;"	t	class:sparse_hashtable
 value_type	pa2/include/sparsehash/template_util.h	/^  typedef T value_type;$/;"	t	struct:integral_constant
 veclen	pa2/src/dataStructure/nanoflann.hpp	/^  size_t veclen(const Derived &obj) {$/;"	f	class:nanoflann::KDTreeBaseClass
-verCapacity	pa2/src/db/capacityTable.cpp	/^int CapacityTable::verCapacity(const Point& p) {$/;"	f	class:CapacityTable
 verify	pa2/src/parser/parser.hpp	/^    void verify(int argc, char** argv) {$/;"	f	namespace:SelfParser
 verti_capacityV	pa2/src/parser/routingdb.hpp	/^        vector <short> verti_capacityV;$/;"	m	class:SelfParser::RoutingDB
 verti_global_tile_no	pa2/src/parser/routingdb.hpp	/^        short verti_global_tile_no;$/;"	m	class:SelfParser::RoutingDB
@@ -2253,12 +2256,10 @@ write_nopointer_data	pa2/include/sparsehash/internal/sparsehashtable.h	/^  bool 
 x	pa2/src/parser/mst.hpp	/^	int x;$/;"	m	class:MST_Point
 x1	pa2/src/db/segment.hpp	/^    int       x1      ()      const   { return _p1[0];                        }$/;"	f	class:Segment3D
 x2	pa2/src/db/segment.hpp	/^    int       x2      ()      const   { return _p2[0];                        }$/;"	f	class:Segment3D
-xCoor	pa2/src/parser/parser.hpp	/^    int xCoor(int v) {$/;"	f	namespace:SelfParser
 xytogrid	pa2/tool/eval.pl	/^sub xytogrid($$) {$/;"	s
 y	pa2/src/parser/mst.hpp	/^	int y;$/;"	m	class:MST_Point
 y1	pa2/src/db/segment.hpp	/^    int       y1      ()      const   { return _p1[1];                        }$/;"	f	class:Segment3D
 y2	pa2/src/db/segment.hpp	/^    int       y2      ()      const   { return _p2[1];                        }$/;"	f	class:Segment3D
-yCoor	pa2/src/parser/parser.hpp	/^    int yCoor(int v) {$/;"	f	namespace:SelfParser
 z1	pa2/src/db/segment.hpp	/^    int       z1      ()      const   { return _p1.layer();                   }$/;"	f	class:Segment3D
 z2	pa2/src/db/segment.hpp	/^    int       z2      ()      const   { return _p2.layer();                   }$/;"	f	class:Segment3D
 ~CapacityAdjust	pa2/src/parser/routingdb.hpp	/^        ~CapacityAdjust()  {;}$/;"	f	class:SelfParser::CapacityAdjust

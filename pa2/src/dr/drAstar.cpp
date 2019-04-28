@@ -378,6 +378,7 @@ void DrAstar::addRoutedWireOrVia(const Point3D& start, const Point3D& current) {
     Net& net = *_netP;
     assert(Segment3D(start,current).check());
     net.pushSegment({start, current});
+    _db.capacityTable().addSegment(start, current);
 }
 EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {
     // From p1 to p2
@@ -399,7 +400,8 @@ EPathDir DrAstar::pathDir(const Point3D& p1, const Point3D& p2) const {
     else assert(false);
 }
 int DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {
-    return abs(u->coor[0] - v->coor[0]) + abs(u->coor[1] - v->coor[1]) + (abs(u->coor.layer() - v->coor.layer()) * _astarParam.viaCost);
+    return abs(u->coor[0] - v->coor[0]) + abs(u->coor[1] - v->coor[1]) + (abs(u->coor.layer() - v->coor.layer()) * _astarParam.viaCost)
+        + _db.capacityTable().cost(u->coor, v->coor);
 }
 
 int DrAstar::costH(const Point3D& u, const Point3D& v) const {

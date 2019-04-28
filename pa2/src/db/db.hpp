@@ -18,7 +18,7 @@ public:
     Net&            net         (int i)   { return _netV[i]; }
     const Net&      net         (int i)  const { return _netV[i]; }
     // setter
-    void setSize    (int x, int y) { _size.set(x,y); }
+    void setSize    (int x, int y) { _size.set(x,y); _capacityTable.setSize({x,y}); }
     void pushNet    (int index, int id, const string& name) { _netV.emplace_back(index, id, name); }
     void pushPoint  (int x, int y) { _netV.back().pushPoint(x,y); }
     
