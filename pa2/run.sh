@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASEDIR=$(dirname "$0")
-EXE=$BASEDIR/bin/gr
+EXE=$BASEDIR/gr
 
 
 INPUTDIR=$BASEDIR/input
