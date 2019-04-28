@@ -1324,7 +1324,7 @@ coor	pa2/src/dr/drAstar.hpp	/^        Point3D             coor;                 
 copy_from	pa2/include/sparsehash/internal/densehashtable.h	/^  void copy_from(const dense_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:dense_hashtable
 copy_from	pa2/include/sparsehash/internal/sparsehashtable.h	/^  void copy_from(const sparse_hashtable &ht, size_type min_buckets_wanted) {$/;"	f	class:sparse_hashtable
 cost	pa2/src/db/capacityTable.cpp	/^float CapacityTable::cost(const Point3D& p1, const Point3D& p2) {$/;"	f	class:CapacityTable
-cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(3, float(p.second - p.first)); }$/;"	f	class:CapacityTable
+cost	pa2/src/db/capacityTable.hpp	/^    float   cost            (pair<int, int> p) { return pow(1.5, float(p.second - p.first)); }$/;"	f	class:CapacityTable
 costF	pa2/src/dr/drAstar.hpp	/^        float               costF[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
 costG	pa2/src/dr/drAstar.cpp	/^float DrAstar::costG(AstarNode* u, AstarNode* v, int groupId)  {$/;"	f	class:DrAstar
 costG	pa2/src/dr/drAstar.hpp	/^        float               costG[2];                               \/\/ set when neibor node is selected$/;"	m	struct:DrAstar::AstarNode
