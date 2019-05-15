@@ -17,6 +17,7 @@ public:
     const Point&    size    () { return _size; }
     Direction&      dir     () { return _dir; }
 
+    bool            rotatable() { return _dir == NormalAndRotate; }
 
     void    print   ();
 

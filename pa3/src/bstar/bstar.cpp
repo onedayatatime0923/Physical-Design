@@ -22,7 +22,9 @@ void Bstar::initState(State& state) {
         }
     }
 }
-void Bstar::perturbState(State& state) {
+void Bstar::perturbState(State& state, PerturbSeed& seed) {
+    if (seed._operation == OpRotation) {
+        assert(block(seed.rotationId()).rotatable());
     state._nodeV.back().leftChild = 0;
     for (int i = 0; i < state.blockSize(); ++i) {
         if (2 * i + 1 < state.blockSize()) {
@@ -34,4 +36,9 @@ void Bstar::perturbState(State& state) {
             state._nodeV[2 * i + 2]. parent = i;
         }
     }
+}
+void Bstar::randomPerturbSeed(PerturbSeed& seed) {
+    seed._operation = OpRotation;
+    seed._operand.clear();
+    seed._operand.emplace_back(0);
 }

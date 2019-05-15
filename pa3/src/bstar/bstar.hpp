@@ -15,6 +15,8 @@ private:
     void    perturbState    (State& state);
     void    calculateCost   (State& state);
 
+    Block&  block           (int i) { return _db.block(i); }
+
 
     DB&     _db;
 };

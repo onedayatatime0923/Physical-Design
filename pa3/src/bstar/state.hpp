@@ -47,11 +47,13 @@ class PerturbSeed{
     public:
         enum Operation { OpRotation, };
 
+        // for rotation
+        int rotationId() { assert(_operand.size() == 1); return _operand[0]; }
+
+        friend Bstar;
     private:
         Operation   _operation;
         vector<int> _operand;
-
-
 }
 
 #endif
