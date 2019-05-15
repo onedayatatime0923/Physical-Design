@@ -45,16 +45,18 @@ private:
 
 class PerturbSeed{
     public:
-        enum Operation { OpRotation, };
+        enum Operation { OpRotation, OpSwap, OpDeleteInsert, };
 
         // for rotation
         int rotationId() { assert(_operand.size() == 1); return _operand[0]; }
+        // for swap
+        const vector<int>&  swapId() { assert(_operand.size() == 2); return _operand; }
 
         friend Bstar;
     private:
         Operation   _operation;
         vector<int> _operand;
-}
+};
 
 #endif
 

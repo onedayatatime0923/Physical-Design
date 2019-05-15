@@ -7,15 +7,16 @@ void DB::pushBlock(const string& name, int x, int y) {
     b.setName(name);
     b.setSize(x,y);
     if (x <= _size[0] && y <= _size[1] && x <= _size[1] && y <= _size[0]) {
-        b.setDir(Block::NormalAndRotate);
+        b.setRotatable(true);
     }
     else if (x <= _size[0] && y <= _size[1]) {
-        b.setDir(Block::Normal);
+        b.setRotatable(false);
         // printf("Normal\n");
         // getchar();
     }
     else if (x <= _size[1] && y <= _size[0]) {
-        b.setDir(Block::Rotate);
+        b.setRotatable(false);
+        b.rotate();
         // printf("Rotate\n");
         // getchar();
     }

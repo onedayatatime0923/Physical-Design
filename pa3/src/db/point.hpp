@@ -9,9 +9,10 @@ public:
     Point              ():_x(0), _y(0){};
     Point              (const int& x, const int& y): _x(x), _y(y){};
 
-    void         set        (const int& x, const int& y) {_x = x; _y = y;};
-    void         setX       (const int& x) {_x = x;};
-    void         setY       (const int& y) {_y = y;};
+    void        set         (const int& x, const int& y) {_x = x; _y = y;};
+    void        setX        (const int& x) {_x = x;};
+    void        setY        (const int& y) {_y = y;};
+    void        swapXY      () { int tmp = _x; _x = _y; _y = tmp; }
 
     int&       operator[] (const int& i)                   { if(i == 0) return _x;
                                                                else if(i==1) return _y;

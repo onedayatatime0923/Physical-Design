@@ -12,10 +12,11 @@ public:
     void    solve           ();
 private:
     void    initState       (State& state);
-    void    perturbState    (State& state);
+    void    perturbState    (State& state, PerturbSeed& seed);
     void    calculateCost   (State& state);
 
     Block&  block           (int i) { return _db.block(i); }
+    void    randomPerturbSeed   (PerturbSeed& seed);
 
 
     DB&     _db;

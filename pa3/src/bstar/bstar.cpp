@@ -23,22 +23,29 @@ void Bstar::initState(State& state) {
     }
 }
 void Bstar::perturbState(State& state, PerturbSeed& seed) {
-    if (seed._operation == OpRotation) {
+    if (seed._operation == PerturbSeed::OpRotation) {
         assert(block(seed.rotationId()).rotatable());
-    state._nodeV.back().leftChild = 0;
-    for (int i = 0; i < state.blockSize(); ++i) {
-        if (2 * i + 1 < state.blockSize()) {
-            state._nodeV[i].leftChild = 2 * i + 1;
-            state._nodeV[2 * i + 1]. parent = i;
-        }
-        if (2 * i + 2 < state.blockSize()) {
-            state._nodeV[i].rightChild = 2 * i + 2;
-            state._nodeV[2 * i + 2]. parent = i;
-        }
+        block(seed.rotationId()).rotate();
+    }
+    else if (seed._operation == PerturbSeed::OpSwap) {
+        swap(_nodeV[seed.swapId()[0]], _nodeV[seed.swapId()[1]]);
+    }
+    else if (seed._operation == PerturbSeed::OpSwap) {
+        swap(_nodeV[seed.swapId()[0]], _nodeV[seed.swapId()[1]]);
     }
 }
 void Bstar::randomPerturbSeed(PerturbSeed& seed) {
-    seed._operation = OpRotation;
+    // seed._operation = PerturbSeed::OpRotation;
+    // seed._operand.clear();
+    // seed._operand.emplace_back(0);
+    // 
+    // seed._operation = PerturbSeed::OpSwap;
+    // seed._operand.clear();
+    // seed._operand.emplace_back(0);
+    // seed._operand.emplace_back(1);
+    //
+    seed._operation = PerturbSeed::OpSwap;
     seed._operand.clear();
     seed._operand.emplace_back(0);
+    seed._operand.emplace_back(1);
 }
