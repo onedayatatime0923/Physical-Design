@@ -44,11 +44,11 @@ private:
     struct Node{
         Node() :  parent(-1), leftChild(-1), rightChild(-1) {};
         
-        static const unsigned nullNode = (1 << 10) - 1;
+        static const int nullNode = -1;
 
-        unsigned parent:10;
-        unsigned leftChild:10;
-        unsigned rightChild:10;
+        int parent;
+        int leftChild;
+        int rightChild;
     };
 
     int     blockSize   () { return _nodeV.size() - 1; }
@@ -72,16 +72,16 @@ private:
     void    deleteInsert(int a, int b, PerturbSeed::InsertDir dir);
 
     void    pack        (DB& db);
-    void    pack        (DB& db, int id, const list<int>::iterator& it);
+    void    pack        (DB& db, int id, list<int>& contourL, const list<int>::iterator& it);
     void    updateSize  (const Rect& size);
-    int     findY       (int id, list<int>::iterator& it);
+    int     findY       (int id, list<int>& contourL, list<int>::iterator& it);
 
     void    calculateWireLength(DB& db);
     void    calculateWireLength(Net& net);
 
     void    print       (int i, int level, int type = 0);
     void    dumpFile    (const string& name, DB& db);
-    void    printContour();
+    void    printContour(list<int>& contourL);
 
     const Point&    size() { return _size; }
     int             wireLength() { return _wireLength; }
@@ -92,7 +92,6 @@ private:
 
     // being filled by packing
     vector<Rect>    _locationV;
-    list<int>       _contourL;
     Point           _size;
     int             _wireLength;
 };

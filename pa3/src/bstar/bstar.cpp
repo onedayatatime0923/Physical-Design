@@ -15,6 +15,7 @@ void Bstar::solve() {
 
     int temperature = bstarParam.startTemperature;
     int N = bstarParam.numStepCoefficient * _db.blockSize();
+    // printf("block size: %d\n", _db.blockSize());
     int numStep = 0;
     int numUphill = 0;
     int numReject = 0;
@@ -43,10 +44,10 @@ void Bstar::solve() {
             nextCost = cost(nextState);
             deltaCost = nextCost - currentCost;
 
-            printf("  nextCost: %f\n", nextCost);
-            printf("  bestCost: %f\n", bestCost);
             #ifdef BSTAR_DEBUG
             printf("  currentCost: %f\n", currentCost);
+            printf("  nextCost: %f\n", nextCost);
+            printf("  bestCost: %f\n", bestCost);
             printf("  deltaCost: %f\n", deltaCost);
             printf("  accept rate: %f\n", exp(-1 * deltaCost / temperature));
             #endif
@@ -74,11 +75,13 @@ void Bstar::solve() {
                 #endif
                 ++numReject;
             }
+            // printf("after %d iteration\n", numStep);
+            // printf("N: %d\n", N);
             // getchar();
             if (numUphill > N || numStep > 2 * N) break;
         }
         temperature *= bstarParam.gamma;
-        if (float(numReject) / numStep > 0.95 || temperature < bstarParam.epsilon) break;
+        if (float(numReject) / (float)numStep > 0.95 || temperature < bstarParam.epsilon) break;
     }
 
 
@@ -89,9 +92,7 @@ void Bstar::solve() {
 
     currentStateCopy.print();
     currentStateCopy.pack(_db);
-    printf("here\n");
     currentStateCopy.dumpFile("output/input.layout", _db);
-    printf("here01\n");
 }
 
 void Bstar::initState(State& state) {

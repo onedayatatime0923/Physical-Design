@@ -24,7 +24,6 @@ int main(int argc, char** argv) {
     {
         Bstar bstar(db);
         bstar.solve();
-        printf("end\n");
     }
 }
 
