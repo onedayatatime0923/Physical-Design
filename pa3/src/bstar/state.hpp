@@ -44,11 +44,11 @@ private:
     struct Node{
         Node() :  parent(-1), leftChild(-1), rightChild(-1) {};
         
-        static const unsigned nullNode = (1 << 10) - 1;
+        static const int nullNode = -1;
 
-        unsigned parent:10;
-        unsigned leftChild:10;
-        unsigned rightChild:10;
+        int parent;
+        int leftChild;
+        int rightChild;
     };
 
     int     blockSize   () { return _nodeV.size() - 1; }

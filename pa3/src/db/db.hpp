@@ -40,11 +40,11 @@ public:
 private:
     Point                   _size;
     float                   _apha;
-    map<string, Block>      _blockM;
     vector<Block*>          _blockPV;
-    map<string, Terminal>   _terminalM;
     vector<Terminal*>       _terminalPV;
     vector<Net>             _netV;
+    map<string, Block>      _blockM;
+    map<string, Terminal>   _terminalM;
 };
 
 #endif

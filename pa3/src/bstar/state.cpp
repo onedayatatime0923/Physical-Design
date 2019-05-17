@@ -185,12 +185,10 @@ void State::calculateWireLength(DB& db) {
 
 };
 void State::calculateWireLength(Net& net) {
-    // printf("net id: %d\n", net.id());
     Point coor;
     int minX, minY, maxX, maxY;
     minX = minY = INT_MAX;
     maxX = maxY = 0;
-    // printf("net blockSize: %lu\n", net._blockPV.size());
     for (int i = 0; i < net.blockSize(); ++i) {
         coor = _locationV[net.blockP(i)->id()].center();
         // printf("i: %d\n", i);
@@ -201,7 +199,6 @@ void State::calculateWireLength(Net& net) {
         // printf("maxX: %d, maxY: %d, minX: %d, minY: %d\n", maxX, maxY, minX, minY);
     }
     
-    // printf("net terminalSize: %d\n", net.terminalSize());
     for (int i = 0; i < net.terminalSize(); ++i) {
         coor = net.terminalP(i)->coor();
         minX = min(minX, coor[0]);
