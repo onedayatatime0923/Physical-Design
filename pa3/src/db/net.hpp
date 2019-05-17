@@ -34,10 +34,10 @@ public:
 
 private:
 
-    int                 _id;
-
     vector<Terminal*>   _terminalPV;
     vector<Block*>      _blockPV;
+    int                 _id;
+
 
 };
 
