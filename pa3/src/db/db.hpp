@@ -4,6 +4,7 @@
 
 #include "dbGlobal.hpp"
 #include "point.hpp"
+#include "rect.hpp"
 #include "terminal.hpp"
 #include "block.hpp"
 #include "net.hpp"
