@@ -97,19 +97,20 @@ void State::pack(DB& db) {
     _locationV[root()][2] = s[0];
     _locationV[root()][1] = 0;
     _locationV[root()][3] = s[1];
-    _contourL.clear();
-    _contourL.emplace_back(root());
+    list<int> contourL;
+    contourL.emplace_front(root());
     updateSize(_locationV[root()]);
     #ifdef STATE_DEBUG
     printf("id: %d\n", root());
     printf("  rect: %s\n", _locationV[root()].str().c_str());
     printContour();
     #endif
-    auto it = _contourL.begin();
-    pack(db, root(), it);
+    auto it = contourL.begin();
+    assert(contourL.size() == 1);
+    pack(db, root(), contourL, it);
     calculateWireLength(db);
 };
-void State::pack(DB& db, int id, const list<int>::iterator& it) {
+void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator& it) {
     // printf("Pack id: %d, iterator id: %d\n", id, *it);
     int leftChildId, rightChildId;
     leftChildId = leftChild(id);
@@ -123,7 +124,7 @@ void State::pack(DB& db, int id, const list<int>::iterator& it) {
 
         _locationV[leftChildId][0] = _locationV[id][2];
         _locationV[leftChildId][2] = _locationV[leftChildId][0] + s[0];
-        _locationV[leftChildId][1] = findY(leftChildId, recursiveIt);
+        _locationV[leftChildId][1] = findY(leftChildId, contourL, recursiveIt);
         _locationV[leftChildId][3] = _locationV[leftChildId][1] + s[1];
         updateSize(_locationV[leftChildId]);
         #ifdef STATE_DEBUG
@@ -131,7 +132,7 @@ void State::pack(DB& db, int id, const list<int>::iterator& it) {
         printf("    rect: %s\n", _locationV[leftChildId].str().c_str());
         printContour();
         #endif
-        pack(db, leftChildId, recursiveIt);
+        pack(db, leftChildId, contourL, recursiveIt);
         // printf("come back to %d\n", id);
     }
 
@@ -142,7 +143,7 @@ void State::pack(DB& db, int id, const list<int>::iterator& it) {
 
         _locationV[rightChildId][0] = _locationV[id][0];
         _locationV[rightChildId][2] = _locationV[rightChildId][0] + s[0];
-        _locationV[rightChildId][1] = findY(rightChildId, recursiveIt);
+        _locationV[rightChildId][1] = findY(rightChildId, contourL, recursiveIt);
         _locationV[rightChildId][3] = _locationV[rightChildId][1] + s[1];
         updateSize(_locationV[rightChildId]);
         #ifdef STATE_DEBUG
@@ -150,29 +151,29 @@ void State::pack(DB& db, int id, const list<int>::iterator& it) {
         printf("    rect: %s\n", _locationV[rightChildId].str().c_str());
         printContour();
         #endif
-        pack(db, rightChildId, recursiveIt);
+        pack(db, rightChildId, contourL, recursiveIt);
     }
 }
 void State::updateSize(const Rect& size) {
     _size[0] = max(_size[0], size[2]);
     _size[1] = max(_size[1], size[3]);
 }
-int State::findY(int id, list<int>::iterator& it) {
+int State::findY(int id, list<int>& contourL, list<int>::iterator& it) {
     // printf("find y id: %d\n", id);
     // printf("list id: %d\n", *it);
     Rect& handle = _locationV[id];
     list<int>::iterator start, end;
     start = end = it;
     int maxY = 0;
-    while (end != _contourL.end() && _locationV[*end][2] <= handle[2]) {
+    while (end != contourL.end() && _locationV[*end][2] <= handle[2]) {
         maxY = max(maxY, _locationV[*end][3]);
         ++end;
     }
-    if (end != _contourL.end() && _locationV[*end][0] < handle[2]) {
+    if (end != contourL.end() && _locationV[*end][0] < handle[2]) {
         maxY = max(maxY, _locationV[*end][3]);
     }
-    start = _contourL.erase(start, end);
-    it = _contourL.insert(start, id);
+    start = contourL.erase(start, end);
+    it = contourL.insert(start, id);
     return maxY;
 }
 void State::calculateWireLength(DB& db) {
@@ -243,9 +244,9 @@ void State::dumpFile(const string& name, DB& db) {
     fprintf(file, ")\n");
     fclose(file);
 };
-void State::printContour() {
+void State::printContour(list<int>& contourL) {
     printf("Ccontour:\n");
-    for (auto it = _contourL.begin(); it != _contourL.end(); ++it) {
+    for (auto it = contourL.begin(); it != contourL.end(); ++it) {
         printf("  id: %d\n", *it);
     }
 }
