@@ -1,8 +1,8 @@
 
 #include "parser.hpp"
 
-void Parser::parse(const string& block, const string& net, DB& db) {
-    FILE* file = fopen(block.c_str(), "r");
+void Parser::parse(DB& db) {
+    FILE* file = fopen(_opt.inputBlock().c_str(), "r");
     char buffer[1024];
     string bufferS;
     int nBlock, nTerminal, nNet, nDegree, x, y;
@@ -22,7 +22,7 @@ void Parser::parse(const string& block, const string& net, DB& db) {
         db.pushTerminal(bufferS, x, y);
     }
     fclose(file);
-    file = fopen(net.c_str(), "r");
+    file = fopen(_opt.inputNet().c_str(), "r");
     fscanf(file, "NumNets: %d\n", &nNet);
     for (int i = 0; i < nNet; ++i) {
         db.pushNet();
@@ -33,4 +33,5 @@ void Parser::parse(const string& block, const string& net, DB& db) {
             db.pushPin(bufferS);
         }
     }
+    db.setApha(_opt.apha());
 };

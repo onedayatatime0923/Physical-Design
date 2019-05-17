@@ -55,7 +55,7 @@ public:
 
     // print function
     string  str             ()                          const { return ((_buttomLeft.str()) + "-" + (_topRight.str())); }
-    void    dumpfile    (FILE* file)const { fprintf(file, "%d %d 1 %d %d 1\n", _buttomLeft[0], _buttomLeft[1], _topRight[0], _topRight[1]); }
+    void    dumpFile        (FILE* file, int l = 1)     const { fprintf(file, "%d %d %d %d %d %d\n", _buttomLeft[0], _buttomLeft[1], l, _topRight[0], _topRight[1], l); }
 
 
     // static functions

@@ -89,6 +89,7 @@ void State::rename(int a, int b) {
     }
 };
 void State::pack(DB& db) {
+    _size.set(0,0);
     Point s = db.block(root()).size();
     if (_rotationV[root()]) s.swapXY();
 
@@ -131,6 +132,7 @@ void State::pack(DB& db, int id, const list<int>::iterator& it) {
         printContour();
         #endif
         pack(db, leftChildId, recursiveIt);
+        // printf("come back to %d\n", id);
     }
 
     if (rightChildId != Node::nullNode) {
@@ -162,11 +164,11 @@ int State::findY(int id, list<int>::iterator& it) {
     list<int>::iterator start, end;
     start = end = it;
     int maxY = 0;
-    while (end != _contourL.end() && _locationV[*end][2] < handle[2]) {
+    while (end != _contourL.end() && _locationV[*end][2] <= handle[2]) {
         maxY = max(maxY, _locationV[*end][3]);
         ++end;
     }
-    if (end != _contourL.end()) {
+    if (end != _contourL.end() && _locationV[*end][0] < handle[2]) {
         maxY = max(maxY, _locationV[*end][3]);
     }
     start = _contourL.erase(start, end);
@@ -176,12 +178,12 @@ int State::findY(int id, list<int>::iterator& it) {
 void State::calculateWireLength(DB& db) {
     _wireLength = 0;
     for (int i = 0; i < db.netSize(); ++i) {
+        // printf("net terminal size: %d\n", db.net(i).terminalSize());
         calculateWireLength(db.net(i));
     }
 
 };
 void State::calculateWireLength(Net& net) {
-    // printf("net id: %d\n", net.id());
     Point coor;
     int minX, minY, maxX, maxY;
     minX = minY = INT_MAX;
@@ -195,13 +197,13 @@ void State::calculateWireLength(Net& net) {
         maxY = max(maxY, coor[1]);
         // printf("maxX: %d, maxY: %d, minX: %d, minY: %d\n", maxX, maxY, minX, minY);
     }
+    
     for (int i = 0; i < net.terminalSize(); ++i) {
         coor = net.terminalP(i)->coor();
         minX = min(minX, coor[0]);
         minY = min(minY, coor[1]);
         maxX = max(maxX, coor[0]);
         maxY = max(maxY, coor[1]);
-        // printf("maxX: %d, maxY: %d, minX: %d, minY: %d\n", maxX, maxY, minX, minY);
     }
     // printf("cost: %d\n", maxX + maxY - minX - minY);
     _wireLength += maxX + maxY - minX - minY;
@@ -229,11 +231,16 @@ void State::print(int i, int level, int type) {
 void State::dumpFile(const string& name, DB& db) {
     FILE* file = fopen(name.c_str(), "w");
     for (int i = 0; i < (int)_locationV.size(); ++i) {
-        fprintf(file, "%s\n", db.block(i).name().c_str());
+        fprintf(file, "%d\n", i);
         fprintf(file, "(\n");
-        _locationV[i].dumpfile(file);
+        _locationV[i].dumpFile(file, 1);
         fprintf(file, ")\n");
     }
+
+    fprintf(file, "Fixed_OutLine\n");
+    fprintf(file, "(\n");
+    Rect(Point(0,0), db.size()).dumpFile(file, 3);
+    fprintf(file, ")\n");
     fclose(file);
 };
 void State::printContour() {

@@ -14,11 +14,14 @@ public:
     void    solve           ();
 private:
     struct BstarParam {
-        int     startTemperature  = INT_MAX;
-        float   numStepCoefficient = 5;
-        float   gamma = 0.8;
-        int     epsilon = 1000;
+        int     startTemperature  = 100000;
+        float   numStepCoefficient = 30;
+        float   gamma = 0.95;
+        int     epsilon = 1;
+        float   aspectRationCost = 1000000000;
+
     } bstarParam;
+
     void    initState       (State& state);
     void    perturbState    (State& state, PerturbSeed& seed);
     void    calculateCost   (State& state);
@@ -26,7 +29,7 @@ private:
     Block&  block           (int i) { return _db.block(i); }
     void    randomPerturbSeed(State& state, PerturbSeed& seed);
 
-    int     cost            (State& state);
+    float   cost            (State& state);
 
 
     DB&     _db;

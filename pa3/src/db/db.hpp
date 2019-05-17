@@ -14,6 +14,7 @@ class DB {
 public:
 
     Point&          size        ()          { return _size; }
+    float           apha        ()          { return _apha; }
     int             blockSize   ()          { return _blockPV.size(); }
     Block&          block       (int i)     { return *_blockPV[i]; }
     const Block&    block       (int i) const { return *_blockPV[i]; }
@@ -28,6 +29,7 @@ public:
 
     // setter
     void            setSize     (int x, int y)  { _size.set(x,y); }
+    void            setApha     (float x)       { _apha = x; }
     void            pushBlock   (const string& name, int x, int y);
     void            pushTerminal(const string& name, int x, int y);
     void            pushNet     () { _netV.emplace_back(_netV.size()); }
@@ -37,6 +39,7 @@ public:
 
 private:
     Point                   _size;
+    float                   _apha;
     map<string, Block>      _blockM;
     vector<Block*>          _blockPV;
     map<string, Terminal>   _terminalM;

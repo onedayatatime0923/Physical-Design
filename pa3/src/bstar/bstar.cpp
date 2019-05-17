@@ -6,7 +6,9 @@ void Bstar::solve() {
     int bestState = -1;
 
     State currentState(_db.blockSize());
+    State nextState(_db.blockSize());
     initState(currentState);
+
     State currentStateCopy = currentState;
 
     PerturbSeed seed;
@@ -16,9 +18,10 @@ void Bstar::solve() {
     int numStep = 0;
     int numUphill = 0;
     int numReject = 0;
-    int bestCost, currentCost;
-    int deltaCost, lastCost;
-    lastCost = bestCost = INT_MAX;
+    float bestCost, currentCost, nextCost;
+    float deltaCost;
+    currentState.pack(_db);
+    currentCost = bestCost = cost(currentState);
     while (true) {
         numStep = numUphill = numReject = 0;
         while (true) {
@@ -29,16 +32,22 @@ void Bstar::solve() {
             printf("numUphill: %d\n", numUphill);
             printf("numReject: %d\n", numReject);
             #endif
-            randomPerturbSeed(currentState, seed);
-            perturbState(currentState, seed);
-            currentState.pack(_db);
+
+            nextState = currentState;
+            randomPerturbSeed(nextState, seed);
+            perturbState(nextState, seed);
+            // nextState.print();
+            nextState.pack(_db);
+
             ++numStep;
-            currentCost = cost(currentState);
-            deltaCost = currentCost - lastCost;
+            nextCost = cost(nextState);
+            deltaCost = nextCost - currentCost;
+
+            printf("  nextCost: %f\n", nextCost);
+            printf("  bestCost: %f\n", bestCost);
             #ifdef BSTAR_DEBUG
-            printf("  currentCost: %d\n", currentCost);
-            printf("  deltaCost: %d\n", deltaCost);
-            printf("  bestCost: %d\n", bestCost);
+            printf("  currentCost: %f\n", currentCost);
+            printf("  deltaCost: %f\n", deltaCost);
             printf("  accept rate: %f\n", exp(-1 * deltaCost / temperature));
             #endif
             if (deltaCost <= 0 || drand() < exp(-1 * deltaCost / temperature)) {
@@ -51,12 +60,9 @@ void Bstar::solve() {
                     #endif
                     ++numUphill;
                 }
-                printf("here\n");
-                printf("history size: %lu\n", history.size());
-                printf("history capacity: %lu\n", history.capacity());
                 history.emplace_back(seed);
-                printf("here1\n");
-                lastCost = currentCost;
+                currentState = nextState;
+                currentCost = nextCost;
                 if (cost(currentState) < bestCost) {
                     bestState = history.size() - 1;
                     bestCost = currentCost;
@@ -69,26 +75,23 @@ void Bstar::solve() {
                 ++numReject;
             }
             // getchar();
-            printf("end\n");
             if (numUphill > N || numStep > 2 * N) break;
         }
         temperature *= bstarParam.gamma;
         if (float(numReject) / numStep > 0.95 || temperature < bstarParam.epsilon) break;
     }
 
+
+    assert(bestState < (int)history.size());
+    for (int i = 0; i <= bestState; ++i) {
+        perturbState(currentStateCopy, history[i]);
+    }
+
+    currentStateCopy.print();
+    currentStateCopy.pack(_db);
     printf("here\n");
-
-    // assert(bestState < (int)history.size());
-    // for (int i = 0; i <= bestState; ++i) {
-    //     perturbState(currentStateCopy, history[i]);
-    // }
-    //
-    // currentStateCopy.print();
-    // currentStateCopy.pack(_db);
-    // printf("here1\n");
-    // currentStateCopy.dumpFile("output/input.layout", _db);
-    // printf("here2\n");
-
+    currentStateCopy.dumpFile("output/input.layout", _db);
+    printf("here01\n");
 }
 
 void Bstar::initState(State& state) {
@@ -107,7 +110,7 @@ void Bstar::initState(State& state) {
 }
 void Bstar::perturbState(State& state, PerturbSeed& seed) {
     if (seed._operation == PerturbSeed::OpRotation) {
-        // printf("rotation\n");
+        // printf("rotation: %d\n", seed.rotationId());
         assert(block(seed.rotationId()).rotatable());
         state.rotate(seed.rotationId());
     }
@@ -180,6 +183,12 @@ void Bstar::randomPerturbSeed(State& state, PerturbSeed& seed) {
         }
     }
 }
-int Bstar::cost(State& state) {
-    return (state.size()[0] * state.size()[1]) + state.wireLength();
+float Bstar::cost(State& state) {
+    // printf("apha: %f\n", _db.apha());
+    // printf("state size: %s\n", state.size().str().c_str());
+    // printf("state ratio: %f\n", state.size().ratio());
+    // printf("db size: %s\n", _db.size().str().c_str());
+    // printf("db ratio: %f\n", _db.size().ratio());
+    // getchar();
+    return (float)((_db.apha() * (state.size()[0] * state.size()[1])) + ((1 - _db.apha()) *state.wireLength()) + (bstarParam.aspectRationCost * pow(state.size().ratio() - _db.size().ratio(), 2)));
 }

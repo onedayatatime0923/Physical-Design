@@ -3,7 +3,7 @@
 BASEDIR=$(dirname "$0")
 EXE=$BASEDIR/bstar
 
-APHA=0.5
+APHA=1
 
 for var in "$@"
 do

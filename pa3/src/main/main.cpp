@@ -17,13 +17,14 @@ int main(int argc, char** argv) {
     
     DB db; 
     {
-        Parser parser;
-        parser.parse(opt.inputBlock(), opt.inputNet(), db);
+        Parser parser(opt);
+        parser.parse(db);
     }
     // db.print();
     {
         Bstar bstar(db);
         bstar.solve();
+        printf("end\n");
     }
 }
 

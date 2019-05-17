@@ -11,9 +11,6 @@ class Bstar;
 class PerturbSeed{
     public:
         PerturbSeed() : _operation(OpNull), _insertDir(InsertNull) { _operand.reserve(2); }
-        ~PerturbSeed() { 
-        printf(" operand size: %lu", _operand.size());
-        }
 
         enum Operation { OpRotation, OpSwap, OpDeleteInsert, OpNull, };
 
@@ -30,8 +27,8 @@ class PerturbSeed{
 
         friend Bstar;
     private:
-        Operation   _operation;
         vector<int> _operand;
+        Operation   _operation;
         InsertDir   _insertDir;
 };
 class State{
