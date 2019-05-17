@@ -7,6 +7,7 @@
 #include "block.hpp"
 
 
+class State;
 class Net {
 public:
     Net(int id) : _id(id) {};
@@ -29,13 +30,14 @@ public:
     void            pushTerminalP   (Terminal* tP) { _terminalPV.emplace_back(tP); }
     void            pushBlockP      (Block* bP) { _blockPV.emplace_back(bP); }
     
+    friend State;
 
 private:
 
     int                 _id;
 
-    vector<Block*>      _blockPV;
     vector<Terminal*>   _terminalPV;
+    vector<Block*>      _blockPV;
 
 };
 

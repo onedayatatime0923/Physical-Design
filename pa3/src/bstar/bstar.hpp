@@ -1,7 +1,7 @@
 #ifndef bstar__bstar_h
 #define bstar__bstar_h
 
-// #define BSTAR_DEBUG
+#define BSTAR_DEBUG
 
 #include "bstarGlobal.hpp"
 #include "state.hpp"

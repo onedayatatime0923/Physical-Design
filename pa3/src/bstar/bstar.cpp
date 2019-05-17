@@ -38,7 +38,9 @@ void Bstar::solve() {
             randomPerturbSeed(nextState, seed);
             perturbState(nextState, seed);
             // nextState.print();
+            printf("here\n");
             nextState.pack(_db);
+            printf("end\n");
 
             ++numStep;
             nextCost = cost(nextState);

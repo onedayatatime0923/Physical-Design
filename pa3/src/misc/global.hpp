@@ -6,15 +6,15 @@
 ///                          INCLUDES                                ///
 ////////////////////////////////////////////////////////////////////////
 
-#include <assert.h>
+#include <cassert>
 #include <iostream>
-#include <limits.h>
+#include <climits>
+#include <cstdio>
+#include <cstdlib>  
 #include <list>
 #include <map>
-#include <math.h>
+#include <cmath>
 #include <set>
-#include <stdio.h>
-#include <stdlib.h>  
 #include <string>
 #include <vector>
 

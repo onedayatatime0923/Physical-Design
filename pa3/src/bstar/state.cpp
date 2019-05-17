@@ -89,6 +89,7 @@ void State::rename(int a, int b) {
     }
 };
 void State::pack(DB& db) {
+    printf("here01\n");
     _size.set(0,0);
     Point s = db.block(root()).size();
     if (_rotationV[root()]) s.swapXY();
@@ -97,7 +98,9 @@ void State::pack(DB& db) {
     _locationV[root()][2] = s[0];
     _locationV[root()][1] = 0;
     _locationV[root()][3] = s[1];
+    printf("here02\n");
     list<int> contourL;
+    printf("here03\n");
     contourL.emplace_front(root());
     updateSize(_locationV[root()]);
     #ifdef STATE_DEBUG
@@ -107,8 +110,11 @@ void State::pack(DB& db) {
     #endif
     auto it = contourL.begin();
     assert(contourL.size() == 1);
+    printf("here04\n");
     pack(db, root(), contourL, it);
+    printf("here05\n");
     calculateWireLength(db);
+    printf("here06\n");
 };
 void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator& it) {
     // printf("Pack id: %d, iterator id: %d\n", id, *it);
@@ -185,10 +191,18 @@ void State::calculateWireLength(DB& db) {
 
 };
 void State::calculateWireLength(Net& net) {
+    printf("net id: %d\n", net.id());
     Point coor;
     int minX, minY, maxX, maxY;
     minX = minY = INT_MAX;
     maxX = maxY = 0;
+    printf("net blockSize: %d\n", net.blockSize());
+    printf("net blockSize: %lu\n", net._blockPV.size());
+    for (int i = 0; i < net._blockPV.size(); ++i) {
+        printf("id: %d\n", net._blockPV[i]->id());
+    }
+    printf("here\n");
+    printf("net blockSize: %lu\n", net._blockPV.size());
     for (int i = 0; i < net.blockSize(); ++i) {
         coor = _locationV[net.blockP(i)->id()].center();
         // printf("i: %d\n", i);
@@ -199,6 +213,7 @@ void State::calculateWireLength(Net& net) {
         // printf("maxX: %d, maxY: %d, minX: %d, minY: %d\n", maxX, maxY, minX, minY);
     }
     
+    printf("net terminalSize: %d\n", net.terminalSize());
     for (int i = 0; i < net.terminalSize(); ++i) {
         coor = net.terminalP(i)->coor();
         minX = min(minX, coor[0]);
