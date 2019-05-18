@@ -35,3 +35,20 @@ void Parser::parse(DB& db) {
     }
     db.setApha(_opt.apha());
 };
+void Parser::dumpFile(DB& db, Bstar& bstar, double time) {
+    FILE* file = fopen(_opt.output().c_str(), "w");
+    const Point& size = bstar.finalSize();
+    int wireLength = bstar.finalWireLength();
+    int cost = (int)((_opt.apha() * size[0] * size[1]) + ((1 - _opt.apha()) * wireLength));
+    int area = (int)((_opt.apha() * size[0] * size[1]));
+    fprintf(file, "%d\n", cost);
+    fprintf(file, "%d\n", wireLength);
+    fprintf(file, "%d\n", area);
+    fprintf(file, "%d %d\n", size[0], size[1]);
+    fprintf(file, "%lf\n", time);
+    for (int i = 0; i < db.blockSize(); ++i) {
+        const Rect& location = bstar.finalLocation(i);
+        fprintf(file, "%s %d %d %d %d\n", db.block(i).name().c_str(), location[0], location[1], location[2], location[3]);
+    }
+
+}

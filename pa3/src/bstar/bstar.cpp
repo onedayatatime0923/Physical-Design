@@ -2,33 +2,46 @@
 #include "bstar.hpp"
 
 void Bstar::solve() {
-    vector<PerturbSeed> history;
-    int bestState = -1;
 
     State currentState(_db.blockSize());
-    State nextState(_db.blockSize());
     initState(currentState);
 
-    State currentStateCopy = currentState;
+    norm(currentState);
+    // printf("_RNorm: %f\n", _RNorm);
+    // getchar();
+    _aspectRationCost = bstarParam.aspectRationCostStart;
+    anealing(currentState);
+}
+
+void Bstar::anealing(State& currentState) {
+    vector<PerturbSeed> history;
+    int bestState = -1;
+    int feasibleState = -1;
+
+    State nextState(_db.blockSize());
+    _finalState = currentState;
 
     PerturbSeed seed;
 
-    int temperature = bstarParam.startTemperature;
+    float temperature = bstarParam.startTemperature;
     int N = bstarParam.numStepCoefficient * _db.blockSize();
     // printf("block size: %d\n", _db.blockSize());
     int numStep = 0;
     int numUphill = 0;
     int numReject = 0;
-    float bestCost, currentCost, nextCost;
+    float feasibleCost, bestCost, currentCost, nextCost;
     float deltaCost;
     currentState.pack(_db);
-    currentCost = bestCost = cost(currentState);
+    feasibleCost = INT_MAX;
+    currentCost = bestCost = costWithRatio(currentState);
+
+    int times = 0;
     while (true) {
         numStep = numUphill = numReject = 0;
         while (true) {
             #ifdef BSTAR_DEBUG
             printf("start one iteration\n");
-            printf("T: %d\n", temperature);
+            printf("T: %f\n", temperature);
             printf("numStep: %d\n", numStep);
             printf("numUphill: %d\n", numUphill);
             printf("numReject: %d\n", numReject);
@@ -38,18 +51,31 @@ void Bstar::solve() {
             randomPerturbSeed(nextState, seed);
             perturbState(nextState, seed);
             // nextState.print();
+            // printf("here\n");
             nextState.pack(_db);
+            // printf("end\n");
+
+            // check feasibility
+            if (check(nextState)) {
+                _aspectRationCost *= bstarParam.aspectRationCostDecrement;
+            }
+            else {
+                _aspectRationCost*= bstarParam.aspectRationCostIncrememt;
+            }
+
 
             ++numStep;
-            nextCost = cost(nextState);
+            nextCost = costWithRatio(nextState);
             deltaCost = nextCost - currentCost;
 
             #ifdef BSTAR_DEBUG
             printf("  currentCost: %f\n", currentCost);
             printf("  nextCost: %f\n", nextCost);
-            printf("  bestCost: %f\n", bestCost);
             printf("  deltaCost: %f\n", deltaCost);
+            printf("  bestCost: %f\n", bestCost);
+            printf("  feasibleCost: %f\n", feasibleCost);
             printf("  accept rate: %f\n", exp(-1 * deltaCost / temperature));
+            printf("  aspectRationCost: %f\n", _aspectRationCost * pow(_db.blockSize(), bstarParam.aspectRationPower) * _RNorm);
             #endif
             if (deltaCost <= 0 || drand() < exp(-1 * deltaCost / temperature)) {
                 #ifdef BSTAR_DEBUG
@@ -64,9 +90,15 @@ void Bstar::solve() {
                 history.emplace_back(seed);
                 currentState = nextState;
                 currentCost = nextCost;
-                if (cost(currentState) < bestCost) {
+                if (currentCost < bestCost) {
                     bestState = history.size() - 1;
                     bestCost = currentCost;
+                }
+                if (check(currentState) && costWithoutRatio(currentState) < feasibleCost) {
+                    feasibleState = history.size() - 1;
+                    feasibleCost = currentCost;
+                    // printf("find!\n");
+                    // getchar();
                 }
             }
             else {
@@ -81,20 +113,59 @@ void Bstar::solve() {
             if (numUphill > N || numStep > 2 * N) break;
         }
         temperature *= bstarParam.gamma;
-        if (float(numReject) / (float)numStep > 0.95 || temperature < bstarParam.epsilon) break;
+        if (float(numReject) / (float)numStep > bstarParam.quitCondition || temperature < bstarParam.epsilon) {
+            if (feasibleState == -1) {
+                printf("start over\n");
+                ++times;
+                if (times > 10) break;
+                temperature = bstarParam.startTemperature;
+                _aspectRationCost *= bstarParam.aspectRationCostIterationIncrememt;
+
+                // int s = (feasibleState != -1)? feasibleState: bestState;
+                //
+                // State stateTmp = _finalState;
+                // assert(bestState < (int)history.size());
+                // assert(feasibleState < (int)history.size());
+                // for (int i = 0; i <= s; ++i) {
+                //     perturbState(stateTmp, history[i]);
+                // }
+                //
+                // // _finalState.print();
+                // stateTmp.pack(_db);
+                // stateTmp.dumpFile("output/input.layout", _db);
+                // getchar();
+            }
+            else {
+                break;
+            }
+        }
     }
 
 
+    int s = (feasibleState != -1)? feasibleState: bestState;
+    // int s = bestState;
+    // printf("feasibleState: %d\n", feasibleState);
     assert(bestState < (int)history.size());
-    for (int i = 0; i <= bestState; ++i) {
-        perturbState(currentStateCopy, history[i]);
+    assert(feasibleState < (int)history.size());
+    for (int i = 0; i <= s; ++i) {
+        perturbState(_finalState, history[i]);
     }
 
-    currentStateCopy.print();
-    currentStateCopy.pack(_db);
-    currentStateCopy.dumpFile("output/input.layout", _db);
+    // _finalState.print();
+    _finalState.pack(_db);
+    _finalState.dumpFile("output/input.layout", _db);
 }
-
+void Bstar::norm(State& state) {
+    PerturbSeed seed;
+    float totalR = 0;
+    for (int i = 0; i < bstarParam.normSample; ++i) {
+        randomPerturbSeed(state, seed);
+        perturbState(state, seed);
+        state.pack(_db);
+        totalR += costWithoutRatio(state) / pow(state.size().ratio() - _db.size().ratio(), 2);
+    }
+    _RNorm = totalR / bstarParam.normSample;
+}
 void Bstar::initState(State& state) {
     state.setLeftChild(state.dummy(), 0);
     state.setParent(state.root(), state.dummy());
@@ -168,28 +239,42 @@ void Bstar::randomPerturbSeed(State& state, PerturbSeed& seed) {
         }
         seed._operand.emplace_back(a);
         seed._operand.emplace_back(b);
-        if (state.leftChild(1) != State::Node::nullNode && state.rightChild(1) == State::Node::nullNode) {
-            seed._insertDir = PerturbSeed::InsertRight;
-        }
-        else if (state.leftChild(1) == State::Node::nullNode && state.rightChild(1) != State::Node::nullNode) {
-            seed._insertDir = PerturbSeed::InsertLeft;
-        }
-        else {
+        // if (state.leftChild(1) != State::Node::nullNode && state.rightChild(1) == State::Node::nullNode) {
+        //     seed._insertDir = PerturbSeed::InsertRight;
+        // }
+        // else if (state.leftChild(1) == State::Node::nullNode && state.rightChild(1) != State::Node::nullNode) {
+        //     seed._insertDir = PerturbSeed::InsertLeft;
+        // }
+        // else {
             if (drand() <= 0.5) {
                 seed._insertDir = PerturbSeed::InsertLeft;
             }
             else {
                 seed._insertDir = PerturbSeed::InsertRight;
             }
-        }
+        // }
     }
 }
-float Bstar::cost(State& state) {
+float Bstar::costWithRatio(State& state) {
     // printf("apha: %f\n", _db.apha());
     // printf("state size: %s\n", state.size().str().c_str());
     // printf("state ratio: %f\n", state.size().ratio());
     // printf("db size: %s\n", _db.size().str().c_str());
     // printf("db ratio: %f\n", _db.size().ratio());
     // getchar();
-    return (float)((_db.apha() * (state.size()[0] * state.size()[1])) + ((1 - _db.apha()) *state.wireLength()) + (bstarParam.aspectRationCost * pow(state.size().ratio() - _db.size().ratio(), 2)));
+    return (float)((_db.apha() * (state.size()[0] * state.size()[1])) + ((1 - _db.apha()) *state.wireLength()) + 
+           (_aspectRationCost * pow(_db.blockSize(), bstarParam.aspectRationPower) * _RNorm * 
+                pow(state.size().ratio() - _db.size().ratio(), 2)));
+}
+float Bstar::costWithoutRatio(State& state) {
+    // printf("apha: %f\n", _db.apha());
+    // printf("state size: %s\n", state.size().str().c_str());
+    // printf("state ratio: %f\n", state.size().ratio());
+    // printf("db size: %s\n", _db.size().str().c_str());
+    // printf("db ratio: %f\n", _db.size().ratio());
+    // getchar();
+    return (float)((_db.apha() * (state.size()[0] * state.size()[1])) + ((1 - _db.apha()) *state.wireLength()));
+}
+bool Bstar::check(State& state) {
+    return _db.size()[0] >= state.size()[0] && _db.size()[1] >= state.size()[1];
 }

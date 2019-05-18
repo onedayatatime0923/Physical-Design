@@ -85,6 +85,7 @@ private:
 
     const Point&    size() { return _size; }
     int             wireLength() { return _wireLength; }
+    const Rect&     location(int i) { return _locationV[i]; }
 
     // state information
     vector<Node>    _nodeV;

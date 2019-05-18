@@ -8,7 +8,8 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-
+    double START,END;
+    START = clock();
     Argparse opt(argc, argv);
     // printf("apha: %f\n", opt.apha());
     // printf("inputBlock: %s\n", opt.inputBlock().c_str());
@@ -16,15 +17,16 @@ int main(int argc, char** argv) {
     // printf("output: %s\n", opt.output().c_str());
     
     DB db; 
-    {
-        Parser parser(opt);
-        parser.parse(db);
-    }
+
+    Parser parser(opt);
+    parser.parse(db);
+
     // db.print();
-    {
-        Bstar bstar(db);
-        bstar.solve();
-    }
+    Bstar bstar(db);
+    bstar.solve();
+
+    END = clock();
+    parser.dumpFile(db, bstar, (END - START) / CLOCKS_PER_SEC);
 }
 
 

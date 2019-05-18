@@ -3,7 +3,7 @@
 BASEDIR=$(dirname "$0")
 EXE=$BASEDIR/bstar
 
-APHA=1
+APHA=0.1
 
 for var in "$@"
 do
@@ -13,8 +13,9 @@ do
 
     OUTPUTDIR=$BASEDIR/output
     mkdir -p $OUTPUTDIR
-    OUTPUT=$OUTPUTDIR/$FILE.out
+    OUTPUT=$OUTPUTDIR/$FILE.rpt
 
+    echo -e "\e[31m"$var"\e[0m"
     time ($EXE $APHA $INPUTBLOCK $INPUTNET $OUTPUT)
     #gdb --args $EXE $INPUT $OUTPUT
 done
