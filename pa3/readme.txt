@@ -2,7 +2,7 @@
 2. 姓名：張家銘
 3. 使用之程式語言：< C++ >
 4. 使用之編譯器：< GNU g++ >
-5. 檔案壓縮方式: <zip -r b04901136-p2.zip pa2>
+5. 檔案壓縮方式: <zip -r b04901136-p3.zip pa3>
 6. 各檔案說明：
 	 pa1/tool/*             : evaluation 程式
 	 pa1/include/*          : include library(此次作業為空)
@@ -10,7 +10,7 @@
 	 pa1/lib/*              : library
 	 pa1/output/*           : output file
 	 pa1/src/*              : 純文字主程式
-     pa1/prog2_routing-1.pdf: 作業說明
+     pa1/prog3_floorplanning.pdf: 作業說明
 	 pa1/eval.sh            : eval script
 	 pa1/run.sh             : run script
      pa1/CMakeLists.txt     : CMakeLists
@@ -32,12 +32,12 @@
 8. 執行、使用方式說明：
    主程式：
    編譯完成後，在檔案目錄下會產生一個執行檔
-     ./gr
+     ./bstar
    執行檔的命令格式為：
-   <executable_file_name> <input file name> <output file name>
-   例如：要對 input_0.dat 執行，並且寫入 output_0.dat
+   [executable file name] [α value] [input.block name] [input.net name] [output file name]
+   例如：要以α = 0.5 對 input_0.block, input_0.nets 執行，並且寫入 output_0.dat
    則在命令提示下鍵入
-   ./gr input_0.dat output_0.dat
+   ./bstar 0.5 input_0.block input_0.nets output_0.dat
 
 9. 執行結果說明（說明執行結果的觀看方法，及解釋各項數據等）：
    主程式：
