@@ -22,7 +22,7 @@ public:
     void    print   ();
 
 private:
-    float   cost            (pair<int, int> p) { return pow(1.2, float(p.second - p.first)); }
+    float   cost            (pair<int, int> p) { return pow(2, float(p.second - p.first)); }
     int                 _horCap;
     int                 _verCap;
     Point               _size;
