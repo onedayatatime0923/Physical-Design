@@ -24,7 +24,7 @@ public:
     DrAstar(DB& db) : _db(db) {};
     ~DrAstar() { clear(); }
 
-    void route(Net& net);
+    void route();
     void clear();
 
     struct AstarNode {

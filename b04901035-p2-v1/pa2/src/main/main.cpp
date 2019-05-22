@@ -10,10 +10,8 @@ int main(int argc, char** argv) {
 
     DB db; 
     SelfParser::parse(argc, argv, db);
-    for (int i = 0; i < db.netSize(); ++i) {
     DrAstar drAstar(db);
-    drAstar.route(db.net(i));
-    }
+    drAstar.route();
     SelfParser::dumpFile(argc, argv, db);
     // db.print();
     

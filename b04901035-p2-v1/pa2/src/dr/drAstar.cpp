@@ -1,13 +1,13 @@
 
 #include "drAstar.hpp"
 
-void DrAstar::route(Net& net) {
+void DrAstar::route() {
     init();
 
-    // for (int i = 0; i < _db.netSize(); ++i) {
-        _netP = &net;
+    for (int i = 0; i < _db.netSize(); ++i) {
+        _netP = &_db.net(i);
         routeNet();
-    // }
+    }
 }
 void DrAstar::init() {
     _totalPoint2NodeMV.clear();
@@ -28,6 +28,7 @@ int DrAstar::routeNet() {
     getchar();
     #endif
 
+    clear();
     initComponent();
 
     if(_componentDS.nSets() == 1) {
@@ -415,6 +416,7 @@ void DrAstar::clear() {
         for (auto n : _totalPoint2NodeMV[i]) {
             delete n.second;
         }
+        _totalPoint2NodeMV[i].clear();
     }
 }
 
