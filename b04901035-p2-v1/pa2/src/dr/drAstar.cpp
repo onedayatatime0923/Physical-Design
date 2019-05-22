@@ -108,19 +108,19 @@ void DrAstar::pushComponentSV() {
 bool DrAstar::findPathAss() {
     // construct kd tree
     // cout<<"// construct kd tree"<<endl;
-    KDTree3D kdtree[2];
-    kdtree[0].setZDirectWeight(_astarParam.viaCost);
-    kdtree[1].setZDirectWeight(_astarParam.viaCost);
+    KDTree2D kdtree[2];
+    // kdtree[0].setZDirectWeight(_astarParam.viaCost);
+    // kdtree[1].setZDirectWeight(_astarParam.viaCost);
     for (int componentId = 0, nComps = _componentSV.size(); componentId < nComps; ++componentId) {
         // printf("componentId: %d\n", componentId);
         // printf("_componentSV[componentId]): %d\n", _componentDS.find(componentId));
         for (const Point3D& p : _componentSV[componentId]) {
             if (_componentDS.find(componentId) == _srcCompId) {
                 // printf("insert into 0: %s\n", p.str().c_str());
-                kdtree[0].insert(p);
+                kdtree[0].insert(p.point());
             } else {
                 // printf("insert into 1: %s\n", p.str().c_str());
-                kdtree[1].insert(p);
+                kdtree[1].insert(p.point());
             }
         }
     }
@@ -146,7 +146,7 @@ bool DrAstar::findPathAss() {
     // construct terminal point
     // cout<<"// construct terminal point"<<endl;
     for (int componentId = 0, nComps = _componentSV.size(); componentId < nComps; ++componentId) {
-        Point3D pNearest;
+        Point pNearest;
         int dNearest;
         int costF;
         for (const Point3D& p : _componentSV[componentId]) {
@@ -154,14 +154,14 @@ bool DrAstar::findPathAss() {
             // printf("_componentDS.find(componentId): %d\n", _componentDS.find(componentId));
             // printf("srcCompId: %d\n", _srcCompId);
             if (_componentDS.find(componentId) == _srcCompId) {
-                kdtree[1].nearestSearch(p, pNearest, dNearest);
+                kdtree[1].nearestSearch(p.point(), pNearest, dNearest);
                 costF = (0 + dNearest);
-                assert(dNearest == costH(p, pNearest));
+                // assert(dNearest == costH(p, pNearest));
             }
             else {
-                kdtree[0].nearestSearch(p, pNearest, dNearest);
+                kdtree[0].nearestSearch(p.point(), pNearest, dNearest);
                 costF = (0 + dNearest);
-                assert(dNearest == costH(p, pNearest));
+                // assert(dNearest == costH(p, pNearest));
             }
             auto iter = _totalPoint2NodeMV[p.layer()].find(p);
             assert(iter != _totalPoint2NodeMV[p.layer()].end());
@@ -220,7 +220,7 @@ bool DrAstar::findPathAss() {
     // printf("heap1 empty: %d\n", heap1.empty());
     return false;
 }
-void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {
+void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree2D(&kdtree)[2], DrAstar::NodePHeap0Type& heap0, DrAstar::NodePHeap1Type& heap1, DrAstar::IterMap0Type& iterMap0, DrAstar::IterMap1Type& iterMap1) {
     // printf("relax\n");
     // find neighbors
     if (currentNode->adjV.empty()) {
@@ -260,8 +260,9 @@ void DrAstar::relax(AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], D
 
             // set cost
             int dNearest;
-            Point3D pNearest;
-            kdtree[groupId ^ 1].nearestSearch(neiNode->coor, pNearest, dNearest);
+            Point pNearest;
+
+            kdtree[groupId ^ 1].nearestSearch(neiNode->coor.point(), pNearest, dNearest);
             
             int new_costF = newCostG + (dNearest);
             #ifdef DRASTAR_DEBUG

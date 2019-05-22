@@ -78,7 +78,7 @@ private:
     void    pushComponentSV     ();
 
     bool    findPathAss         ();
-    void    relax               (AstarNode* currentNode, int groupId, KDTree3D(&kdtree)[2], NodePHeap0Type& heap0, NodePHeap1Type& heap1, IterMap0Type& iterMap0, IterMap1Type& iterMap1);
+    void    relax               (AstarNode* currentNode, int groupId, KDTree2D(&kdtree)[2], NodePHeap0Type& heap0, NodePHeap1Type& heap1, IterMap0Type& iterMap0, IterMap1Type& iterMap1);
     void    findNeighbors       (const Point3D& p, vector<Point3D>& vRet) const;
 
     void    backtrace           (AstarNode* u);
