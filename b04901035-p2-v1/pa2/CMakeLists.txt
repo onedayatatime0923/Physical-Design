@@ -6,21 +6,24 @@ project(pa2)
 # Create variables
 ############################################################
 set(BASEPATH    ${PROJECT_SOURCE_DIR})
+set(BINPATH     ${BASEPATH}/bin)
 set(INCPATH     ${BASEPATH}/include)
 set(LIBPATH     ${BASEPATH}/lib)
 set(SRCPATH     ${BASEPATH}/src)
 ############################################################
 # Create compile flags
 ############################################################
-# if (CMAKE_VERSION VERSION_LESS "3.1")
-    # SET(CMAKE_CXX_COMPILER /usr/local/bin/g++)
-# endif ()
-# SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG -std=c++11")
-set(CMAKE_CXX_FLAGS "-Wall -g -std=c++11")
-set(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
+if (CMAKE_VERSION VERSION_LESS "3.1")
+    SET(CMAKE_CXX_COMPILER /usr/local/bin/g++)
+endif ()
+SET(CMAKE_CXX_FLAGS "-O3 -DNDEBUG -std=c++11")
+# set(CMAKE_CXX_FLAGS "-Wall -O3 -std=c++11")
 ############################################################
 # process variables
 ############################################################
+IF (NOT EXISTS "${BINPATH}")
+  FILE(MAKE_DIRECTORY ${BINPATH})
+ENDIF()
 IF (NOT EXISTS "${INCPATH}")
   FILE(MAKE_DIRECTORY ${INCPATH})
 ENDIF()
@@ -70,5 +73,5 @@ add_executable(main ${MAINPATH}main.cpp)
 target_link_libraries(main PRIVATE ${LIB} srclib)
 # target_link_libraries(test PRIVATE ${LIB} srclib)
 # link the new hello_library target with the hello_binary target
-set_target_properties(main PROPERTIES OUTPUT_NAME bstar)
+set_target_properties(main PROPERTIES OUTPUT_NAME gr)
 # set_target_properties(test PROPERTIES OUTPUT_NAME test)

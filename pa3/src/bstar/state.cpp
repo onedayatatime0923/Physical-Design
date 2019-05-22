@@ -91,7 +91,7 @@ void State::rename(int a, int b) {
 void State::pack(DB& db) {
     _size.set(0,0);
     Point s = db.block(root()).size();
-    if (_rotationV[root()]) s.swapXY();
+    if (_rotationV[root()] && db.block(root()).rotatable()) s.swapXY();
 
     _locationV[root()][0] = 0;
     _locationV[root()][2] = s[0];
@@ -103,7 +103,7 @@ void State::pack(DB& db) {
     #ifdef STATE_DEBUG
     printf("id: %d\n", root());
     printf("  rect: %s\n", _locationV[root()].str().c_str());
-    printContour();
+    // printContour(contourL);
     #endif
     auto it = contourL.begin();
     assert(contourL.size() == 1);
@@ -119,7 +119,7 @@ void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator&
     // printf("  rightChildId: %d\n", rightChildId);
     if (leftChildId != Node::nullNode) {
         Point s = db.block(leftChildId).size();
-        if (_rotationV[leftChildId]) s.swapXY();
+        if (_rotationV[leftChildId] && db.block(leftChildId).rotatable()) s.swapXY();
         auto recursiveIt = next(it);
 
         _locationV[leftChildId][0] = _locationV[id][2];
@@ -130,7 +130,7 @@ void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator&
         #ifdef STATE_DEBUG
         printf("  left id: %d\n", leftChildId);
         printf("    rect: %s\n", _locationV[leftChildId].str().c_str());
-        printContour();
+        // printContour(contourL);
         #endif
         pack(db, leftChildId, contourL, recursiveIt);
         // printf("come back to %d\n", id);
@@ -138,7 +138,7 @@ void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator&
 
     if (rightChildId != Node::nullNode) {
         Point s = db.block(rightChildId).size();
-        if (_rotationV[rightChildId]) s.swapXY();
+        if (_rotationV[rightChildId] && db.block(rightChildId).rotatable()) s.swapXY();
         auto recursiveIt = it;
 
         _locationV[rightChildId][0] = _locationV[id][0];
@@ -149,7 +149,7 @@ void State::pack(DB& db, int id, list<int>& contourL, const list<int>::iterator&
         #ifdef STATE_DEBUG
         printf("  right id: %d\n", rightChildId);
         printf("    rect: %s\n", _locationV[rightChildId].str().c_str());
-        printContour();
+        // printContour(contourL);
         #endif
         pack(db, rightChildId, contourL, recursiveIt);
     }
