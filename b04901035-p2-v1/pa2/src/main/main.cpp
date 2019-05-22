@@ -7,11 +7,14 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+
     DB db; 
     SelfParser::parse(argc, argv, db);
     DrAstar drAstar(db);
     drAstar.route();
     SelfParser::dumpFile(argc, argv, db);
+    // db.print();
+    
 }
 
 

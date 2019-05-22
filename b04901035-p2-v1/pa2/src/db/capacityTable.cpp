@@ -38,29 +38,26 @@ void CapacityTable::addSegment(const Point3D& p1, const Point3D& p2) {
     }
     else if (p1[0] == p2[0] && p1[1] == p2[1]) {
     }
-    else {
-        printf("p1: %s\n", p1.str().c_str());
-        printf("p2: %s\n", p2.str().c_str());
-        assert(false);
-    }
+    else assert(false);
 
+    assert(false);
 };
 void CapacityTable::print() {
     printf("CapacityTable\n");
     printf("  hor default: %d\n", _horCap);
     printf("  hor table\n");
-    for (int i = 0; i < (int)_horCapVV.size(); ++i) {
+    for (int i = 0; i < _horCapVV.size(); ++i) {
         printf("row %d:", i);
-        for (int j = 0; j < (int)_horCapVV[i].size(); ++j) {
+        for (int j = 0; j < _horCapVV[i].size(); ++j) {
             printf(" %d", _horCapVV[i][j].first);
         }
         printf("\n");
     }
     printf("  ver default: %d\n", _verCap);
     printf("  ver table\n");
-    for (int i = 0; i < (int)_verCapVV.size(); ++i) {
+    for (int i = 0; i < _verCapVV.size(); ++i) {
         printf("row %d:", i);
-        for (int j = 0; j < (int)_verCapVV[i].size(); ++j) {
+        for (int j = 0; j < _verCapVV[i].size(); ++j) {
             printf(" %d", _verCapVV[i][j].first);
         }
         printf("\n");
