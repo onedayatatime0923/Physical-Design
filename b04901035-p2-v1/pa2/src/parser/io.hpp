@@ -1,0 +1,24 @@
+#ifndef __PARSER_H__
+#define __PARSER_H__
+
+#include <iostream>
+#include <fstream>
+#include "routingdb.hpp"
+
+using namespace std;
+
+
+namespace SelfParser {
+    class Parser
+    {
+        public:
+        Parser() {;}
+        ~Parser() {;}
+
+        void ReadISPD(ifstream& file);
+
+        private:
+    };
+}
+
+#endif
